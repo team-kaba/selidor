@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pw.itr0</groupId>
+  <artifactId>itr0</artifactId>
+  <version>${revision}</version>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Iteration0: Root Aggregator</description>
+
+  <properties>
+    <!--
+         Iteration0 のバージョン。
+         サブモジュールから親を指定する時もバージョンを `${revision}` と指定します。
+    -->
+    <revision>0.1.0-SNAPSHOT</revision>
+
+    <!--
+         Root Aggregator のディレクトリを表すためのプロパティ。
+         サブモジュールでは、このpom.xmlがあるディレクトリへの相対パスを `main.basedir` に設定します。
+    -->
+    <main.basedir>.</main.basedir>
+    <!-- main.basedirの絶対パス -->
+    <main.absdir>${project.basedir}/${main.basedir}</main.absdir>
+    <!--
+         静的解析などで利用するファイルを格納しているディレクトリへのパス（main.basedirからの相対パス）
+         resources配下のディレクトリ名なので、パッケージ名の命名規約に合わせて`-`を取り除いています。
+    -->
+    <build-extensions.config.path>build-extensions/src/main/resources/pw/itr0</build-extensions.config.path>
+
+    <!-- Mavenの最小バージョン -->
+    <maven.min-version>3.6.0</maven.min-version>
+
+    <!-- Javaバージョン -->
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <!-- ファイルエンコーディング -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!--
+         静的解析などを実行しないようにする設定。
+         Maven実行時に `-Ddisable.checks` を設定することで、静的解析などをスキップできるようにしています。
+    -->
+    <disable.checks>false</disable.checks>
+    <!-- NVD CVEのダウンロードに頻繁に失敗するため、エラーでもビルド失敗にならないようにしておく。 -->
+    <fail-on-error.dependency-check>false</fail-on-error.dependency-check>
+
+    <!--
+         カバレッジを取得しないようにする設定。
+         Maven実行時に `-Ddisable.coverage` を設定することで、カバレッジ取得をスキップできるようにしています。
+    -->
+    <disable.coverage>false</disable.coverage>
+
+    <!-- Mavenプラグインバージョン -->
+    <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
+    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+    <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+
+    <!-- spring-boot-dependencies にないプラグイン -->
+    <dependency-check-maven.version>4.0.2</dependency-check-maven.version>
+    <fmt-maven-plugin.version>2.8</fmt-maven-plugin.version>
+  </properties>
+
+  <modules>
+  </modules>
+
+  <build>
+    <!--
+         ビルドに利用するプラグインの設定
+
+         Root Aggregator のディレクトリで実行すれば良いプラグインや、すべての種類のMavenプロジェクトで実行するプラグインを定義しています。
+    -->
+    <pluginManagement>
+      <plugins>
+        <!-- 依存ライブラリのCVE脆弱性チェック -->
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${dependency-check-maven.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <!--
+                     依存ライブラリに、CVEに脆弱性が報告されているライブラリが存在しないかチェックします。
+                     サブモジュールもまとめてチェックしたいので、aggregateを利用します。
+                -->
+                <goal>aggregate</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <skip>${disable.checks}</skip>
+            <failOnError>${fail-on-error.dependency-check}</failOnError>
+            <!--
+                 CVEに報告されているライブラリが検知されたら、ビルドを失敗するようにします。
+                 依存ライブラリが脆弱な場合にちゃんと検知されるかどうかのテストには、
+                   org.apache.struts:struts2-core:2.5.10
+                 とかを使うと便利です。
+            -->
+            <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+            <suppressionFiles>
+              <!--
+                   このプラグインでは、相対パスは ${project.basedir} からではなく実行時ディレクトリからの相対パスとして扱われるようです。
+                   絶対パスを設定するほうが安全そうなので、 ${main.absdir} を使います。
+              -->
+              <suppressionFile>${main.absdir}/${build-extensions.config.path}/owasp/cve-suppressions.xml</suppressionFile>
+            </suppressionFiles>
+          </configuration>
+          <!--
+               サブモジュール分もまとめてチェックするので、サブモジュールでは実行しないようにしておきます。
+          -->
+          <inherited>false</inherited>
+        </plugin>
+
+        <!-- コードフォーマッタ -->
+        <plugin>
+          <!-- Root Aggregator で `mvn fmt:format` と実行できるように、ここでプラグインを定義しておきます。 -->
+          <groupId>com.coveo</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <version>${fmt-maven-plugin.version}</version>
+        </plugin>
+
+        <!-- ビルドルール -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <!-- Mavenビルドのルールが守られているかどうかをチェックします。 -->
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <!-- https://maven.apache.org/enforcer/enforcer-rules/index.html -->
+            <rules>
+              <!--
+                   This rule checks that there are no duplicate dependencies declared in the POM of the project.
+                   Duplicate dependencies are dependencies which have the same group id, artifact id,
+                   type and classifier.
+              -->
+              <banDuplicatePomDependencyVersions/>
+              <!--
+                   This rule checks the dependencies and fails if any of the matching excludes are found.
+              -->
+              <bannedDependencies>
+                <searchTransitive>true</searchTransitive>
+              </bannedDependencies>
+              <!--
+                   This rule requires that dependency version numbers converge.
+                   If a project has two dependencies, A and B, both depending on the same artifact, C,
+                   this rule will fail the build if A depends on a different version of C then
+                   the version of C depended on by B.
+              -->
+              <dependencyConvergence/>
+              <!--
+                   This rule checks that the versions within the reactor are consistent
+                   furthermore it will check that every module within the project contains a parent
+                   and that the parent is part of the reactor build.
+                   Furthermore it will be checked if dependencies are inter-module dependencies that
+                   they using the same version as given by the reactor.
+              -->
+              <reactorModuleConvergence/>
+              <!--
+                   This rule enforces certain Maven versions.
+              -->
+              <requireMavenVersion>
+                <version>${maven.min-version}</version>
+              </requireMavenVersion>
+              <!--
+                   This rule can enforce that a declared property is set and optionally evaluate it against a regular expression.
+              -->
+              <requireProperty>
+                <property>main.basedir</property>
+              </requireProperty>
+              <requireProperty>
+                <property>project.name</property>
+              </requireProperty>
+              <requireProperty>
+                <property>project.description</property>
+              </requireProperty>
+              <!--
+                   This rule enforces that specific dependencies and/or plugins have the same version.
+              -->
+              <requireSameVersions>
+                <plugins>
+                  <plugin>org.apache.maven.plugins:maven-surefire-plugin</plugin>
+                  <plugin>org.apache.maven.plugins:maven-failsafe-plugin</plugin>
+                </plugins>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>com.fasterxml.jackson.core:jackson-core</dependency>
+                  <dependency>com.fasterxml.jackson.core:jackson-databind</dependency>
+                  <dependency>com.fasterxml.jackson.dataformat:*</dependency>
+                  <dependency>com.fasterxml.jackson.datatype:*</dependency>
+                  <dependency>com.fasterxml.jackson.jaxrs:*</dependency>
+                  <dependency>com.fasterxml.jackson.jr:*</dependency>
+                  <dependency>com.fasterxml.jackson.module:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>com.squareup.okhttp3:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>com.squareup.retrofit2:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>io.github.resilience4j:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>io.vavr:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>org.assertj:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>org.junit.jupiter:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>org.mapstruct:*</dependency>
+                </dependencies>
+              </requireSameVersions>
+            </rules>
+            <fail>true</fail>
+          </configuration>
+        </plugin>
+
+        <!-- 依存ライブラリ、プラグインのバージョン -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions-maven-plugin.version}</version>
+          <configuration>
+            <!-- 更新をpom.xmlに反映した時に、バックアップのpom.xmlを生成しないようにします。 -->
+            <generateBackupPoms>false</generateBackupPoms>
+            <!--
+                 versions-maven-pluginで更新の確認などをする時に、betaやRCなどのバージョンを更新先の候補として表示しないように設定します。
+                 ※ 絶対パスで指定しないと、設定ファイルを読み込めません。
+            -->
+            <rulesUri>file:///${main.absdir}/${build-extensions.config.path}/versions/versions-maven-plugin-rules.xml</rulesUri>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <!--
+         Aggregator or Parent の場合にも利用するプラグイン
+           default binding に含まれないプラグインだけを設定しています。
+           cf.) https://github.com/apache/maven/blob/master/maven-core/src/main/resources/META-INF/plexus/default-bindings.xml
+    -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
