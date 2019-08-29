@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pw.itr0</groupId>
+    <artifactId>itr0-projects</artifactId>
+    <version>${revision}</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>itr0-dependencies</artifactId>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Iteration0 Projects: Dependencies</description>
+
+  <properties>
+    <!-- Iteration0 -->
+    <!-- Iteration0のバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
+
+    <!-- 3rd Party Libraries -->
+    <assertj-core.version>3.13.2</assertj-core.version>
+    <junit-jupiter.version>5.5.1</junit-jupiter.version>
+    <mapstruct.version>1.3.0.Final</mapstruct.version>
+    <okhttp.version>4.1.0</okhttp.version>
+    <retrofit.version>2.6.1</retrofit.version>
+    <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
+    <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+    <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+    <testcontainers.version>1.12.0</testcontainers.version>
+
+    <!-- Maven Plugins -->
+    <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
+    <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+    <git-commit-id-plugin.version>2.2.6</git-commit-id-plugin.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+    <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
+    <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+    <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+    <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+    <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+    <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
+
+    <!-- spring-boot-dependencies にないプラグイン -->
+    <dependency-check-maven.version>4.0.2</dependency-check-maven.version>
+    <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
+    <fmt-maven-plugin.version>2.8</fmt-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
+
+    <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
+    <main.basedir>../..</main.basedir>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Iteration0 -->
+
+      <!-- Spring -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+
+      <!-- MapStruct -->
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${mapstruct.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct-processor</artifactId>
+        <version>${mapstruct.version}</version>
+      </dependency>
+
+      <!-- OkHttp / Retrofit -->
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>logging-interceptor</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp-testing-support</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>retrofit</artifactId>
+        <version>${retrofit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>converter-jackson</artifactId>
+        <version>${retrofit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>retrofit-mock</artifactId>
+        <version>${retrofit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.jakewharton.retrofit</groupId>
+        <artifactId>retrofit2-reactor-adapter</artifactId>
+        <version>${retrofit2-reactor-adapter.version}</version>
+      </dependency>
+
+      <!-- JUnit -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+
+      <!-- AssertJ -->
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>${assertj-core.version}</version>
+      </dependency>
+
+      <!-- Testcontainers -->
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-bom</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- 依存ライブラリのCVE脆弱性チェック -->
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${dependency-check-maven.version}</version>
+        </plugin>
+        <!-- クラスパス上で重複しているクラスやリソースの検出 -->
+        <plugin>
+          <groupId>org.basepom.maven</groupId>
+          <artifactId>duplicate-finder-maven-plugin</artifactId>
+          <version>${duplicate-finder-maven-plugin.version}</version>
+        </plugin>
+        <!-- POMファイルの整理 -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>${flatten-maven-plugin.version}</version>
+        </plugin>
+        <!-- コードフォーマッタ -->
+        <plugin>
+          <groupId>com.coveo</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <version>${fmt-maven-plugin.version}</version>
+        </plugin>
+        <!-- Gitリビジョン情報 -->
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>${git-commit-id-plugin.version}</version>
+        </plugin>
+        <!-- カバレッジ -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+        </plugin>
+        <!-- ビルドルール -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
+        </plugin>
+        <!-- Integration Test -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${maven-failsafe-plugin.version}</version>
+        </plugin>
+        <!-- jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+        </plugin>
+        <!-- リソースファイル -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+        </plugin>
+        <!-- sources.jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+        </plugin>
+        <!-- Unit Test -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+        <!-- war -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${maven-war-plugin.version}</version>
+        </plugin>
+        <!-- Spring Boot -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+        <!-- XMLファイルの整形 -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>xml-maven-plugin</artifactId>
+          <version>${xml-maven-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Flatten and simplify our own POM for install/deploy -->
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+              <flattenMode>bom</flattenMode>
+              <pomElements>
+                <pluginManagement>keep</pluginManagement>
+                <properties>keep</properties>
+                <repositories>remove</repositories>
+              </pomElements>
+            </configuration>
+          </execution>
+          <execution>
+            <id>flatten-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Cleanup the flattened project POM -->
+            <id>post-process-flattened-pom</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <configuration>
+              <transformationSets>
+                <transformationSet>
+                  <dir>${project.basedir}</dir>
+                  <outputDir>${project.basedir}</outputDir>
+                  <includes>.flattened-pom.xml</includes>
+                  <stylesheet>src/main/xslt/post-process-flattened-pom.xsl</stylesheet>
+                  <outputProperties>
+                    <outputProperty>
+                      <name>indent</name>
+                      <value>yes</value>
+                    </outputProperty>
+                  </outputProperties>
+                </transformationSet>
+              </transformationSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

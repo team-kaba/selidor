@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pw.itr0</groupId>
+    <artifactId>itr0</artifactId>
+    <version>${revision}</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>itr0-projects</artifactId>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Iteration0 Projects: Aggregator</description>
+
+  <modules>
+    <module>build-reports</module>
+    <module>itr0-parent</module>
+    <module>itr0-dependencies</module>
+  </modules>
+
+  <properties>
+    <main.basedir>..</main.basedir>
+  </properties>
+
+  <build>
+    <plugins>
+      <!--
+          デプロイ
+            Aggregator projectはdeployする必要がないので、skipしています。
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+        <inherited>false</inherited>
+      </plugin>
+    </plugins>
+  </build>
+</project>
