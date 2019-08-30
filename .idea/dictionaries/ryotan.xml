@@ -14,10 +14,12 @@
       <w>mvnw</w>
       <w>okhttp</w>
       <w>owasp</w>
+      <w>ryotan</w>
       <w>squareup</w>
       <w>suppressions</w>
       <w>tada</w>
       <w>takari</w>
+      <w>tanaka</w>
       <w>testcontainers</w>
       <w>urandom</w>
       <w>vavr</w>

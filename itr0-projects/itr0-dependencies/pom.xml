@@ -16,6 +16,30 @@
 
   <name>${project.artifactId}</name>
   <description>Iteration0 Projects: Dependencies</description>
+  <url>https://github.com/ryotan/itr0</url>
+  <inceptionYear>2019</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>ryotan</id>
+      <name>Ryo Tanaka</name>
+      <email>ryotan@ucb-jp.net</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/ryotan/itr0</url>
+  </scm>
 
   <properties>
     <!-- Iteration0 -->
