@@ -75,7 +75,7 @@
     <dependency-check-maven.version>4.0.2</dependency-check-maven.version>
     <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
-    <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
 
     <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
     <main.basedir>../..</main.basedir>
