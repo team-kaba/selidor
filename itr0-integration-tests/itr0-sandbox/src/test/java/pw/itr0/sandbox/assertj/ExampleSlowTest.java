@@ -13,8 +13,6 @@ import pw.itr0.test.UnitTest;
 class ExampleSlowTest {
   @Test
   void timeoutNotExceededWithResult() {
-    assertTimeout(
-        ofSeconds(10),
-        () -> TimeUnit.MILLISECONDS.sleep(9990));
+    assertTimeout(ofSeconds(10), () -> TimeUnit.MILLISECONDS.sleep(9990));
   }
 }
