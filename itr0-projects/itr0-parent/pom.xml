@@ -58,7 +58,7 @@
   <build>
     <!--
          Spring Bootの設定ファイルに対して、resourceのフィルタリングを有効にします。デリミタを変更しているので、
-         `@{prop}` という記法で書くことで pom.xml で定義された properties に置き換えることができます。
+         `@prop@` という記法で書くことで pom.xml で定義された properties に置き換えることができます。
          cf.) https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-starters/spring-boot-starter-parent/pom.xml
     -->
     <resources>
