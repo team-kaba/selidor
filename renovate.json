@@ -1,5 +1,15 @@
 {
+  "commitMessagePrefix": ":arrow_up: ",
   "extends": [
     "config:base"
-  ]
+  ],
+  "packageRules": [
+    {
+      "excludePackagePatterns": [
+        "^pw.itr0:itr0$",
+        "^pw.itr0:itr0-"
+      ]
+    }
+  ],
+  "timezone": "Asia/Tokyo"
 }
