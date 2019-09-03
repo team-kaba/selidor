@@ -136,13 +136,13 @@ mvn -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.1
 ## run-all-tasks
 
 ```bash
+maid deploy-projects-local
 maid format
 maid clean
 maid verify
 maid verify-without-checks
 maid verify-without-coverage
 maid verify-without-checks-and-coverage
-maid deploy-projects-local
 maid owasp-dependency-check
 maid check-dependency-update
 maid apply-dependency-update
