@@ -4,10 +4,15 @@
       <w>absdir</w>
       <w>adoptopenjdk</w>
       <w>assertj</w>
+      <w>bento</w>
       <w>dataformat</w>
       <w>ddisable</w>
+      <w>dharma</w>
       <w>dmaven</w>
       <w>fqcn</w>
+      <w>gitignore</w>
+      <w>hankey</w>
+      <w>hotfix</w>
       <w>intelli</w>
       <w>jaxrs</w>
       <w>mapstruct</w>
