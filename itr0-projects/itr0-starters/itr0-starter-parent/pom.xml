@@ -7,51 +7,44 @@
     <groupId>pw.itr0</groupId>
     <artifactId>itr0-dependencies</artifactId>
     <version>${revision}</version>
-    <relativePath>../itr0-dependencies</relativePath>
+    <relativePath>../../itr0-dependencies</relativePath>
   </parent>
 
-  <artifactId>itr0-parent</artifactId>
+  <artifactId>itr0-starter-parent</artifactId>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Iteration0 Projects: Java Build Configuration</description>
-  <url>https://github.com/ryotan/itr0</url>
-  <inceptionYear>2019</inceptionYear>
-
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <id>ryotan</id>
-      <name>Ryo Tanaka</name>
-      <email>ryotan@ucb-jp.net</email>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-  </developers>
-
-  <scm>
-    <url>https://github.com/ryotan/itr0</url>
-    <connection>scm:git:git@github.com:ryotan/itr0.git</connection>
-    <developerConnection>scm:git:git@github.com:ryotan/itr0.git</developerConnection>
-  </scm>
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/ryotan/itr0/issues</url>
-  </issueManagement>
+  <description>Iteration0 Starter: Parent POM</description>
 
   <properties>
+
+    <!-- Javaバージョン -->
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <!-- ファイルエンコーディング -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     <!-- Spring Bootの設定ファイルでSpELを使う時の記法と競合しないように、resourceのデリミタを変更しておきます。 -->
     <resource.delimiter>@</resource.delimiter>
 
-    <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
-    <main.basedir>../..</main.basedir>
+    <!--
+         静的解析などを実行しないようにする設定。
+         Maven実行時に `-Ddisable.checks` を設定することで、静的解析などをスキップできるようにしています。
+    -->
+    <disable.checks>false</disable.checks>
+    <!-- NVD CVEのダウンロードに頻繁に失敗するため、エラーでもビルド失敗にならないようにしておく。 -->
+    <fail-on-error.dependency-check>false</fail-on-error.dependency-check>
+
+    <!--
+         カバレッジを取得しないようにする設定。
+         Maven実行時に `-Ddisable.coverage` を設定することで、カバレッジ取得をスキップできるようにしています。
+    -->
+    <disable.coverage>false</disable.coverage>
+
+    <main.basedir>../../..</main.basedir>
   </properties>
 
   <build>
@@ -100,39 +93,20 @@
             </execution>
           </executions>
           <configuration>
+            <skip>${disable.checks}</skip>
             <!-- 同じ名前で違う内容のファイルが存在する場合はエラーにします。 -->
             <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
             <!-- 同じ名前でも内容も同じファイルであれば、エラーにしないようにします。 -->
             <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
             <ignoredResourcePatterns>
+              <!-- モジュールごとに作成される、git.properties は重複しても問題ないので無視します。 -->
               <pattern>git\.properties</pattern>
             </ignoredResourcePatterns>
+            <ignoredClassPatterns>
+              <!-- Multi-Release Jar Files に含まれる module-info.class は重複しても問題ないので無視します。 -->
+              <pattern>META-INF\.versions\.\d+\.module-info</pattern>
+            </ignoredClassPatterns>
           </configuration>
-        </plugin>
-
-        <!-- POMファイルの整理 -->
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>flatten-maven-plugin</artifactId>
-          <inherited>true</inherited>
-          <executions>
-            <execution>
-              <id>flatten</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>flatten</goal>
-              </goals>
-              <configuration>
-                <updatePomFile>true</updatePomFile>
-                <flattenMode>oss</flattenMode>
-                <pomElements>
-                  <parent>expand</parent>
-                  <distributionManagement>remove</distributionManagement>
-                  <repositories>remove</repositories>
-                </pomElements>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
 
         <!-- コードフォーマッタ -->
@@ -306,46 +280,72 @@
       </plugins>
     </pluginManagement>
 
-    <!--
-         Javaのビルドに利用するプラグイン
-           default binding に含まれないプラグインだけを設定しています。
-           cf.) https://github.com/apache/maven/blob/master/maven-core/src/main/resources/META-INF/plexus/default-bindings.xml
-    -->
     <plugins>
-      <!-- クラスパス上で重複しているクラスやリソースの検出 -->
-      <plugin>
-        <groupId>org.basepom.maven</groupId>
-        <artifactId>duplicate-finder-maven-plugin</artifactId>
-      </plugin>
-      <!-- POMファイルの整理 -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Flatten and simplify our own POM for install/deploy -->
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+              <pomElements>
+                <parent>expand</parent>
+                <name>keep</name>
+                <description>keep</description>
+                <url>expand</url>
+                <properties>keep</properties>
+                <pluginManagement>keep</pluginManagement>
+                <dependencyManagement>keep</dependencyManagement>
+                <build>keep</build>
+              </pomElements>
+            </configuration>
+          </execution>
+          <execution>
+            <id>flatten-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-      <!-- コードフォーマッタ -->
       <plugin>
-        <groupId>com.coveo</groupId>
-        <artifactId>fmt-maven-plugin</artifactId>
-      </plugin>
-      <!-- Gitリビジョン情報 -->
-      <plugin>
-        <groupId>pl.project13.maven</groupId>
-        <artifactId>git-commit-id-plugin</artifactId>
-      </plugin>
-      <!-- カバレッジ -->
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-      <!-- Integration Test -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-      <!-- sources.jar -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Cleanup the flattened project POM -->
+            <id>post-process-flattened-pom</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <configuration>
+              <transformationSets>
+                <transformationSet>
+                  <dir>${project.basedir}</dir>
+                  <outputDir>${project.basedir}</outputDir>
+                  <includes>.flattened-pom.xml</includes>
+                  <stylesheet>src/main/xslt/post-process-flattened-pom.xsl</stylesheet>
+                  <outputProperties>
+                    <outputProperty>
+                      <name>indent</name>
+                      <value>yes</value>
+                    </outputProperty>
+                  </outputProperties>
+                </transformationSet>
+              </transformationSets>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

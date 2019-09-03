@@ -5,26 +5,23 @@
 
   <parent>
     <groupId>pw.itr0</groupId>
-    <artifactId>itr0</artifactId>
+    <artifactId>itr0-projects</artifactId>
     <version>${revision}</version>
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>itr0-projects</artifactId>
+  <artifactId>itr0-starters</artifactId>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Iteration0 Projects: Aggregator</description>
+  <description>Iteration0 Starters: Aggregator</description>
 
   <modules>
-    <module>build-reports</module>
-    <module>itr0-parent</module>
-    <module>itr0-dependencies</module>
-    <module>itr0-starters</module>
+    <module>itr0-starter-parent</module>
   </modules>
 
   <properties>
-    <main.basedir>..</main.basedir>
+    <main.basedir>../..</main.basedir>
   </properties>
 
   <build>

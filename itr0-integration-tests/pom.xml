@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pw.itr0</groupId>
+    <artifactId>itr0</artifactId>
+    <version>${revision}</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>itr0-integration-tests</artifactId>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Iteration0 Integration Tests: Aggregator</description>
+
+  <modules>
+    <module>itr0-sandbox</module>
+  </modules>
+
+  <properties>
+    <main.basedir>${basedir}/../..</main.basedir>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <!--
+                  テスト用に、Mavenプロジェクト構成のベストプラクティスに沿わない構成にする必要があるので、enforcerは利用しないようにしておきます。
+              -->
+              <skip>true</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
