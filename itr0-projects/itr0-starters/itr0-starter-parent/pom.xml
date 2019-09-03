@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pw.itr0</groupId>
+    <artifactId>itr0-dependencies</artifactId>
+    <version>${revision}</version>
+    <relativePath>../../itr0-dependencies</relativePath>
+  </parent>
+
+  <artifactId>itr0-starter-parent</artifactId>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Iteration0 Starter: Parent POM</description>
+
+  <properties>
+
+    <!-- Javaバージョン -->
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <!-- ファイルエンコーディング -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Spring Bootの設定ファイルでSpELを使う時の記法と競合しないように、resourceのデリミタを変更しておきます。 -->
+    <resource.delimiter>@</resource.delimiter>
+
+    <!--
+         静的解析などを実行しないようにする設定。
+         Maven実行時に `-Ddisable.checks` を設定することで、静的解析などをスキップできるようにしています。
+    -->
+    <disable.checks>false</disable.checks>
+    <!-- NVD CVEのダウンロードに頻繁に失敗するため、エラーでもビルド失敗にならないようにしておく。 -->
+    <fail-on-error.dependency-check>false</fail-on-error.dependency-check>
+
+    <!--
+         カバレッジを取得しないようにする設定。
+         Maven実行時に `-Ddisable.coverage` を設定することで、カバレッジ取得をスキップできるようにしています。
+    -->
+    <disable.coverage>false</disable.coverage>
+
+    <main.basedir>../../..</main.basedir>
+  </properties>
+
+  <build>
+    <!--
+         Spring Bootの設定ファイルに対して、resourceのフィルタリングを有効にします。デリミタを変更しているので、
+         `@prop@` という記法で書くことで pom.xml で定義された properties に置き換えることができます。
+         cf.) https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-starters/spring-boot-starter-parent/pom.xml
+    -->
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/application*.yml</include>
+          <include>**/application*.yaml</include>
+          <include>**/application*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <excludes>
+          <exclude>**/application*.yml</exclude>
+          <exclude>**/application*.yaml</exclude>
+          <exclude>**/application*.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <!--
+         ビルドに利用するプラグインの設定
+
+         jacoco-maven-pluginなどの一部のプラグインを除くと、プラグインを利用するすべてのモジュールで同じ設定を利用することが多いので、
+         このファイルにプラグインの設定を集約しています。
+    -->
+    <pluginManagement>
+      <plugins>
+        <!-- クラスパス上で重複しているクラスやリソースの検出 -->
+        <plugin>
+          <groupId>org.basepom.maven</groupId>
+          <artifactId>duplicate-finder-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <skip>${disable.checks}</skip>
+            <!-- 同じ名前で違う内容のファイルが存在する場合はエラーにします。 -->
+            <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+            <!-- 同じ名前でも内容も同じファイルであれば、エラーにしないようにします。 -->
+            <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
+            <ignoredResourcePatterns>
+              <!-- モジュールごとに作成される、git.properties は重複しても問題ないので無視します。 -->
+              <pattern>git\.properties</pattern>
+            </ignoredResourcePatterns>
+            <ignoredClassPatterns>
+              <!-- Multi-Release Jar Files に含まれる module-info.class は重複しても問題ないので無視します。 -->
+              <pattern>META-INF\.versions\.\d+\.module-info</pattern>
+            </ignoredClassPatterns>
+          </configuration>
+        </plugin>
+
+        <!-- コードフォーマッタ -->
+        <plugin>
+          <groupId>com.coveo</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <!--
+                     Google Java Style Guide に従ったコードスタイルになっているかをチェックします。
+                       https://google.github.io/styleguide/javaguide.html
+                     エラーになった場合は、ビルドが失敗します。
+                -->
+                <goal>check</goal>
+              </goals>
+              <configuration>
+                <skip>${disable.checks}</skip>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Gitリビジョン情報 -->
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <!-- ビルド時のGitリビジョン情報を保存しておきます。 -->
+                <goal>revision</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <!-- ビルドのログにGitのリビジョン情報を出力します。 -->
+            <verbose>true</verbose>
+            <!-- 日付のフォーマットはISO8601に合わせておきます。 -->
+            <dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
+            <!-- Gitのリビジョン情報をファイルとして出力します。 -->
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+            <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+          </configuration>
+        </plugin>
+
+        <!-- カバレッジ -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <!-- test phase と integration-test phase で実行されるテストでカバレッジを取得するように設定します。 -->
+              <goals>
+                <goal>prepare-agent</goal>
+                <goal>prepare-agent-integration</goal>
+                <!-- レポートは、build-reportsでreport-aggregateを実行して出力します。 -->
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <skip>${disable.coverage}</skip>
+          </configuration>
+        </plugin>
+
+        <!-- Javaコンパイラ -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <!--
+                 メソッド/コンストラクタのパラメータ情報をクラスファイルに残します。
+                 SpringやMyBatisなどで、 `@Params` などのアノテーションを引数につける必要がなくなります。
+            -->
+            <parameters>true</parameters>
+            <compilerArgs>
+              <!-- Javacで警告が出たときは、コンパイルエラーとして扱います。 -->
+              <compilerArg>-Werror</compilerArg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+
+        <!-- Integration Test -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <executions>
+            <execution>
+              <!-- mvn verify で failsafe が実行されるようにしておきます。 -->
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <!--
+                 integration-test phaseでは、TestcontainersやSpring Boot Testを利用する重いテストを実行します。
+                 ※ JUnit5の場合、@Tagで指定したタグがgroupsに含まれているものだけが実行されるようになります。
+            -->
+            <groups>slow,integration</groups>
+            <!-- テストクラス名は、 maven-surefire-plugin と同じ命名ルールになるように設定します。 -->
+            <includes>
+              <include>**/Test*.java</include>
+              <include>**/*Test.java</include>
+              <include>**/*Tests.java</include>
+              <include>**/*TestCase.java</include>
+            </includes>
+            <!-- テスト中の標準出力をファイルにダンプしておくようにします。`<testName>-output.txt`というファイルに出力されるようになります。 -->
+            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+            <!-- テストがFQCNによらず、ランダムな順番で実行されるようにします。 -->
+            <runOrder>random</runOrder>
+            <systemPropertyVariables>
+              <!-- SecureRandomが遅くならないように、システムプロパティを設定しておきます。 -->
+              <java.security.egd>file:/dev/./urandom</java.security.egd>
+            </systemPropertyVariables>
+            <!-- スタックトレースを省略しないようにします。 -->
+            <trimStackTrace>false</trimStackTrace>
+          </configuration>
+        </plugin>
+
+        <!-- リソースファイル -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <configuration>
+            <!-- Spring Bootの設定ファイルでSpELを使う時の記法と競合しないように、resourceのデリミタを変更しておきます。 -->
+            <delimiters>
+              <delimiter>${resource.delimiter}</delimiter>
+            </delimiters>
+            <useDefaultDelimiters>false</useDefaultDelimiters>
+          </configuration>
+        </plugin>
+
+        <!-- sources.jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <!-- sources.jar を生成してデプロイするように設定します。 -->
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Unit Test -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <!--
+                 test phaseでは、TestcontainersやSpring Boot Testを利用しないような、軽量のユニットテストのみ実行するようにしておきます。
+                 ※ JUnit5の場合、@Tagで指定したタグがexcludedGroupsに含まれているものは実行されないようになります。
+            -->
+            <excludedGroups>slow,integration</excludedGroups>
+            <!-- テスト中の標準出力をファイルにダンプしておくようにします。`<testName>-output.txt`というファイルに出力されるようになります。 -->
+            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+            <!-- テストがFQCNによらず、ランダムな順番で実行されるようにします。 -->
+            <runOrder>random</runOrder>
+            <systemPropertyVariables>
+              <!-- SecureRandomが遅くならないように、システムプロパティを設定しておきます。 -->
+              <java.security.egd>file:/dev/./urandom</java.security.egd>
+            </systemPropertyVariables>
+            <!-- スタックトレースを省略しないようにします。 -->
+            <trimStackTrace>false</trimStackTrace>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Flatten and simplify our own POM for install/deploy -->
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+              <pomElements>
+                <parent>expand</parent>
+                <name>keep</name>
+                <description>keep</description>
+                <url>expand</url>
+                <properties>keep</properties>
+                <pluginManagement>keep</pluginManagement>
+                <dependencyManagement>keep</dependencyManagement>
+                <build>keep</build>
+              </pomElements>
+            </configuration>
+          </execution>
+          <execution>
+            <id>flatten-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <!-- Cleanup the flattened project POM -->
+            <id>post-process-flattened-pom</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <configuration>
+              <transformationSets>
+                <transformationSet>
+                  <dir>${project.basedir}</dir>
+                  <outputDir>${project.basedir}</outputDir>
+                  <includes>.flattened-pom.xml</includes>
+                  <stylesheet>src/main/xslt/post-process-flattened-pom.xsl</stylesheet>
+                  <outputProperties>
+                    <outputProperty>
+                      <name>indent</name>
+                      <value>yes</value>
+                    </outputProperty>
+                  </outputProperties>
+                </transformationSet>
+              </transformationSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
