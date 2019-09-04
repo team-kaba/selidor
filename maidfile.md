@@ -86,7 +86,7 @@ clean, fmt:format してから、 verify を実行します。
 
 ```bash
 .ci/scripts/deploy-to-local-repository.sh itr0-projects
-./mvnw verify -f itr0-integration-tests/pom.xml -Drepository=./.m2/repository
+./mvnw verify -f itr0-tests/itr0-integration-tests/pom.xml -Drepository=./.m2/repository
 ```
 
 # Static analysis
