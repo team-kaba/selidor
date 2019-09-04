@@ -71,7 +71,7 @@
 
   <modules>
     <module>itr0-projects</module>
-    <module>itr0-integration-tests</module>
+    <module>itr0-tests</module>
   </modules>
 
   <build>

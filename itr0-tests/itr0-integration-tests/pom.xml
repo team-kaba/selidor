@@ -7,7 +7,7 @@
     <groupId>pw.itr0</groupId>
     <artifactId>itr0</artifactId>
     <version>${revision}</version>
-    <relativePath>..</relativePath>
+    <relativePath>../..</relativePath>
   </parent>
 
   <artifactId>itr0-integration-tests</artifactId>
