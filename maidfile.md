@@ -1,4 +1,4 @@
-# Iteration0 task scripts
+# Selidor task scripts
 
 ビルド関連のコマンド集です。
 
@@ -39,7 +39,7 @@ clean, fmt:format してから、 verify を実行します。
 
 ```bash
 ./mvnw clean fmt:format
-./mvnw verify
+./mvnw -f selidor-projects/pom.xml verify
 ```
 
 ## verify-without-checks
@@ -48,7 +48,7 @@ clean, fmt:format してから、 verify を実行します。
 
 ```bash
 ./mvnw clean fmt:format
-./mvnw -Ddisable.checks verify
+./mvnw -Ddisable.checks -f selidor-projects/pom.xml verify
 ```
 
 ## verify-without-coverage
@@ -57,7 +57,7 @@ clean, fmt:format してから、 verify を実行します。
 
 ```bash
 ./mvnw clean fmt:format
-./mvnw -Ddisable.coverage verify
+./mvnw -Ddisable.coverage -f selidor-projects/pom.xml verify
 ```
 
 ## verify-without-checks-and-coverage
@@ -66,7 +66,7 @@ clean, fmt:format してから、 verify を実行します。
 
 ```bash
 ./mvnw clean fmt:format
-./mvnw -Ddisable.checks -Ddisable.coverage verify
+./mvnw -Ddisable.checks -Ddisable.coverage -f selidor-projects/pom.xml verify
 ```
 
 
@@ -77,7 +77,7 @@ clean, fmt:format してから、 verify を実行します。
 このディレクトリにテスト用のローカルリポジトリ (./.m2/repository) を作成して、そこにデプロイします。
 
 ```bash
-.ci/scripts/deploy-to-local-repository.sh itr0-projects
+.ci/scripts/deploy-to-local-repository.sh selidor-projects
 ```
 
 # Integration tests
@@ -85,8 +85,8 @@ clean, fmt:format してから、 verify を実行します。
 ## integration-tests
 
 ```bash
-.ci/scripts/deploy-to-local-repository.sh itr0-projects
-./mvnw verify -f itr0-tests/itr0-integration-tests/pom.xml -Drepository=./.m2/repository
+.ci/scripts/deploy-to-local-repository.sh selidor-projects
+./mvnw verify -f selidor-tests/selidor-integration-tests/pom.xml -Drepository=./.m2/repository
 ```
 
 # Static analysis
@@ -108,7 +108,7 @@ OWASPのdependency-checkを利用して、CVEに脆弱性が報告されてい�
 依存ライブラリや利用しているプラグインの定義をしているプロジェクトだけに絞って実行します。
 
 ```bash
-./mvnw -pl .,itr0-projects/itr0-dependencies versions:display-property-updates
+./mvnw -pl .,selidor-projects/selidor-dependencies versions:display-property-updates
 ```
 
 ## apply-dependency-update
@@ -118,7 +118,7 @@ OWASPのdependency-checkを利用して、CVEに脆弱性が報告されてい�
 依存ライブラリや利用しているプラグインの定義をしているプロジェクトだけに絞って実行します。
 
 ```bash
-./mvnw -pl .,itr0-projects/itr0-dependencies versions:update-properties
+./mvnw -pl .,selidor-projects/selidor-dependencies versions:update-properties
 ```
 
 # Initialize repository
