@@ -3,20 +3,20 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>pw.itr0</groupId>
-  <artifactId>itr0</artifactId>
+  <groupId>pw.itr0.selidor</groupId>
+  <artifactId>selidor</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Iteration0: Root Aggregator</description>
+  <description>Selidor: Root Aggregator</description>
 
   <properties>
     <!--
-         Iteration0 のバージョン。
+         Selidor のバージョン。
          サブモジュールから親を指定する時もバージョンを `${revision}` と指定します。
     -->
-    <revision>0.0.1-SNAPSHOT</revision>
+    <revision>0.0.0-SNAPSHOT</revision>
 
     <!--
          Root Aggregator のディレクトリを表すためのプロパティ。
@@ -29,7 +29,7 @@
          静的解析などで利用するファイルを格納しているディレクトリへのパス（main.basedirからの相対パス）
          resources配下のディレクトリ名なので、パッケージ名の命名規約に合わせて`-`を取り除いています。
     -->
-    <build-extensions.config.path>build-extensions/src/main/resources/pw/itr0</build-extensions.config.path>
+    <build-extensions.config.path>build-extensions/src/main/resources/selidor</build-extensions.config.path>
 
     <!-- Mavenの最小バージョン -->
     <maven.min-version>3.6.0</maven.min-version>
@@ -70,8 +70,8 @@
   </properties>
 
   <modules>
-    <module>itr0-projects</module>
-    <module>itr0-tests</module>
+    <module>selidor-projects</module>
+    <module>selidor-tests</module>
   </modules>
 
   <build>

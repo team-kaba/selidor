@@ -13,6 +13,7 @@ project_root_dir="$(
 
 project_to_deploy=${1:-.}
 m2_repository_dir="${project_root_dir}/.m2/repository"
-alt_deployment_repository_property_value="distribution::default::file://${ALT_DEPLOYMENT_REPOSITORY:-${m2_repository_dir}}"
+distribution_file_root="${project_root_dir}/dist"
+alt_deployment_repository_property_value="distribution::default::file://${ALT_DEPLOYMENT_REPOSITORY:-${distribution_file_root}}"
 
 mvn deploy -f "${project_to_deploy}/pom.xml" "-DaltDeploymentRepository=${alt_deployment_repository_property_value}" -e

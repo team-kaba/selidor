@@ -6,8 +6,8 @@
   "packageRules": [
     {
       "excludePackagePatterns": [
-        "^pw.itr0:itr0$",
-        "^pw.itr0:itr0-"
+        "^pw.itr0.selidor:selidor$",
+        "^pw.itr0.selidor:selidor-"
       ]
     }
   ],
