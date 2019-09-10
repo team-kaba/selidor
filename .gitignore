@@ -196,3 +196,7 @@ junk.md
 ### Maven ###
 .m2/
 .flattened-pom.xml
+
+
+### CircleCI ###
+.circleci/config.2.0.yml

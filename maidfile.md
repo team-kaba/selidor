@@ -29,6 +29,12 @@ rm -rf .m2/repository
 printf "[\e[90m$(date +'%T')\e[0m] Deleting intermediate flattened pom file ('\e[36m.flattened-pom.xml\e[0m')..."
 echo
 find . -name .flattened-pom.xml -exec rm {} \;
+printf "[\e[90m$(date +'%T')\e[0m] Deleting distributing artifacts ('\e[36mdist\e[0m')..."
+echo
+rm -rf dist
+printf "[\e[90m$(date +'%T')\e[0m] Deleting test reports ('\e[36mtest-reports\e[0m')..."
+echo
+rm -rf test-reports
 ```
 
 ## verify
@@ -72,12 +78,12 @@ clean, fmt:format してから、 verify を実行します。
 
 # Deploy artifacts
 
-## deploy-projects-local
+## deploy-local
 
-このディレクトリにテスト用のローカルリポジトリ (./.m2/repository) を作成して、そこにデプロイします。
+このディレクトリにテスト用のローカルリポジトリ (./dist) を作成して、そこにデプロイします。
 
 ```bash
-.ci/scripts/deploy-to-local-repository.sh selidor-projects
+.ci/scripts/maven-deploy.sh selidor-projects
 ```
 
 # Integration tests
@@ -85,7 +91,7 @@ clean, fmt:format してから、 verify を実行します。
 ## integration-tests
 
 ```bash
-.ci/scripts/deploy-to-local-repository.sh selidor-projects
+.ci/scripts/maven-deploy.sh selidor-projects
 ./mvnw verify -f selidor-tests/selidor-integration-tests/pom.xml -Drepository=./.m2/repository
 ```
 
@@ -121,6 +127,27 @@ OWASPのdependency-checkを利用して、CVEに脆弱性が報告されてい�
 ./mvnw -pl .,selidor-projects/selidor-dependencies versions:update-properties
 ```
 
+# CircleCI
+
+CircleCI CLIをインストールしてください。インストール方法などは、 [CircleCI のローカル CLI の使用 \- CircleCI](https://circleci.com/docs/ja/2.0/local-cli/) を参照してください。
+
+## circleci-validate-config
+
+`.circleci/config.yml` が正しいかどうかをバリデーションします。
+
+```bash
+circleci config validate
+```
+
+## circleci-process-config
+
+`.circleci/config.yml` が正しいかどうかをバリデーションして、利用しているOrbの設定も展開された状態のYAMLを表示します。
+
+```bash
+circleci config process .circleci/config.yml
+```
+
+
 # Initialize repository
 
 ## prepare-mvnw
@@ -128,7 +155,7 @@ OWASPのdependency-checkを利用して、CVEに脆弱性が報告されてい�
 mvnwをセットアップします。
 
 ```bash
-mvn -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.1
+mvn -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.2
 ```
 
 # Test tasks
@@ -136,7 +163,7 @@ mvn -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.1
 ## run-all-tasks
 
 ```bash
-maid deploy-projects-local
+maid deploy-local
 maid format
 maid clean
 maid verify

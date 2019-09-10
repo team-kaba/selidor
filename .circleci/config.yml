@@ -1,0 +1,124 @@
+version: 2.1
+
+executors:
+  jdk11:
+    docker:
+      - image: circleci/openjdk:11.0.4-jdk-stretch-node-browsers
+    working_directory: &workspace /tmp/workspace
+    environment:
+      TEST_REPORT_DIR: &test_report_dir test-reports/junit
+      MAVEN_USER_HOME: &maven_user_home .mvnw/dists
+      MAVEN_DISTRIBUTION_DIR: &maven_distribution_dir dist
+      MAVEN_LOCAL_REPOSITORY: &maven_local_repository .m2/repository
+      DRY_RUN: false
+
+commands:
+  persist_artifacts:
+    steps:
+      - persist_to_workspace:
+          root: *workspace
+          paths:
+            - *maven_distribution_dir
+            - *maven_local_repository
+
+  save_test_results:
+    steps:
+      - store_test_results:
+          path: *test_report_dir
+
+  cache_dependencies:
+    parameters:
+      pom_files:
+        type: string
+        default: pom.xml
+    steps:
+      - run:
+          name: Generate cache checksum for maven-wrapper.
+          command: cat .mvn/wrapper/maven-wrapper.properties > /tmp/maven_wrapper_cache_seed
+      - restore_cache:
+          keys:
+            - maven-wrapper-{{ checksum "/tmp/maven_wrapper_cache_seed" }}
+            - maven-wrapper-
+      - run:
+          name: Generate cache checksum for Maven dependencies.
+          command: cat << parameters.pom_files >> > /tmp/maven_repository_cache_seed
+      - restore_cache:
+          keys:
+            - maven-repository-{{ checksum "/tmp/maven_repository_cache_seed" }}
+            - maven-repository-
+      - run:
+          name: Download all Maven dependencies (<< parameters.pom_files >>)
+          command: .ci/scripts/maven-go-offline.sh
+      - save_cache:
+          paths:
+            - *maven_user_home
+            - .mvn/wrapper/maven-wrapper.jar
+          key: maven-wrapper-{{ checksum "/tmp/maven_wrapper_cache_seed" }}
+          when: always
+      - save_cache:
+          paths:
+            - *maven_local_repository
+          key: maven-repository-{{ checksum "/tmp/maven_repository_cache_seed" }}
+          when: always
+
+  aggregate_test_results:
+    steps:
+      - run:
+          name: Aggregate test results
+          command: .ci/scripts/maven-aggregate-test-report.sh
+
+  build_projects:
+    steps:
+      - cache_dependencies:
+          pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml
+      - run:
+          name: Build artifacts of Selidor projects
+          command: .ci/scripts/maven-deploy.sh selidor-projects
+      - persist_artifacts
+      - aggregate_test_results
+      - save_test_results
+
+  run_tests_project:
+    parameters:
+      tests_project:
+        type: string
+    steps:
+      - cache_dependencies:
+          pom_files: << parameters.tests_project >>/pom.xml
+      - run:
+          name: Run tests of Selidor projects - << parameters.tests_project >>
+          command: .ci/scripts/maven-verify.sh << parameters.tests_project >>
+      - persist_artifacts
+      - aggregate_test_results
+      - save_test_results
+
+jobs:
+  build_projects:
+    executor: jdk11
+    steps:
+      - checkout
+      - build_projects
+  smoke_tests:
+    executor: jdk11
+    steps:
+      - checkout
+      - run_tests_project:
+          tests_project: selidor-tests/selidor-smoke-tests
+  integration_tests:
+    executor: jdk11
+    steps:
+      - checkout
+      - run_tests_project:
+          tests_project: selidor-tests/selidor-integration-tests
+
+workflows:
+  version: 2
+  on_push:
+    jobs:
+      - build_projects
+      - smoke_tests:
+          requires:
+            - build_projects
+      - integration_tests:
+          requires:
+            - build_projects
