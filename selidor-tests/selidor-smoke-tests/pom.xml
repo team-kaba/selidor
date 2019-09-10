@@ -10,10 +10,10 @@
     <relativePath/>
   </parent>
 
-  <artifactId>selidor-sandbox</artifactId>
+  <artifactId>selidor-smoke-tests</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Selidor: Sandbox Project</description>
+  <description>Selidor: Smoke Test Project</description>
 
   <dependencyManagement>
     <dependencies>
@@ -116,7 +116,7 @@
       </releases>
       <snapshots>
         <enabled>true</enabled>
-        <updatePolicy>interval:10m</updatePolicy>
+        <updatePolicy>interval:10</updatePolicy>
       </snapshots>
     </repository>
     <repository>

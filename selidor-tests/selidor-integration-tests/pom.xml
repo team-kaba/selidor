@@ -17,7 +17,6 @@
   <description>Selidor Integration Tests: Aggregator</description>
 
   <modules>
-    <module>selidor-sandbox</module>
   </modules>
 
   <properties>
