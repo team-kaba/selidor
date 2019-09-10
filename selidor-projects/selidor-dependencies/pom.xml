@@ -46,14 +46,14 @@
 
     <!-- 3rd Party Libraries -->
     <assertj-core.version>3.13.2</assertj-core.version>
-    <junit-jupiter.version>5.5.1</junit-jupiter.version>
+    <junit-jupiter.version>5.5.2</junit-jupiter.version>
     <mapstruct.version>1.3.0.Final</mapstruct.version>
-    <okhttp.version>4.1.1</okhttp.version>
+    <okhttp.version>4.2.0</okhttp.version>
     <retrofit.version>2.6.1</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
-    <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
+    <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
     <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-    <testcontainers.version>1.12.0</testcontainers.version>
+    <testcontainers.version>1.12.1</testcontainers.version>
 
     <!-- Maven Plugins -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
