@@ -21,6 +21,6 @@
   </modules>
 
   <properties>
-    <main.basedir>${basedir}/..</main.basedir>
+    <main.basedir>..</main.basedir>
   </properties>
 </project>
