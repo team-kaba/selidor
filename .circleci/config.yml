@@ -21,6 +21,11 @@ commands:
             - *maven_distribution_dir
             - *maven_local_repository
 
+  attach_artifacts:
+    steps:
+      - attach_workspace:
+          at: *workspace
+
   save_test_results:
     steps:
       - store_test_results:
@@ -83,6 +88,7 @@ commands:
       tests_project:
         type: string
     steps:
+      - attach_artifacts
       - cache_dependencies:
           pom_files: << parameters.tests_project >>/pom.xml
       - run:
