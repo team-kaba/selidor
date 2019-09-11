@@ -12,6 +12,7 @@ executors:
       MAVEN_LOCAL_REPOSITORY: &maven_local_repository .m2/repository
       DRY_RUN: false
 
+
 commands:
   persist_artifacts:
     steps:
@@ -30,6 +31,38 @@ commands:
     steps:
       - store_test_results:
           path: *test_report_dir
+
+  aggregate_test_results:
+    steps:
+      - run:
+          name: Aggregate test results
+          command: .ci/scripts/maven-aggregate-test-report.sh
+
+  build_projects:
+    steps:
+      - cache_dependencies:
+          pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml
+      - run:
+          name: Build artifacts of Selidor projects
+          command: .ci/scripts/maven-deploy.sh selidor-projects
+      - persist_artifacts
+      - aggregate_test_results
+      - save_test_results
+
+  run_tests_project:
+    parameters:
+      tests_project:
+        type: string
+    steps:
+      - attach_artifacts
+      - cache_dependencies:
+          pom_files: << parameters.tests_project >>/pom.xml
+      - run:
+          name: Run tests of Selidor projects - << parameters.tests_project >>
+          command: .ci/scripts/maven-verify.sh << parameters.tests_project >>
+      - persist_artifacts
+      - aggregate_test_results
+      - save_test_results
 
   cache_dependencies:
     parameters:
@@ -66,37 +99,6 @@ commands:
           key: maven-repository-{{ checksum "/tmp/maven_repository_cache_seed" }}
           when: always
 
-  aggregate_test_results:
-    steps:
-      - run:
-          name: Aggregate test results
-          command: .ci/scripts/maven-aggregate-test-report.sh
-
-  build_projects:
-    steps:
-      - cache_dependencies:
-          pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml
-      - run:
-          name: Build artifacts of Selidor projects
-          command: .ci/scripts/maven-deploy.sh selidor-projects
-      - persist_artifacts
-      - aggregate_test_results
-      - save_test_results
-
-  run_tests_project:
-    parameters:
-      tests_project:
-        type: string
-    steps:
-      - attach_artifacts
-      - cache_dependencies:
-          pom_files: << parameters.tests_project >>/pom.xml
-      - run:
-          name: Run tests of Selidor projects - << parameters.tests_project >>
-          command: .ci/scripts/maven-verify.sh << parameters.tests_project >>
-      - persist_artifacts
-      - aggregate_test_results
-      - save_test_results
 
 jobs:
   build_projects:
@@ -104,12 +106,14 @@ jobs:
     steps:
       - checkout
       - build_projects
+
   smoke_tests:
     executor: jdk11
     steps:
       - checkout
       - run_tests_project:
           tests_project: selidor-tests/selidor-smoke-tests
+
   integration_tests:
     executor: jdk11
     steps:
@@ -117,9 +121,15 @@ jobs:
       - run_tests_project:
           tests_project: selidor-tests/selidor-integration-tests
 
+
 workflows:
   version: 2
-  on_push:
+  pull_request:
+    triggers:
+      filters:
+        branches:
+          only:
+            - pull/*
     jobs:
       - build_projects
       - smoke_tests:
@@ -128,3 +138,51 @@ workflows:
       - integration_tests:
           requires:
             - build_projects
+      - deploy_pr_snapshot
+  snapshot:
+    triggers:
+      filters:
+        branches:
+          only:
+            - master
+            - /\d+\.\d+\.x/
+    jobs:
+      - build_projects
+      - smoke_tests:
+          requires:
+            - build_projects
+      - integration_tests:
+          requires:
+            - build_projects
+      - deploy_snapshot
+  release:
+    triggers:
+      filters:
+        tags:
+          only:
+            - /v\d+\.\d+\.\d+/
+        branches:
+          ignore:
+            - /.*/
+    jobs:
+      - build_projects
+      - smoke_tests:
+          requires:
+            - build_projects
+      - integration_tests:
+          requires:
+            - build_projects
+      - stage_relase:
+          requires:
+            - smoke_tests
+            - integration_tests
+      - wait_for_approval:
+          type: approval
+          requires:
+            - deploy_release
+      - promote_release:
+          requires:
+            - wait_for_approval
+      - github_release:
+          requires:
+            - promote_release
