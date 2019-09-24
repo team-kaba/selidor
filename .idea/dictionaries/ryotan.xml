@@ -3,8 +3,12 @@
     <words>
       <w>absdir</w>
       <w>adoptopenjdk</w>
+      <w>artifactory</w>
+      <w>artifactory_apikey</w>
       <w>assertj</w>
       <w>bento</w>
+      <w>bintray</w>
+      <w>circleci</w>
       <w>dataformat</w>
       <w>ddisable</w>
       <w>dharma</w>
@@ -16,11 +20,13 @@
       <w>hotfix</w>
       <w>intelli</w>
       <w>jaxrs</w>
+      <w>jfrog</w>
       <w>mapstruct</w>
       <w>mvnw</w>
       <w>okhttp</w>
       <w>owasp</w>
       <w>ryotan</w>
+      <w>selidor</w>
       <w>squareup</w>
       <w>suppressions</w>
       <w>tada</w>
