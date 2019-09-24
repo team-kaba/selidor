@@ -214,6 +214,7 @@ jobs:
           project: selidor-tests/selidor-integration-tests
 
   stage:
+    context: bintray
     executor: jdk11
     parameters:
       release_type:
@@ -227,6 +228,7 @@ jobs:
           type: << parameters.release_type >>
 
   promote:
+    context: bintray
     executor: jdk11
     steps:
       - checkout
@@ -245,7 +247,9 @@ workflows:
           filters:
             branches:
               ignore:
-                - pull/*
+                - feature/*
+                - chore/*
+                - hotfix/*
                 - master
                 - /\d+\.\d+\.x/
             tags:
@@ -258,7 +262,9 @@ workflows:
           filters: &pull_request
             branches:
               only:
-                - pull/*
+                - feature/*
+                - chore/*
+                - hotfix/*
       - smoke_tests:
           filters: *pull_request
           requires:
