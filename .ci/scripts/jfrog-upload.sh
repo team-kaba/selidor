@@ -21,15 +21,15 @@ if [ -z "${ARTIFACTORY_SERVER_ID:-}" ]; then
   exit 1
 fi
 
-echo "Uploading atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
-jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}"
-jfrog --version
-
-echo "Prepare build information of atrtifacts."
 echo "Build name: ${build_name}"
 echo "Build number: ${build_number}"
 echo "Build url: ${build_url}"
 
+echo "Uploading atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
+jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --build-name "${build_name}" --build-number "${build_number}"
+jfrog --version
+
+echo "Prepare build information of atrtifacts."
 echo "Collecting environment variables of build."
 jfrog rt bce "${build_name}" "${build_number}"
 
