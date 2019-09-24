@@ -71,17 +71,6 @@ commands:
       - aggregate_test_results
       - save_test_results
 
-  test_production_projects:
-    steps:
-      - run_with_maven_cache:
-          pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml selidor-projects/selidor-parent/pom.xml
-          steps:
-            - run:
-                name: Build artifacts of Selidor projects
-                command: .ci/scripts/maven-deploy.sh selidor-projects
-      - aggregate_test_results
-      - save_test_results
-
   run_tests_project:
     parameters:
       project:
@@ -180,14 +169,6 @@ commands:
 
 
 jobs:
-  test_production_projects:
-    executor: jdk11
-    steps:
-      - checkout
-      - prepare_mvnw
-      - persist_mvnw
-      - test_production_projects
-
   build_production_projects:
     executor: jdk11
     steps:
@@ -239,45 +220,25 @@ jobs:
 workflows:
   version: 2
 
-  on_push:
+  in_develop:
     jobs:
-      - test_production_projects:
-          filters:
+      - build_production_projects:
+          filters: &develop
             branches:
               ignore:
-                - feature/*
-                - chore/*
-                - hotfix/*
                 - master
                 - /\d+\.\d+\.x/
             tags:
               ignore:
                 - /v\d+\.\d+\.\d+/
-
-  pull_request:
-    jobs:
-      - build_production_projects:
-          filters: &pull_request
-            branches:
-              only:
-                - feature/*
-                - chore/*
-                - hotfix/*
       - smoke_tests:
-          filters: *pull_request
+          filters: *develop
           requires:
             - build_production_projects
       - integration_tests:
-          filters: *pull_request
+          filters: *develop
           requires:
             - build_production_projects
-      - stage:
-          context: bintray
-          filters: *pull_request
-          requires:
-            - smoke_tests
-            - integration_tests
-          release_type: pull-request
 
   snapshot:
     jobs:
