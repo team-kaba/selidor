@@ -6,7 +6,9 @@
       "recursive": "true",
       "flat": "false",
       "excludePatterns": [
-        "*/maven-metadata.xml*"
+        "*.sha1",
+        "*.md5",
+        "*/maven-metadata.xml"
       ]
     }
   ]
