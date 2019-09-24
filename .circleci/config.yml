@@ -214,7 +214,6 @@ jobs:
           project: selidor-tests/selidor-integration-tests
 
   stage:
-    context: bintray
     executor: jdk11
     parameters:
       release_type:
@@ -228,7 +227,6 @@ jobs:
           type: << parameters.release_type >>
 
   promote:
-    context: bintray
     executor: jdk11
     steps:
       - checkout
@@ -274,6 +272,7 @@ workflows:
           requires:
             - build_production_projects
       - stage:
+          context: bintray
           filters: *pull_request
           requires:
             - smoke_tests
@@ -297,6 +296,7 @@ workflows:
           requires:
             - build_production_projects
       - stage:
+          context: bintray
           filters: *master
           requires:
             - smoke_tests
@@ -322,6 +322,7 @@ workflows:
           requires:
             - build_production_projects
       - stage:
+          context: bintray
           filters: *release
           requires:
             - smoke_tests
@@ -333,6 +334,8 @@ workflows:
           requires:
             - stage
       - promote:
+          context: bintray
           filters: *release
           requires:
             - wait_for_approval
+      # After promoting releases, must bump up revisions in pom.xml
