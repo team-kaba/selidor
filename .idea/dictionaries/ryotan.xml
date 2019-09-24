@@ -3,8 +3,11 @@
     <words>
       <w>absdir</w>
       <w>adoptopenjdk</w>
+      <w>artifactory</w>
+      <w>artifactory_apikey</w>
       <w>assertj</w>
       <w>bento</w>
+      <w>bintray</w>
       <w>circleci</w>
       <w>dataformat</w>
       <w>ddisable</w>

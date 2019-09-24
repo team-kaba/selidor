@@ -13,8 +13,16 @@ PROJECT_ROOT_DIR="$(
 )"
 export PROJECT_ROOT_DIR
 
-if [ -z "${CI:-}" ]; then
+BUILT_ARTIFACTS_DIR="${PROJECT_ROOT_DIR}/${MAVEN_DISTRIBUTION_DIR:-dist}"
+export BUILT_ARTIFACTS_DIR
+
+ALT_DEPLOYMENT_REPOSITORY="distribution::default::file://${BUILT_ARTIFACTS_DIR}"
+export ALT_DEPLOYMENT_REPOSITORY
+
+if [ "${CI:-}" != "true" ]; then
   env_file="${PROJECT_ROOT_DIR}/.env.local"
+elif [ "${CIRCLECI}" == "true" ]; then
+  env_file="${PROJECT_ROOT_DIR}/.env"
 fi
 
 if [ -f "${env_file:-}" ]; then

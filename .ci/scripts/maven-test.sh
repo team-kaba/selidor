@@ -11,7 +11,7 @@ script_dir="$(
 source "${script_dir}/env.sh"
 source "${script_dir}/functions.sh"
 
-project_to_deploy=${1:-.}
+project_to_test=${1:-.}
 
 mvnw -N clean verify
-mvnw clean deploy -f "${project_to_deploy}/pom.xml" "-DaltDeploymentRepository=${ALT_DEPLOYMENT_REPOSITORY}"
+mvnw clean test -f "${project_to_test}/pom.xml"
