@@ -13,6 +13,7 @@ executors:
       #   - ARTIFACTORY_URL
       #   - ARTIFACTORY_USER
       #   - ARTIFACTORY_APIKEY
+      ARTIFACTORY_MODULE_NAME: selidor
       ARTIFACTORY_SERVER_ID: artifactory-server
       BINTRAY_DEFAULT_LICENSES: Apache-2.0
       JFROG_CLI_BIN_RELDIR: &jfrog_cli_bin_dir .ci/.jfrog/bin
