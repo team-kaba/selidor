@@ -27,7 +27,6 @@ echo "Build url: ${build_url}"
 
 echo "Uploading atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
 jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --build-name "${build_name}" --build-number "${build_number}"
-jfrog --version
 
 echo "Prepare build information of atrtifacts."
 echo "Collecting environment variables of build."
@@ -37,9 +36,11 @@ echo "Collecting information from Git."
 jfrog rt bag "${build_name}" "${build_number}" "${PROJECT_ROOT_DIR}"
 
 echo "Publishing build information of atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
-# ログにビルド情報を出力するためにdry-runを一回しておく
-jfrog rt bp --dry-run --build-url "${build_url}" "${build_name}" "${build_number}"
+jfrog rt bp --build-url "${build_url}" "${build_name}" "${build_number}"
+# ログにビルド情報を出力するためにdry-runで実行し直す。
 # dry-runを一回流すと、情報を集め直さないといけないみたい。
+echo "Publishing build information of atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
+jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --build-name "${build_name}" --build-number "${build_number}" --dry-run
 jfrog rt bce "${build_name}" "${build_number}"
 jfrog rt bag "${build_name}" "${build_number}" "${PROJECT_ROOT_DIR}"
-jfrog rt bp --build-url "${build_url}" "${build_name}" "${build_number}"
+jfrog rt bp --dry-run --build-url "${build_url}" "${build_name}" "${build_number}"
