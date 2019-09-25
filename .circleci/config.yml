@@ -19,7 +19,7 @@ executors:
       JFROG_CLI_HOME_RELDIR: &jfrog_cli_home_dir .ci/.jfrog
       JFROG_CLI_LOG_LEVEL: DEBUG
       JFROG_CLI_TEMP_RELDIR: &jfrog_cli_temp_dir .ci/.jfrog/temp
-      JFROG_CLI_VERSION: &jfrog_cli_version 1.28.0
+      JFROG_CLI_VERSION: &jfrog_cli_version 1.29.0
       MAVEN_DISTRIBUTION_DIR: &maven_distribution_dir dist
       MAVEN_LOCAL_REPOSITORY: &maven_local_repository .m2/repository
       MAVEN_USER_HOME: &maven_user_home .mvnw/dists
