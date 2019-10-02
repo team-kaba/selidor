@@ -22,7 +22,7 @@ if [ -z "${BINTRAY_PACKAGE:-}" ]; then
   exit 1
 fi
 
-version_tag=$(git-current-version-tag)
+version_tag=$(git_current_version_tag)
 if [ -z "${version_tag}" ]; then
   echo "HEAD($(git rev-parse HEAD) is not tagged as a release version."
   exit 1
