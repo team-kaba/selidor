@@ -196,7 +196,12 @@ junk.md
 ### Maven ###
 .m2/
 .flattened-pom.xml
+.mvnw/
 
 
 ### CircleCI ###
 .circleci/config.2.0.yml
+
+
+### Artifactory ###
+.build-artifacts/

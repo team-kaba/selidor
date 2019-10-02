@@ -16,7 +16,7 @@
          Selidor のバージョン。
          サブモジュールから親を指定する時もバージョンを `${revision}` と指定します。
     -->
-    <revision>0.0.1-SNAPSHOT</revision>
+    <revision>0.0.0-SNAPSHOT</revision>
 
     <!--
          SCMに関する設定。
