@@ -5,7 +5,7 @@
   <parent>
     <groupId>pw.itr0.selidor</groupId>
     <artifactId>selidor-dependencies</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <relativePath>../selidor-dependencies</relativePath>
   </parent>
 
@@ -39,7 +39,7 @@
     <url>${git.url}</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
-    <tag>v0.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub</system>

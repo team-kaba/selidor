@@ -5,7 +5,7 @@
   <parent>
     <groupId>pw.itr0.selidor</groupId>
     <artifactId>selidor</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
 
