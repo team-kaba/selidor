@@ -10,7 +10,7 @@ function mvnw() {
     args=("-Dmaven.repo.local=${MAVEN_LOCAL_REPOSITORY}" "-Drepository=file://${PROJECT_ROOT_DIR}/${MAVEN_LOCAL_REPOSITORY}" "${args[@]}")
   fi
   if is_pull_request; then
-    args=("-Drevision=$(pull_request_revision)" "${args[@]}")
+    args=("-Drevision=$(get_pull_request_revision_from_pom)" "${args[@]}")
   fi
   echo "Running command:" "${command}" "${args[@]}" "${@}"
   if [ "${DRY_RUN:-}" != "true" ]; then
