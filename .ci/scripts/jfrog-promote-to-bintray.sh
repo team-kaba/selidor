@@ -8,8 +8,7 @@ script_dir="$(
   /bin/pwd
 )"
 
-source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
+source "${script_dir}/source.sh"
 source "${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
 
 if [ -z "${BINTRAY_REPOSITORY:-}" ]; then

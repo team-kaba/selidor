@@ -8,11 +8,10 @@ script_dir="$(
   /bin/pwd
 )"
 
-source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
+source "${script_dir}/source.sh"
 
-type=${1}
-module_name=${ARTIFACTORY_MODULE_NAME}
+type="${1}"
+module_name="${ARTIFACTORY_MODULE_NAME}"
 
 if [ -z "${ARTIFACTORY_SERVER_ID:-}" ]; then
   echo "'ARTIFACTORY_SERVER_ID' must not be empty."
