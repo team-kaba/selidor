@@ -10,6 +10,13 @@
 
   <name>${project.artifactId}</name>
   <description>Selidor: Root Aggregator</description>
+  <url>${git.url}</url>
+
+  <scm>
+    <url>${git.url}</url>
+    <connection>${git.connection}</connection>
+    <developerConnection>${git.developerConnection}</developerConnection>
+  </scm>
 
   <properties>
     <!--
