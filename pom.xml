@@ -19,6 +19,16 @@
     <revision>0.0.1-SNAPSHOT</revision>
 
     <!--
+         SCMに関する設定。
+         flatten-maven-pluginでexpandされたときに、mono-repoであることが考慮されずにURLなどの末尾にサブモジュール名が付いてしまうので、
+         デプロイする対象になるそれぞれのpom.xmlで、 `project > url`,`project > scm` を指定する必要があります。
+         その時に利用しやすいようにプロパティとして定義しています。
+    -->
+    <git.url>https://github.com/ryotan/selidor</git.url>
+    <git.connection>scm:git:git@github.com:ryotan/selidor.git</git.connection>
+    <git.developerConnection>scm:git:git@github.com:ryotan/selidor.git</git.developerConnection>
+
+    <!--
          Root Aggregator のディレクトリを表すためのプロパティ。
          サブモジュールでは、このpom.xmlがあるディレクトリへの相対パスを `main.basedir` に設定します。
     -->
