@@ -54,7 +54,7 @@
     <okhttp.version>4.2.1</okhttp.version>
     <retrofit.version>2.6.2</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
-    <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+    <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
     <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     <testcontainers.version>1.12.2</testcontainers.version>
 
