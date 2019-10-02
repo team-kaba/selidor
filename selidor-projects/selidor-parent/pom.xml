@@ -15,7 +15,7 @@
 
   <name>${project.artifactId}</name>
   <description>Selidor Projects: Java Build Configuration</description>
-  <url>https://github.com/ryotan/selidor</url>
+  <url>${git.url}</url>
   <inceptionYear>2019</inceptionYear>
 
   <licenses>
@@ -37,9 +37,9 @@
   </developers>
 
   <scm>
-    <url>https://github.com/ryotan/selidor</url>
-    <connection>scm:git:git@github.com:ryotan/selidor.git</connection>
-    <developerConnection>scm:git:git@github.com:ryotan/selidor.git</developerConnection>
+    <url>${git.url}</url>
+    <connection>${git.connection}</connection>
+    <developerConnection>${git.developerConnection}</developerConnection>
   </scm>
   <issueManagement>
     <system>GitHub</system>

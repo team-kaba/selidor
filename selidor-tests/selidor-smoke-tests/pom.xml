@@ -123,8 +123,10 @@
       <id>ojo.libs-release</id>
       <name>oss.jfrog.org/libs-release</name>
       <url>https://oss.jfrog.org/libs-release</url>
-      <releases>
+      <snapshots>
         <enabled>false</enabled>
+      </snapshots>
+      <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
     </repository>
