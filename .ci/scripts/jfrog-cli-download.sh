@@ -24,6 +24,7 @@ if ! type "${command}"; then
   curl -fvLo "${command}" "${download_url}"
   chmod +x "${command}"
 fi
+jfrog --version
 
 echo "Configuring jfrog cli (version: ${version}) from ${download_url}."
 # configure のときは、クレデンシャルが引数に含まれるのでログ出力したくない。
