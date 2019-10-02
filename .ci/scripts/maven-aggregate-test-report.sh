@@ -8,8 +8,7 @@ script_dir="$(
   /bin/pwd
 )"
 
-source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
+source "${script_dir}/source.sh"
 
 test_report_dir="${TEST_REPORT_DIR:-${PROJECT_ROOT_DIR}/test-reports/junit}"
 

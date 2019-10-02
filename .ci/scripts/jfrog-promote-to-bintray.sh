@@ -8,8 +8,7 @@ script_dir="$(
   /bin/pwd
 )"
 
-source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
+source "${script_dir}/source.sh"
 source "${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
 
 if [ -z "${BINTRAY_REPOSITORY:-}" ]; then
@@ -22,7 +21,7 @@ if [ -z "${BINTRAY_PACKAGE:-}" ]; then
   exit 1
 fi
 
-version_tag=$(git-current-version-tag)
+version_tag=$(git_current_version_tag)
 if [ -z "${version_tag}" ]; then
   echo "HEAD($(git rev-parse HEAD) is not tagged as a release version."
   exit 1

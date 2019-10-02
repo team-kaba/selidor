@@ -1,0 +1,26 @@
+name-template: ':bookmark: v$NEXT_PATCH_VERSION'
+tag-template: 'v$NEXT_PATCH_VERSION'
+categories:
+  - title: '✨ Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+  - title: '✒ Documentation'
+    labels:
+      - 'documentation'
+  - title: '🔧 Maintenance'
+    labels:
+      - 'chore'
+  - title: '⬆️ Dependency Updates'
+    labels:
+      - 'dependency-update'
+exclude-labels:
+  - 'chore'
+change-template: '- $TITLE (#$NUMBER)'
+template: |
+  ## Changes
+
+  $CHANGES

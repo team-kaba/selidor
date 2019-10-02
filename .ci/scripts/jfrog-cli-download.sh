@@ -8,8 +8,7 @@ script_dir="$(
   /bin/pwd
 )"
 
-source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
+source "${script_dir}/source.sh"
 
 dir="${1:-${JFROG_CLI_BIN_DIR:-.ci/.jfrog/bin}}"
 version="${2:-${JFROG_CLI_VERSION:-1.28.0}}"
