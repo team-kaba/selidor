@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>pw.itr0.selidor</groupId>
   <artifactId>selidor</artifactId>
-  <version>${revision}</version>
+  <version>0.0.0</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
@@ -16,6 +15,7 @@
     <url>${git.url}</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
+    <tag>v0.0.0</tag>
   </scm>
 
   <properties>
@@ -164,7 +164,7 @@
                    Duplicate dependencies are dependencies which have the same group id, artifact id,
                    type and classifier.
               -->
-              <banDuplicatePomDependencyVersions/>
+              <banDuplicatePomDependencyVersions />
               <!--
                    This rule checks the dependencies and fails if any of the matching excludes are found.
               -->
@@ -177,7 +177,7 @@
                    this rule will fail the build if A depends on a different version of C then
                    the version of C depended on by B.
               -->
-              <dependencyConvergence/>
+              <dependencyConvergence />
               <!--
                    This rule checks that the versions within the reactor are consistent
                    furthermore it will check that every module within the project contains a parent
@@ -185,7 +185,7 @@
                    Furthermore it will be checked if dependencies are inter-module dependencies that
                    they using the same version as given by the reactor.
               -->
-              <reactorModuleConvergence/>
+              <reactorModuleConvergence />
               <!--
                    This rule enforces certain Maven versions.
               -->
