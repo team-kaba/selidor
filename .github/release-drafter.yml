@@ -13,6 +13,8 @@ categories:
 exclude-labels:
   - 'chore'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+branches:
+  - chore/fix-promote-script
 template: |
   ## Changes
 
