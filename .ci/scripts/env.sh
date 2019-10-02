@@ -30,3 +30,5 @@ if [ -f "${env_file:-}" ]; then
 else
   echo "'${env_file}' is not found."
 fi
+
+source "${PROJECT_ROOT_DIR}/.ci/project.env"

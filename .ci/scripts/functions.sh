@@ -37,7 +37,7 @@ function is_pull_request() {
 }
 
 function pull_request_revision() {
-  echo "$(get_revision_from_pom)-${VCS_PULL_REQUEST_ID}-SNAPSHOT"
+  echo "$(get_revision_from_pom | sed -e 's!-SNAPSHOT$!!g')-${VCS_PULL_REQUEST_ID}-SNAPSHOT"
 }
 
 function get_revision_from_pom() {
@@ -54,4 +54,8 @@ function is_set() {
   else
     false
   fi
+}
+
+function git_current_version_tag() {
+  git show-ref --tags -d --abbrev=0 | cut -d' ' -f2 | sed -e 's!refs/tags/!!g' | grep '^v' | sort --version-sort --reverse --ignore-nonprinting | head -n 1
 }

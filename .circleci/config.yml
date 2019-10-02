@@ -7,19 +7,15 @@ executors:
     working_directory: &workspace /tmp/workspace
     environment:
       # Required environment variable from a Context
-      #   - BINTRAY_REPOSITORY
       #   - BINTRAY_USER
       #   - BINTRAY_KEY
-      #   - ARTIFACTORY_URL
       #   - ARTIFACTORY_USER
       #   - ARTIFACTORY_APIKEY
-      ARTIFACTORY_MODULE_NAME: selidor
-      ARTIFACTORY_SERVER_ID: artifactory-server
-      BINTRAY_DEFAULT_LICENSES: Apache-2.0
       JFROG_CLI_BIN_RELDIR: &jfrog_cli_bin_dir .ci/.jfrog/bin
       JFROG_CLI_HOME_RELDIR: &jfrog_cli_home_dir .ci/.jfrog
       JFROG_CLI_LOG_LEVEL: DEBUG
       JFROG_CLI_TEMP_RELDIR: &jfrog_cli_temp_dir .ci/.jfrog/temp
+      JFROG_CLI_UPLOADED_BUILD_INFO: &jfrog_cli_uploaded_build_info .ci/.jfrog/build-info.env
       JFROG_CLI_VERSION: &jfrog_cli_version 1.29.0
       MAVEN_DISTRIBUTION_DIR: &maven_distribution_dir dist
       MAVEN_LOCAL_REPOSITORY: &maven_local_repository .m2/repository
@@ -168,6 +164,13 @@ commands:
           name: Promote artifacts from Artifactory to Bintray
           command: .ci/scripts/jfrog-promote-to-bintray.sh
 
+  store_jfrog_upload_info:
+    steps:
+      - persist_to_workspace:
+          root: *workspace
+          paths:
+            - *jfrog_cli_uploaded_build_info
+
 
 jobs:
   build_production_projects:
@@ -207,6 +210,7 @@ jobs:
       - attach_current_workspace
       - jfrog_upload:
           type: << parameters.release_type >>
+      - store_jfrog_upload_info
 
   promote:
     executor: jdk11
