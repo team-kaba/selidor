@@ -20,8 +20,6 @@ categories:
 exclude-labels:
   - 'chore'
 change-template: '- $TITLE (#$NUMBER)'
-branches:
-  - chore/fix-promote-script
 template: |
   ## Changes
 
