@@ -1,0 +1,53 @@
+# Always validate the PR title, and ignore the commits
+titleOnly: true
+# You can define a list of valid scopes
+scopes:
+  - deps
+  - starter
+# By default types specified in commitizen/conventional-commit-types is used.
+# See: https://github.com/commitizen/conventional-commit-types/blob/v2.2.0/index.json
+# You can override the valid types
+types:
+  # A new feature. Original: feat
+  - ':seedling:'
+  - '🌱'
+  # A bug fix. Original: fix
+  - ':bug:'
+  - '🐛'
+  # An improvement to a current feature. Original: improvement
+  - ':sparkles:'
+  - '✨'
+  # Documentation only changes. Original: docs
+  - ':black_nib:'
+  - '✒️'
+  # Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc). Original: style
+  - ':art:'
+  - '🎨'
+  # A code change that neither fixes a bug nor adds a feature. Original: refactor
+  - ':recycle:'
+  - '♻️'
+  # A code change that improves performance. Original: perf
+  - ':zap:'
+  - '⚡️'
+  # Adding missing tests or correcting existing tests. Original: test
+  - ':white_check_mark:'
+  - '✅'
+  # Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm). Original: build
+  - ':hammer_and_pick:'
+  - '⚒️'
+  # Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs). Original: ci
+  - ci
+  - ':chart_with_upwards_trend:'
+  - '📈'
+  # Other changes that don't modify src or test files. Original: chore
+  - ':memo:'
+  - '📝'
+  # Reverts a previous commit. Original: revert
+  - ':rewind:'
+  - '⏪'
+  # Breaking change.
+  - ':bomb:'
+  -
+# Allow use of Merge commits (eg on github: "Merge branch 'master' into feature/ride-unicorns")
+# this is only relevant when using commitsOnly: true (or titleAndCommits: true)
+allowMergeCommits: true
