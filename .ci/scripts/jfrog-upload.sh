@@ -28,7 +28,7 @@ echo "Collecting environment variables of build."
 jfrog rt bce
 
 echo "Collecting information from Git."
-jfrog rt bag --config "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-bag-config-${type}.yml" "${PROJECT_ROOT_DIR}"
+jfrog rt bag --config "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-bag-config-${type}.yml" "${PROJECT_ROOT_DIR}" || echo "Failed to collect git information."
 
 echo "Publishing build information of atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
 jfrog rt bp
@@ -38,7 +38,7 @@ jfrog rt bp
 echo "Publishing build information of atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
 jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --module "${module_name}" --props "artifactory.licenses=Apache-2.0" --dry-run
 jfrog rt bce
-jfrog rt bag --config "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-bag-config-${type}.yml" "${PROJECT_ROOT_DIR}"
+jfrog rt bag --config "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-bag-config-${type}.yml" "${PROJECT_ROOT_DIR}" || echo "Failed to collect git information."
 jfrog rt bp --dry-run
 
 echo "export JFROG_CLI_BUILD_NAME=\"${JFROG_CLI_BUILD_NAME}\"" >"${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
