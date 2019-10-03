@@ -57,9 +57,9 @@ labels:
   - name: performance
     description: A code change that improves performance.
     color: bcf5db
-  - name: BREAKING_CHANGE
+  - name: BREAKING CHANGE
     description: Breaking change.
-    color: 000000
+    color: 111111
   - name: deps
     description: Bump dependency version.
     color: bfe5bf
