@@ -39,7 +39,7 @@ echo "  Downloading build artifacts from ${ARTIFACTORY_SERVER_ID} to ${build_art
 jfrog rt dl --build="${artifactory_build}" oss-release-local "${build_artifacts_dir}"
 
 echo "  Creating Bintray version (${version_tag})."
-jfrog bt vc --github-tag-rel-notes --vcs-tag "${version_tag}" "${target_location}"
+jfrog bt vc --vcs-tag "${version_tag}" "${target_location}"
 
 echo "  Uploading build artifacts to Bintray repository ${target_location}."
 jfrog bt u --flat=false --publish "${build_artifacts_dir}(*)" "${target_location}" '{1}'
