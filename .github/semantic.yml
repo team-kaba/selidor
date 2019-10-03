@@ -1,53 +1,60 @@
+# About Conventional Commits
+#   English: https://www.conventionalcommits.org/en/v1.0.0/
+#   日本語: https://www.conventionalcommits.org/ja/v1.0.0-beta.4/
+
 # Always validate the PR title, and ignore the commits
 titleOnly: true
 # You can define a list of valid scopes
 scopes:
+  # dependencies
   - deps
+  # Starter libraries and parent
   - starter
+  # Auto-configuration for spring-boot
+  - autoconfig
 # By default types specified in commitizen/conventional-commit-types is used.
 # See: https://github.com/commitizen/conventional-commit-types/blob/v2.2.0/index.json
 # You can override the valid types
 types:
-  # A new feature. Original: feat
+  # A new feature. (feat)
   - ':seedling:'
   - '🌱'
-  # A bug fix. Original: fix
+  # A bug fix. (fix)
   - ':bug:'
   - '🐛'
-  # An improvement to a current feature. Original: improvement
+  # An improvement to a current feature. (improvement)
   - ':sparkles:'
   - '✨'
-  # Documentation only changes. Original: docs
+  # Documentation only changes. (docs)
   - ':black_nib:'
   - '✒️'
-  # Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc). Original: style
+  # Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc). (style)
   - ':art:'
   - '🎨'
-  # A code change that neither fixes a bug nor adds a feature. Original: refactor
+  # A code change that neither fixes a bug nor adds a feature. (refactor)
   - ':recycle:'
   - '♻️'
-  # A code change that improves performance. Original: perf
+  # A code change that improves performance. (perf)
   - ':zap:'
   - '⚡️'
-  # Adding missing tests or correcting existing tests. Original: test
+  # Adding missing tests or correcting existing tests. (test)
   - ':white_check_mark:'
   - '✅'
-  # Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm). Original: build
+  # Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm). (build)
   - ':hammer_and_pick:'
   - '⚒️'
-  # Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs). Original: ci
-  - ci
+  # Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs). (ci)
   - ':chart_with_upwards_trend:'
   - '📈'
-  # Other changes that don't modify src or test files. Original: chore
+  # Other changes that don't modify src or test files. (chore)
   - ':memo:'
   - '📝'
-  # Reverts a previous commit. Original: revert
+  # Reverts a previous commit. (revert)
   - ':rewind:'
   - '⏪'
   # Breaking change.
   - ':bomb:'
-  -
+  - '💣'
 # Allow use of Merge commits (eg on github: "Merge branch 'master' into feature/ride-unicorns")
 # this is only relevant when using commitsOnly: true (or titleAndCommits: true)
 allowMergeCommits: true
