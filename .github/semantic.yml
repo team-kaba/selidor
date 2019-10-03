@@ -1,3 +1,7 @@
+# DISABLED
+#   Semantic Pull Request allows only ASCII characters(`\w` or `[a-zA-Z0-9_]`) for types.
+#     https://github.com/tunnckoCoreLabs/parse-commit-message/blob/93018525c85296b44b41ddb7af1700afd5a54d60/src/header.js#L40
+
 # About Conventional Commits
 #   English: https://www.conventionalcommits.org/en/v1.0.0/
 #   日本語: https://www.conventionalcommits.org/ja/v1.0.0-beta.4/
