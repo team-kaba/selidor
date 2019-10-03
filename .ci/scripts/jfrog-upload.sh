@@ -43,5 +43,3 @@ jfrog rt bp --dry-run
 echo "export JFROG_CLI_BUILD_NAME=\"${JFROG_CLI_BUILD_NAME}\"" >"${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
 echo "export JFROG_CLI_BUILD_NUMBER=\"${JFROG_CLI_BUILD_NUMBER}\"" >>"${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
 echo "export JFROG_CLI_BUILD_URL=\"${JFROG_CLI_BUILD_URL}\"" >>"${PROJECT_ROOT_DIR}/${JFROG_CLI_UPLOADED_BUILD_INFO}"
-
-[[ -z $(git status -s) ]] || echo '!!!!!!!!!! dirty !!!!!!!!!'

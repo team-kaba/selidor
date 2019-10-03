@@ -38,19 +38,11 @@ echo "  Target location: ${target_location}"
 echo "  Downloading build artifacts from ${ARTIFACTORY_SERVER_ID} to ${build_artifacts_dir}."
 jfrog rt dl --build="${artifactory_build}" oss-release-local "${build_artifacts_dir}"
 
+echo "  Creating Bintray version (${version_tag})."
+jfrog bt vc --github-tag-rel-notes --vcs-tag "${version_tag}" "${version_tag}"
+
 echo "  Uploading build artifacts to Bintray repository ${target_location}."
-jfrog bt u --flat=false \
-  --publish \
-  --licenses="${BINTRAY_DEFAULT_LICENSES}" \
-  --vcs-url="${BINTRAY_VCS_URL}" \
-  --website-url="${BINTRAY_WEBSITE_URL}" \
-  --issuetracker-url="${BINTRAY_ISSUETRACKER_URL}" \
-  --github-repo="${BINTRAY_GITHUB_REPO}" \
-  --github-tag-rel-notes \
-  --vcs-tag="${version_tag}" \
-  "${build_artifacts_dir}(*)" "${target_location}" '{1}'
+jfrog bt u --flat=false --publish "${build_artifacts_dir}(*)" "${target_location}" '{1}'
 
 echo "  Set build status of ${artifactory_build} as 'RELEASED'."
 jfrog rt bpr --status=RELEASED "${JFROG_CLI_BUILD_NAME}" "${JFROG_CLI_BUILD_NUMBER}" oss-release-local
-
-[[ -z "$(git status -s)" ]] || echo '!!!!!!!!!! dirty !!!!!!!!!'
