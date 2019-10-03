@@ -16,7 +16,7 @@ categories:
       - 'chore'
   - title: '⬆️ Dependency Updates'
     labels:
-      - 'dependency-update'
+      - 'deps'
 exclude-labels:
   - 'chore'
 change-template: '- $TITLE (#$NUMBER)'
