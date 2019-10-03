@@ -1,6 +1,6 @@
 {
   "commitMessagePrefix": ":arrow_up: ",
-  "labels": ["dependency-update"],
+  "labels": ["deps"],
   "extends": [
     "config:base"
   ],
