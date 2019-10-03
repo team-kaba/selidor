@@ -5,7 +5,7 @@
   <parent>
     <groupId>pw.itr0.selidor</groupId>
     <artifactId>selidor-starter-parent</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0</version>
     <relativePath/>
   </parent>
 
@@ -19,7 +19,7 @@
       <dependency>
         <groupId>pw.itr0.selidor</groupId>
         <artifactId>selidor-dependencies</artifactId>
-        <version>0.0.0-SNAPSHOT</version>
+        <version>0.0.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
