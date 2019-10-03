@@ -32,6 +32,18 @@ git add 'pom.xml' '**/pom.xml'
 git commit -m ":bookmark: Release ${release_version}"
 git tag --cleanup=whitespace -a "${version_tag}" -m "${release_version}"
 
+clean_worktree=".release-worktree"
+git worktree add "${clean_worktree}" "${version_tag}"
+pushd "${clean_worktree}"
+"${script_dir}/maven-deploy.sh" || (popd &&
+  git reset HEAD~ &&
+  git tag -d "${version_tag}" &&
+  echo "Test failed. Reverting git commit and tag. exiting..." &&
+  exit 1)
+popd
+echo "Successfully completed tests."
+git worktree remove "${clean_worktree}"
+
 next_development_version="$(get_next_version "${release_version}")"
 
 set_revision_to_pom "${next_development_version}"
