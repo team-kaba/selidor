@@ -1,0 +1,56 @@
+# enable auto-labeler on prs.
+enable:
+  prs: true
+
+# Labels is an object where:
+# - keys are labels
+# - values are objects of { include: [ pattern ], exclude: [ pattern ] }
+#    - pattern must be a valid regex, and is applied globally to
+#      title + description of issues and/or prs (see enabled config above)
+#    - 'include' patterns will associate a label if any of these patterns match
+#    - 'exclude' patterns will ignore this label if any of these patterns match
+labels:
+  'feature':
+    include:
+      - '\b:seedling::\b'
+      - '\b🌱:\b'
+  'bug':
+    include:
+      - '\b:bug::\b'
+      - '\b🐛:\b'
+  'improvement':
+    include:
+      - '\b:sparkles::\b'
+      - '\b✨:\b'
+  'doc':
+    include:
+      - '\b:black_nib::\b'
+      - '\b✒️:\b'
+  'chore':
+    include:
+      - '\b:art::\b'
+      - '\b🎨:\b'
+      - '\b:recycle::\b'
+      - '\b♻️:\b'
+      - '\b:white_check_mark::\b'
+      - '\b✅:\b'
+      - '\b:hammer_and_pick::\b'
+      - '\b⚒️:\b'
+      - '\b:chart_with_upwards_trend::\b'
+      - '\b📈:\b'
+      - '\b:memo::\b'
+      - '\b📝:\b'
+      - '\b:rewind::\b'
+      - '\b⏪:\b'
+  'performance':
+    include:
+      - '\b:zap::\b'
+      - '\b⚡️:\b'
+  'BREAKING CHANGE':
+    include:
+      - '\b:bomb::\b'
+      - '\b💣:\b'
+  'deps':
+    include:
+      - '\b:arrow_up::\b'
+      - '\b⬆️:\b'
