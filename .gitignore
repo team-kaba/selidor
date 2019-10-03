@@ -203,5 +203,6 @@ junk.md
 .circleci/config.2.0.yml
 
 
-### Artifactory ###
+### CI ###
 .build-artifacts/
+.release-worktree/
