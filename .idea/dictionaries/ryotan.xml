@@ -39,6 +39,7 @@
       <w>werror</w>
       <w>woff</w>
       <w>xdebug</w>
+      <w>xmlstarlet</w>
     </words>
   </dictionary>
 </component>
