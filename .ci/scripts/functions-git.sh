@@ -12,3 +12,7 @@ function git_current_version_tag() {
     sort --version-sort --reverse --ignore-nonprinting |
     head -n 1
 }
+
+function git_head_refname() {
+  git describe --dirty --exact-match --abbrev=0 2>/dev/null || echo "$(git rev-parse HEAD)$(git_dirty_worktree && echo '-dirty')"
+}

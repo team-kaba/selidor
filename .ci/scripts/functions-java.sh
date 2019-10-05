@@ -32,7 +32,7 @@ function get_pull_request_revision_from_pom() {
 }
 
 function get_revision_from_pom() {
-  xml sel -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:properties/m:revision' "${PROJECT_ROOT_DIR}/pom.xml"
+  xml select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:properties/m:revision' "${PROJECT_ROOT_DIR}/pom.xml"
 }
 
 function set_revision_to_pom() {
@@ -40,7 +40,7 @@ function set_revision_to_pom() {
     echo "[set_revision_to_pom] Pass new revision as an argument." >&2
     return 1
   fi
-  xml ed -P -L -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:properties/m:revision' -v "${1}" "${PROJECT_ROOT_DIR}/pom.xml"
+  xml edit --ps --inplace -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:properties/m:revision' -v "${1}" "${PROJECT_ROOT_DIR}/pom.xml"
 }
 
 function cleanup_maven_repo() {
@@ -110,10 +110,14 @@ function bump_version() {
   echo -n "${next}${snapshot:-}"
 }
 
-function set_scm_tag_to_pom() {
+function get_git_refname_from_pom() {
+  xml select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:properties/m:git.refname' "${PROJECT_ROOT_DIR}/pom.xml"
+}
+
+function set_git_refname_to_pom() {
   if [ -z "${1}" ]; then
-    echo "[set_scm_tag_to_pom] Pass new tag as an argument." >&2
+    echo "[set_git_refname_to_pom] Pass new tag as an argument." >&2
     return 1
   fi
-  find "${PROJECT_ROOT_DIR}" -name pom.xml -exec xml ed -P -L -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:scm/m:tag' -v "${1}" {} \;
+  xml edit --ps --inplace -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:properties/m:git.refname' -v "${1}" "${PROJECT_ROOT_DIR}/pom.xml"
 }

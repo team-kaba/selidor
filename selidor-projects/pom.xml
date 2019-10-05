@@ -24,21 +24,4 @@
   <properties>
     <main.basedir>..</main.basedir>
   </properties>
-
-  <build>
-    <plugins>
-      <!--
-          デプロイ
-            Aggregator projectはdeployする必要がないので、skipしています。
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-        <inherited>false</inherited>
-      </plugin>
-    </plugins>
-  </build>
 </project>

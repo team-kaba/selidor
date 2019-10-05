@@ -15,7 +15,7 @@
     <url>${git.url}</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
-    <tag>HEAD</tag>
+    <tag>${git.refname}</tag>
   </scm>
 
   <properties>
@@ -31,7 +31,8 @@
          デプロイする対象になるそれぞれのpom.xmlで、 `project > url`,`project > scm` を指定する必要があります。
          その時に利用しやすいようにプロパティとして定義しています。
     -->
-    <git.url>https://github.com/ryotan/selidor</git.url>
+    <git.refname>master</git.refname>
+    <git.url>https://github.com/ryotan/selidor/tree/${git.refname}</git.url>
     <git.connection>scm:git:git@github.com:ryotan/selidor.git</git.connection>
     <git.developerConnection>scm:git:git@github.com:ryotan/selidor.git</git.developerConnection>
 
@@ -84,6 +85,9 @@
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>5.2.2</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
+
+    <!-- Aggregator projectはdeployする必要がないので、skipしています。 -->
+    <disable.deploy>true</disable.deploy>
   </properties>
 
   <modules>
@@ -298,15 +302,14 @@
       </plugin>
       <!--
           デプロイ
-            Aggregator projectはdeployする必要がないので、skipしています。
+            Aggregator projectはdeployする必要がないので、skipできるようにしています。
       -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
-          <skip>true</skip>
+          <skip>${disable.deploy}</skip>
         </configuration>
-        <inherited>false</inherited>
       </plugin>
     </plugins>
   </build>

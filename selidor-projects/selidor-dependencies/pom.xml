@@ -36,10 +36,10 @@
   </developers>
 
   <scm>
-    <url>${git.url}</url>
+    <url>${git.url}/selidor-projects/selidor-dependencies</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
-    <tag>HEAD</tag>
+    <tag>${git.refname}</tag>
   </scm>
 
   <properties>
@@ -81,6 +81,9 @@
 
     <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
     <main.basedir>../..</main.basedir>
+
+    <!-- dependenciesをparentに持つPOMファイルはデプロイ対象とする -->
+    <disable.deploy>false</disable.deploy>
   </properties>
 
   <dependencyManagement>
