@@ -25,6 +25,7 @@
       <w>mvnw</w>
       <w>okhttp</w>
       <w>owasp</w>
+      <w>refname</w>
       <w>ryotan</w>
       <w>selidor</w>
       <w>squareup</w>
@@ -38,6 +39,7 @@
       <w>werror</w>
       <w>woff</w>
       <w>xdebug</w>
+      <w>xmlstarlet</w>
     </words>
   </dictionary>
 </component>

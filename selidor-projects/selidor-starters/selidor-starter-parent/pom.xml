@@ -17,10 +17,10 @@
   <url>${git.url}</url>
 
   <scm>
-    <url>${git.url}</url>
+    <url>${git.url}/selidor-projects/selidor-starters/selidor-starter-parent</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
-    <tag>HEAD</tag>
+    <tag>${git.refname}</tag>
   </scm>
 
   <properties>
@@ -42,8 +42,6 @@
          Maven実行時に `-Ddisable.checks` を設定することで、静的解析などをスキップできるようにしています。
     -->
     <disable.checks>false</disable.checks>
-    <!-- NVD CVEのダウンロードに頻繁に失敗するため、エラーでもビルド失敗にならないようにしておく。 -->
-    <fail-on-error.dependency-check>false</fail-on-error.dependency-check>
 
     <!--
          カバレッジを取得しないようにする設定。

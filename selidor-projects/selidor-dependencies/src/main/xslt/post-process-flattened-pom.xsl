@@ -30,6 +30,9 @@
   <!-- main.basedirはビルド用設定なので、デプロイ時には消す。 -->
   <!-- noinspection CheckNodeTest -->
   <xsl:template match="/m:project/m:properties/m:main.basedir"/>
+  <!-- disable.deployはビルド用設定なので、デプロイ時には消す。 -->
+  <!-- noinspection CheckNodeTest -->
+  <xsl:template match="/m:project/m:properties/m:disable.deploy"/>
   <!-- distributionManagementは、これをparentにつかうアプリケーションに反映するべき設定ではないので消す。 -->
   <xsl:template match="/m:project/m:distributionManagement"/>
 </xsl:stylesheet>
