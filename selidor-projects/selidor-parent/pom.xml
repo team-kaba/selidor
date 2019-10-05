@@ -171,6 +171,8 @@
             </execution>
           </executions>
           <configuration>
+            <!-- リモートリポジトリの情報は取得しないようにします。 -->
+            <offline>true</offline>
             <!-- ビルドのログにGitのリビジョン情報を出力します。 -->
             <verbose>true</verbose>
             <!-- 日付のフォーマットはISO8601に合わせておきます。 -->
