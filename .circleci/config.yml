@@ -59,6 +59,7 @@ commands:
 
   build_production_projects:
     steps:
+      - install_xmlstarlet
       - run_with_maven_cache:
           pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml selidor-projects/selidor-parent/pom.xml
           steps:
@@ -170,6 +171,12 @@ commands:
           root: *workspace
           paths:
             - *jfrog_cli_uploaded_build_info
+
+  install_xmlstarlet:
+    steps:
+      - run:
+          name: Install XMLStarlet
+          command: sudo apt install -y xmlstarlet
 
 
 jobs:
