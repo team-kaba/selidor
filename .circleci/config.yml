@@ -252,8 +252,10 @@ workflows:
             branches:
               only:
                 - master
-                - feature/setup-build-info-for-artifactory
                 - /\d+\.\d+\.x/
+            tags:
+              ignore:
+                - /v\d+\.\d+\.\d+/
       - smoke_tests:
           filters: *master
           requires:
