@@ -263,6 +263,12 @@
                   <dependency>org.testcontainers:*</dependency>
                 </dependencies>
               </requireSameVersions>
+              <!--
+                   This rule checks the dependencies and fails if any snapshots are found.
+              -->
+              <requireReleaseDeps>
+                <onlyWhenRelease>true</onlyWhenRelease>
+              </requireReleaseDeps>
             </rules>
             <fail>true</fail>
           </configuration>
