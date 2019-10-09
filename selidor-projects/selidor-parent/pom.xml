@@ -214,8 +214,10 @@
             <parameters>true</parameters>
             <compilerArgs>
               <!-- Javacで警告が出たときは、コンパイルエラーとして扱います。 -->
-              <compilerArg>-Werror</compilerArg>
+              <arg>-Werror</arg>
             </compilerArgs>
+            <!-- showWarningsをtrueにしないと、警告が出た時にコンパイルエラーとして扱うことができません。 -->
+            <showWarnings>true</showWarnings>
           </configuration>
         </plugin>
 
