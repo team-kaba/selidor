@@ -28,11 +28,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>pw.itr0.selidor</groupId>
-      <artifactId>selidor-identifier</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
