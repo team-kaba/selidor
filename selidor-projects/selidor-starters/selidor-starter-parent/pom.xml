@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -17,7 +18,7 @@
   <url>${git.url}</url>
 
   <scm>
-    <url>${git.url}/selidor-projects/selidor-starters/selidor-starter-parent</url>
+    <url>${git.url}/selidor-projects/selidor-starters/${project.artifactId</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
@@ -149,6 +150,8 @@
             </execution>
           </executions>
           <configuration>
+            <!-- リモートリポジトリの情報は取得しないようにします。 -->
+            <offline>true</offline>
             <!-- ビルドのログにGitのリビジョン情報を出力します。 -->
             <verbose>true</verbose>
             <!-- 日付のフォーマットはISO8601に合わせておきます。 -->
