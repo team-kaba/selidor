@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -36,7 +37,7 @@
   </developers>
 
   <scm>
-    <url>${git.url}/selidor-projects/selidor-dependencies</url>
+    <url>${git.url}/selidor-projects/${project.artifactId</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
@@ -89,6 +90,11 @@
   <dependencyManagement>
     <dependencies>
       <!-- Selidor -->
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-identifier</artifactId>
+        <version>${revision}</version>
+      </dependency>
 
       <!-- Spring -->
       <dependency>

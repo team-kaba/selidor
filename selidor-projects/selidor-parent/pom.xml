@@ -37,7 +37,7 @@
   </developers>
 
   <scm>
-    <url>${git.url}/selidor-projects/selidor-parent</url>
+    <url>${git.url}/selidor-projects/${project.artifactId</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
@@ -214,8 +214,10 @@
             <parameters>true</parameters>
             <compilerArgs>
               <!-- Javacで警告が出たときは、コンパイルエラーとして扱います。 -->
-              <compilerArg>-Werror</compilerArg>
+              <arg>-Werror</arg>
             </compilerArgs>
+            <!-- showWarningsをtrueにしないと、警告が出た時にコンパイルエラーとして扱うことができません。 -->
+            <showWarnings>true</showWarnings>
           </configuration>
         </plugin>
 
@@ -353,4 +355,28 @@
       </plugin>
     </plugins>
   </build>
+
+  <!-- 基本的なテストライブラリを追加しておきます。 -->
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
