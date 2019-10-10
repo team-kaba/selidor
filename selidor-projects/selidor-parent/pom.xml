@@ -257,6 +257,8 @@
             </systemPropertyVariables>
             <!-- スタックトレースを省略しないようにします。 -->
             <trimStackTrace>false</trimStackTrace>
+            <!-- テスト時にはリフレクションなどを許可するため、module-info.javaが存在したとしてもモジュール機能は無効にします。 -->
+            <useModulePath>false</useModulePath>
           </configuration>
         </plugin>
 
@@ -307,6 +309,8 @@
             </systemPropertyVariables>
             <!-- スタックトレースを省略しないようにします。 -->
             <trimStackTrace>false</trimStackTrace>
+            <!-- テスト時にはリフレクションなどを許可するため、module-info.javaが存在したとしてもモジュール機能は無効にします。 -->
+            <useModulePath>false</useModulePath>
           </configuration>
         </plugin>
       </plugins>
