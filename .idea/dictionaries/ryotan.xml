@@ -9,6 +9,7 @@
       <w>bento</w>
       <w>bintray</w>
       <w>circleci</w>
+      <w>crockford</w>
       <w>dataformat</w>
       <w>ddisable</w>
       <w>dharma</w>
@@ -26,6 +27,7 @@
       <w>okhttp</w>
       <w>owasp</w>
       <w>refname</w>
+      <w>rpad</w>
       <w>ryotan</w>
       <w>selidor</w>
       <w>squareup</w>
@@ -34,6 +36,7 @@
       <w>takari</w>
       <w>tanaka</w>
       <w>testcontainers</w>
+      <w>ulid</w>
       <w>urandom</w>
       <w>vavr</w>
       <w>werror</w>
