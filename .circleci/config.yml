@@ -3,7 +3,7 @@ version: 2.1
 executors:
   jdk11:
     docker:
-      - image: circleci/openjdk:11.0.4-jdk-stretch-node-browsers
+      - image: circleci/openjdk:11.0.5-jdk-stretch-node-browsers
     working_directory: &workspace /tmp/workspace
     environment:
       # Required environment variable from a Context
