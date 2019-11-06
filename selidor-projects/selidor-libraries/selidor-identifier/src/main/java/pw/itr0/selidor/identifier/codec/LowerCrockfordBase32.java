@@ -1,4 +1,4 @@
-package pw.itr0.selidor.identifier;
+package pw.itr0.selidor.identifier.codec;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ import java.util.Arrays;
  *   <li>Padding is not supported.
  * </ul>
  */
-abstract class LowerCrockfordBase32 {
+public abstract class LowerCrockfordBase32 {
 
   private static final byte[] ENCODE_SYMBOLS = {
     (byte) /* 00000 ->  0 -> "0" */ '0',
@@ -28,28 +28,28 @@ abstract class LowerCrockfordBase32 {
     (byte) /* 00111 ->  7 -> "7" */ '7',
     (byte) /* 01000 ->  8 -> "8" */ '8',
     (byte) /* 01001 ->  9 -> "9" */ '9',
-    (byte) /* 01010 -> 10 -> "A" */ 'a',
-    (byte) /* 01011 -> 11 -> "B" */ 'b',
-    (byte) /* 01100 -> 12 -> "C" */ 'c',
-    (byte) /* 01101 -> 13 -> "D" */ 'd',
-    (byte) /* 01110 -> 14 -> "E" */ 'e',
-    (byte) /* 01111 -> 15 -> "F" */ 'f',
-    (byte) /* 10000 -> 16 -> "G" */ 'g',
-    (byte) /* 10001 -> 17 -> "H" */ 'h',
-    (byte) /* 10010 -> 18 -> "J" */ 'j',
-    (byte) /* 10011 -> 19 -> "K" */ 'k',
-    (byte) /* 10100 -> 20 -> "M" */ 'm',
-    (byte) /* 10101 -> 21 -> "N" */ 'n',
-    (byte) /* 10110 -> 22 -> "P" */ 'p',
-    (byte) /* 10111 -> 23 -> "Q" */ 'q',
-    (byte) /* 11000 -> 24 -> "R" */ 'r',
-    (byte) /* 11001 -> 25 -> "S" */ 's',
-    (byte) /* 11010 -> 26 -> "T" */ 't',
-    (byte) /* 11011 -> 27 -> "V" */ 'v',
-    (byte) /* 11100 -> 28 -> "W" */ 'w',
-    (byte) /* 11101 -> 29 -> "X" */ 'x',
-    (byte) /* 11110 -> 30 -> "Y" */ 'y',
-    (byte) /* 11111 -> 31 -> "Z" */ 'z',
+    (byte) /* 01010 -> 10 -> "a" */ 'a',
+    (byte) /* 01011 -> 11 -> "b" */ 'b',
+    (byte) /* 01100 -> 12 -> "c" */ 'c',
+    (byte) /* 01101 -> 13 -> "d" */ 'd',
+    (byte) /* 01110 -> 14 -> "e" */ 'e',
+    (byte) /* 01111 -> 15 -> "f" */ 'f',
+    (byte) /* 10000 -> 16 -> "g" */ 'g',
+    (byte) /* 10001 -> 17 -> "h" */ 'h',
+    (byte) /* 10010 -> 18 -> "j" */ 'j',
+    (byte) /* 10011 -> 19 -> "k" */ 'k',
+    (byte) /* 10100 -> 20 -> "m" */ 'm',
+    (byte) /* 10101 -> 21 -> "n" */ 'n',
+    (byte) /* 10110 -> 22 -> "p" */ 'p',
+    (byte) /* 10111 -> 23 -> "q" */ 'q',
+    (byte) /* 11000 -> 24 -> "r" */ 'r',
+    (byte) /* 11001 -> 25 -> "s" */ 's',
+    (byte) /* 11010 -> 26 -> "t" */ 't',
+    (byte) /* 11011 -> 27 -> "v" */ 'v',
+    (byte) /* 11100 -> 28 -> "w" */ 'w',
+    (byte) /* 11101 -> 29 -> "x" */ 'x',
+    (byte) /* 11110 -> 30 -> "y" */ 'y',
+    (byte) /* 11111 -> 31 -> "z" */ 'z',
   };
   private static final int BITS_PER_BYTE = 8;
   private static final int BASE_BITS = 5;
@@ -74,7 +74,7 @@ abstract class LowerCrockfordBase32 {
     DECODE_SYMBOLS['L'] = 1;
   }
 
-  static byte[] encodeToBytes(byte[] source) {
+  public static byte[] encodeToBytes(byte[] source) {
     int length = (source.length * BITS_PER_BYTE) / BASE_BITS;
     if ((source.length * BITS_PER_BYTE) % BASE_BITS != 0) {
       length++;
@@ -102,11 +102,11 @@ abstract class LowerCrockfordBase32 {
     return encoded;
   }
 
-  static String encode(byte[] bytes) {
+  public static String encode(byte[] bytes) {
     return new String(encodeToBytes(bytes), StandardCharsets.UTF_8);
   }
 
-  static byte[] decode(byte[] encoded) {
+  public static byte[] decode(byte[] encoded) {
     int length = (encoded.length * BASE_BITS) / BITS_PER_BYTE;
     final byte[] decoded = new byte[length];
 
@@ -129,7 +129,7 @@ abstract class LowerCrockfordBase32 {
     return decoded;
   }
 
-  static byte[] decode(String encoded) {
+  public static byte[] decode(String encoded) {
     return decode(encoded.getBytes(StandardCharsets.UTF_8));
   }
 }

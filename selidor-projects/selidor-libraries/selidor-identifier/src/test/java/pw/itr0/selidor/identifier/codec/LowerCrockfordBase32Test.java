@@ -1,13 +1,13 @@
-package pw.itr0.selidor.identifier;
+package pw.itr0.selidor.identifier.codec;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.SecureRandom;
 import java.util.List;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +20,7 @@ class LowerCrockfordBase32Test {
   void testEncodeByte(byte[] source, String encoded) {
     final byte[] bytes = encoded.getBytes(UTF_8);
 
-    SoftAssertions.assertSoftly(
+    assertSoftly(
         s -> {
           // byte[] -> byte[]
           s.assertThat(LowerCrockfordBase32.encodeToBytes(source)).isEqualTo(bytes);
@@ -38,7 +38,7 @@ class LowerCrockfordBase32Test {
     final byte[] val = longToBytes(source);
     final byte[] bytes = encoded.getBytes(UTF_8);
 
-    SoftAssertions.assertSoftly(
+    assertSoftly(
         s -> {
           // long -> byte[]
           s.assertThat(LowerCrockfordBase32.encodeToBytes(val)).isEqualTo(bytes);
@@ -54,7 +54,7 @@ class LowerCrockfordBase32Test {
   @MethodSource("base32DecodeStringToBytesMapping")
   void testDecode(String source, byte[] decoded) {
     final byte[] bytes = source.getBytes(UTF_8);
-    SoftAssertions.assertSoftly(
+    assertSoftly(
         s -> {
           // byte[] -> byte[]
           s.assertThat(LowerCrockfordBase32.decode(bytes)).isEqualTo(decoded);
@@ -70,7 +70,7 @@ class LowerCrockfordBase32Test {
   @Test
   @Tag("slow")
   void testRandomBytes() {
-    SoftAssertions.assertSoftly(
+    assertSoftly(
         s -> {
           final SecureRandom random = new SecureRandom();
           for (int i = 0; i < 1000; i++) {
