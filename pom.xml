@@ -83,7 +83,7 @@
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>5.2.2</dependency-check-maven.version>
+    <dependency-check-maven.version>5.2.4</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
 
     <!-- Aggregator projectはdeployする必要がないので、skipしています。 -->
