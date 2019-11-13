@@ -6,4 +6,5 @@
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.identifier {
   exports pw.itr0.selidor.identifier;
+  exports pw.itr0.selidor.identifier.crid;
 }

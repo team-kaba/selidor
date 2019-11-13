@@ -15,6 +15,7 @@ import java.util.Arrays;
  *   <li>Padding is not supported.
  * </ul>
  */
+@SuppressWarnings("WeakerAccess") // utility class
 public abstract class LowerCrockfordBase32 {
 
   private static final byte[] ENCODE_SYMBOLS = {
@@ -115,6 +116,14 @@ public abstract class LowerCrockfordBase32 {
     int remainingBits = 0;
     for (byte b : encoded) {
       int i = DECODE_SYMBOLS[b & 0xff];
+      if (i < 0) {
+        throw new IllegalArgumentException(
+            "Illegal Crockford's base32 character. char=["
+                + (char) (b & 0xff)
+                + "] string=["
+                + new String(encoded, StandardCharsets.UTF_8)
+                + "]");
+      }
       remainingBits += BASE_BITS;
       final int shift = BITS_PER_BYTE - remainingBits;
       int cb = (0 < shift ? i << shift : i >>> -shift) & 0xff;

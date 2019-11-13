@@ -9,6 +9,7 @@
       <w>bento</w>
       <w>bintray</w>
       <w>circleci</w>
+      <w>crid</w>
       <w>crockford</w>
       <w>dataformat</w>
       <w>ddisable</w>
@@ -26,6 +27,7 @@
       <w>mvnw</w>
       <w>okhttp</w>
       <w>owasp</w>
+      <w>postgre</w>
       <w>refname</w>
       <w>rpad</w>
       <w>ryotan</w>
@@ -43,6 +45,7 @@
       <w>woff</w>
       <w>xdebug</w>
       <w>xmlstarlet</w>
+      <w>zzzzzzzzzzzzzzzzzzzzzzzzz</w>
     </words>
   </dictionary>
 </component>
