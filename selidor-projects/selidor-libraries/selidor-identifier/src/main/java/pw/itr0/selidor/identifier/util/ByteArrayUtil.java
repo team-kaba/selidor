@@ -23,7 +23,7 @@ public class ByteArrayUtil {
   }
 
   public static byte[] longToBytes(long value1) {
-    byte[] buffer = new byte[16];
+    byte[] buffer = new byte[8];
     longToBytes(value1, buffer, 0);
     return buffer;
   }
