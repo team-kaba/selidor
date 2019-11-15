@@ -7,8 +7,7 @@
       "flat": "false",
       "excludePatterns": [
         "*.sha1",
-        "*.md5",
-        "*/maven-metadata.xml"
+        "*.md5"
       ]
     }
   ]
