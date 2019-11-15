@@ -48,15 +48,15 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
-    <assertj-core.version>3.13.2</assertj-core.version>
+    <assertj-core.version>3.14.0</assertj-core.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
     <mapstruct.version>1.3.1.Final</mapstruct.version>
     <okhttp.version>4.2.2</okhttp.version>
     <retrofit.version>2.6.2</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
-    <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
     <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-    <testcontainers.version>1.12.2</testcontainers.version>
+    <testcontainers.version>1.12.3</testcontainers.version>
 
     <!-- Maven Plugins -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
@@ -65,9 +65,9 @@
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
-    <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-    <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+    <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
     <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
     <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
@@ -78,10 +78,10 @@
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>5.2.2</dependency-check-maven.version>
-    <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
+    <dependency-check-maven.version>5.2.4</dependency-check-maven.version>
+    <duplicate-finder-maven-plugin.version>1.4.0</duplicate-finder-maven-plugin.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
-    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
 
     <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
     <main.basedir>../..</main.basedir>
