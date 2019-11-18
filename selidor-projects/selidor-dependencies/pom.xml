@@ -75,7 +75,7 @@
     <!-- spring-boot-dependencies と違うバージョンを指定しているプラグイン -->
     <!-- useModulePathを無効にしてテストを実行したいので、このオプションが実装されているバージョンを指定しています。 -->
     <maven-failsafe-plugin.version>${maven-surefire-plugin.version}</maven-failsafe-plugin.version>
-    <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>5.2.4</dependency-check-maven.version>
