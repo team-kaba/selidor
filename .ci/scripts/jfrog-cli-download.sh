@@ -17,7 +17,7 @@ command="${dir}/jfrog"
 
 download_url="https://bintray.com/api/ui/download/jfrog/jfrog-cli-go/${version}/jfrog-cli-linux-amd64/jfrog"
 
-if ! type "${command}"; then
+if ! type "${command}" || [[ "$("${command}" --version)" != *" ${version}"* ]]; then
   echo "Downloading jfrog cli (version: ${version}) from ${download_url}."
   mkdir -p "${dir}"
   curl -fvLo "${command}" "${download_url}"
