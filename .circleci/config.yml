@@ -203,6 +203,7 @@ jobs:
     executor: jdk11
     steps:
       - checkout
+      - attach_current_workspace
       - prepare_mvnw
       - persist_mvnw
       - build_production_projects
@@ -231,9 +232,9 @@ jobs:
         type: string
     steps:
       - checkout
+      - attach_current_workspace
       - prepare_jfrog_cli
       - persist_jfrog_cli
-      - attach_current_workspace
       - jfrog_upload:
           type: << parameters.release_type >>
       - store_jfrog_upload_info
@@ -242,9 +243,9 @@ jobs:
     executor: jdk11
     steps:
       - checkout
+      - attach_current_workspace
       - prepare_jfrog_cli
       - persist_jfrog_cli
-      - attach_current_workspace
       - jfrog_promote
 
 
