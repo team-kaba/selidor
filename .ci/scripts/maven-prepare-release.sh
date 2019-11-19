@@ -16,7 +16,7 @@ if git_dirty_worktree; then
 fi
 
 current_refname="$(get_git_refname_from_pom)"
-current_version="$(get_revision_from_pom)"
+current_version="$(get_project_revision_from_pom)"
 release_version="$(get_next_version "${current_version}")"
 
 if [[ "${release_version}" =~ -SNAPSHOT$ ]]; then
@@ -26,7 +26,7 @@ fi
 
 version_tag="v${release_version}"
 
-set_revision_to_pom "${release_version}"
+set_project_revision_to_pom "${release_version}"
 set_git_refname_to_pom "${version_tag}"
 
 git add 'pom.xml' '**/pom.xml'
@@ -53,8 +53,8 @@ echo "Successfully completed tests."
 
 next_development_version="$(get_next_version "${release_version}")"
 
-set_revision_to_pom "${next_development_version}"
+set_project_revision_to_pom "${next_development_version}"
 set_git_refname_to_pom "${current_refname}"
 
 git add 'pom.xml' '**/pom.xml'
-git commit -m ":arrow_up: Next development version (${next_development_version})"
+git commit -m "⬆️ Next development version (${next_development_version})"
