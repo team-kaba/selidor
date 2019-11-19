@@ -151,6 +151,7 @@ commands:
       type:
         type: string
     steps:
+      - install_xmlstarlet
       - run:
           name: Download maven-metadata.xml from oss.jfrog.org
           command: .ci/scripts/jfrog-prepare-maven-metadata.sh << parameters.type >>
