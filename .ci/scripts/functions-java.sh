@@ -32,6 +32,10 @@ function jfrog() {
   fi
 }
 
+function get_project_root_group_id_from_pom() {
+  xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:groupId' "${PROJECT_ROOT_DIR}/pom.xml"
+}
+
 function revision_for_current_build() {
   local revision
   revision="${1}"

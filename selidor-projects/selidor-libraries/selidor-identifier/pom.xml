@@ -9,6 +9,7 @@
     <relativePath>../../selidor-parent</relativePath>
   </parent>
 
+  <groupId>pw.itr0.selidor.library</groupId>
   <artifactId>selidor-identifier</artifactId>
   <packaging>jar</packaging>
 

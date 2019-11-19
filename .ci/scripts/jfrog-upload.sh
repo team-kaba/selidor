@@ -21,7 +21,7 @@ fi
 echo "Module: ${module_name}"
 
 echo "Uploading atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
-jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --module "${module_name}" --props "artifactory.licenses=Apache-2.0"
+jfrog rt u --spec "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-rt-upload-spec.json" --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --module "${module_name}" --props "artifactory.licenses=${BINTRAY_DEFAULT_LICENSES}"
 
 echo "Prepare build information of atrtifacts."
 echo "Collecting environment variables of build."
@@ -36,7 +36,7 @@ jfrog rt bp
 # ログにビルド情報を出力するためにdry-runで実行し直す。
 # dry-runを一回流すと、情報を集め直さないといけないみたい。
 echo "Publishing build information of atrtifacts to ${ARTIFACTORY_SERVER_ID} using jfrog cli."
-jfrog rt u --spec .ci/jfrog-cli-spec.json --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --module "${module_name}" --props "artifactory.licenses=Apache-2.0" --dry-run
+jfrog rt u --spec "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-rt-upload-spec.json" --spec-vars "dist-dir=${BUILT_ARTIFACTS_DIR};type=${type}" --module "${module_name}" --props "artifactory.licenses=${BINTRAY_DEFAULT_LICENSES}" --dry-run
 jfrog rt bce
 jfrog rt bag --config "${PROJECT_ROOT_DIR}/.ci/jfrog-cli-bag-config-${type}.yml" "${PROJECT_ROOT_DIR}" || echo "Failed to collect git information."
 jfrog rt bp --dry-run
