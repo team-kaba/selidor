@@ -151,6 +151,15 @@ commands:
             - *jfrog_cli_temp_dir
             - *jfrog_cli_bin_dir
 
+  download_maven_metadata_from_ojo:
+    parameters:
+      type:
+        type: string
+    steps:
+      - run:
+          name: Download maven-metadata.xml from oss.jfrog.org
+          command: .ci/scripts/jfrog-prepare-maven-metadata.sh << parameters.type >>
+
   jfrog_upload:
     parameters:
       type:
@@ -181,6 +190,19 @@ commands:
 
 
 jobs:
+  prepare_maven_metadata:
+    executor: jdk11
+    parameters:
+      release_type:
+        type: string
+    steps:
+      - checkout
+      - prepare_jfrog_cli
+      - persist_jfrog_cli
+      - download_maven_metadata_from_ojo:
+          type: << parameters.release_type >>
+      - persist_artifacts
+
   build_production_projects:
     executor: jdk11
     steps:
@@ -255,7 +277,8 @@ workflows:
 
   snapshot:
     jobs:
-      - build_production_projects:
+      - prepare_maven_metadata:
+          context: bintray
           filters: &master
             branches:
               only:
@@ -264,6 +287,11 @@ workflows:
             tags:
               ignore:
                 - /v\d+\.\d+\.\d+/
+          release_type: snapshot
+      - build_production_projects:
+          filters: *master
+          requires:
+            - prepare_maven_metadata
       - smoke_tests:
           filters: *master
           requires:
@@ -282,7 +310,8 @@ workflows:
 
   release:
     jobs:
-      - build_production_projects:
+      - prepare_maven_metadata:
+          context: bintray
           filters: &release
             tags:
               only:
@@ -290,6 +319,11 @@ workflows:
             branches:
               ignore:
                 - /.*/
+          release_type: release
+      - build_production_projects:
+          filters: *release
+          requires:
+            - prepare_maven_metadata
       - smoke_tests:
           filters: *release
           requires:

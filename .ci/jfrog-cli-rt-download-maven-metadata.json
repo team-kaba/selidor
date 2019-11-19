@@ -2,7 +2,7 @@
   "files": [
     {
       "pattern": "oss-${type}-local/${root}/*/${version}/maven-metadata.xml",
-      "target": "dist/",
+      "target": "${dist-dir}/",
       "recursive": "true",
       "flat": "false"
     }
