@@ -4,12 +4,13 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-projects" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-projects/selidor-dependencies" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/selidor-projects/selidor-libraries" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/selidor-projects/selidor-libraries/selidor-identifier" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-projects/selidor-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-projects/selidor-starters" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-projects/selidor-starters/selidor-starter-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-tests" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-tests/selidor-integration-tests" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/selidor-tests/selidor-integration-tests/selidor-sandbox" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/selidor-tests/selidor-smoke-tests" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

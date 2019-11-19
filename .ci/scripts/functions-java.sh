@@ -43,6 +43,33 @@ function set_revision_to_pom() {
   xmlstarlet edit --ps --inplace -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:properties/m:revision' -v "${1}" "${PROJECT_ROOT_DIR}/pom.xml"
 }
 
+function get_parent_version_from_pom() {
+  if [ -z "${1}" ]; then
+    echo "[get_parent_version_from_pom] Pass target project as an argument." >&2
+    return 1
+  fi
+  xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:parent/m:version' "${1}/pom.xml"
+}
+
+function get_parent_relative_path_from_pom() {
+  if [ -z "${1}" ]; then
+    echo "[get_parent_relative_path_from_pom] Pass target project as an argument." >&2
+    return 1
+  fi
+  xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:parent/m:relativePath' "${1}/pom.xml"
+}
+
+function set_parent_version_to_pom() {
+  if [ -z "${1}" ] || [ -z "${2}" ]; then
+    echo "[set_parent_version_to_pom] Pass new parent revision and target project directory as an argument. \$1=${1}, \$2=${2}" >&2
+    return 1
+  fi
+  echo "parent version: $(get_parent_version_from_pom "${2}")"
+  if [ "$(get_parent_version_from_pom "${2}")" == "\${revision}" ] && [ -z "$(get_parent_relative_path_from_pom "${2}")" ]; then
+    xmlstarlet edit --ps --inplace -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:parent/m:version' -v "${1}" "${2}/pom.xml"
+  fi
+}
+
 function cleanup_maven_repo() {
   MAVEN_LOCAL_REPOSITORY="${MAVEN_LOCAL_REPOSITORY:-/${HOME}/.m2/repository}"
   if [ -z "${1}" ]; then

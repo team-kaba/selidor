@@ -74,6 +74,7 @@ commands:
       project:
         type: string
     steps:
+      - install_xmlstarlet
       - run_with_maven_cache:
           pom_files: << parameters.project >>/pom.xml
           steps:
