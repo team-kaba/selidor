@@ -61,7 +61,6 @@ commands:
     steps:
       - install_xmlstarlet
       - run_with_maven_cache:
-          pom_files: pom.xml selidor-projects/selidor-dependencies/pom.xml selidor-projects/selidor-parent/pom.xml
           steps:
             - run:
                 name: Build artifacts of Selidor projects
@@ -76,7 +75,6 @@ commands:
     steps:
       - install_xmlstarlet
       - run_with_maven_cache:
-          pom_files: << parameters.project >>/pom.xml
           steps:
             - run:
                 name: Run tests of Selidor projects - << parameters.project >>
@@ -105,15 +103,12 @@ commands:
 
   run_with_maven_cache:
     parameters:
-      pom_files:
-        type: string
-        default: pom.xml
       steps:
         type: steps
     steps:
       - run:
           name: Generate cache checksum for Maven dependencies.
-          command: cat << parameters.pom_files >> > /tmp/maven_repository_cache_seed
+          command: .ci/scripts/maven-cache-seed.sh > /tmp/maven_repository_cache_seed
       - restore_cache:
           keys:
             - maven-repository-{{ checksum "/tmp/maven_repository_cache_seed" }}
