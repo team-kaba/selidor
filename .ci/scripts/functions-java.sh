@@ -9,8 +9,13 @@ function mvnw() {
   if [ -n "${MAVEN_LOCAL_REPOSITORY:-}" ]; then
     args=("-Dmaven.repo.local=${MAVEN_LOCAL_REPOSITORY}" "-Drepository=file://${PROJECT_ROOT_DIR}/${MAVEN_LOCAL_REPOSITORY}" "${args[@]}")
   fi
-  if is_pull_request; then
-    args=("-Drevision=$(get_pull_request_revision_from_pom)" "${args[@]}")
+  local revision
+  local project_revision
+  project_revision=$(get_project_revision_from_pom)
+  revision="$(revision_for_current_build "${project_revision}")"
+
+  if [ "${revision}" != "${project_revision}" ]; then
+    args=("-Drevision=${revision}" "${args[@]}")
   fi
   echo "Running command:" "${command}" "${args[@]}" "${@}"
   if [ "${DRY_RUN:-}" != "true" ]; then
@@ -27,17 +32,24 @@ function jfrog() {
   fi
 }
 
-function get_pull_request_revision_from_pom() {
-  echo "$(get_revision_from_pom | sed -e 's!-SNAPSHOT$!!g')-pr${VCS_PULL_REQUEST_ID}-SNAPSHOT"
+function revision_for_current_build() {
+  local revision
+  revision="${1}"
+  if is_pull_request; then
+    # PRの場合は、revisionにPRを含める。
+    echo "${revision//-SNAPSHOT/}-pr${VCS_PULL_REQUEST_ID}-SNAPSHOT"
+  else
+    echo "${revision}"
+  fi
 }
 
-function get_revision_from_pom() {
+function get_project_revision_from_pom() {
   xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:properties/m:revision' "${PROJECT_ROOT_DIR}/pom.xml"
 }
 
-function set_revision_to_pom() {
+function set_project_revision_to_pom() {
   if [ -z "${1}" ]; then
-    echo "[set_revision_to_pom] Pass new revision as an argument." >&2
+    echo "[set_project_revision_to_pom] Pass new revision as an argument." >&2
     return 1
   fi
   xmlstarlet edit --ps --inplace -N m=http://maven.apache.org/POM/4.0.0 -u '//m:project/m:properties/m:revision' -v "${1}" "${PROJECT_ROOT_DIR}/pom.xml"
@@ -59,9 +71,9 @@ function get_parent_relative_path_from_pom() {
   xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:parent/m:relativePath' "${1}/pom.xml"
 }
 
-function set_parent_version_to_pom() {
+function fix_not_reactor_parent_revision() {
   if [ -z "${1}" ] || [ -z "${2}" ]; then
-    echo "[set_parent_version_to_pom] Pass new parent revision and target project directory as an argument. \$1=${1}, \$2=${2}" >&2
+    echo "[fix_not_reactor_parent_revision] Pass new parent revision and target project directory as an argument. \$1=${1}, \$2=${2}" >&2
     return 1
   fi
   echo "parent version: $(get_parent_version_from_pom "${2}")"
