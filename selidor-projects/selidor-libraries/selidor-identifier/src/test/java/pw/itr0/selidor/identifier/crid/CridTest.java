@@ -15,7 +15,7 @@ import java.util.UUID;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
+import pw.itr0.selidor.util.ByteArrayUtil;
 
 @SuppressWarnings("SpellCheckingInspection")
 class CridTest {

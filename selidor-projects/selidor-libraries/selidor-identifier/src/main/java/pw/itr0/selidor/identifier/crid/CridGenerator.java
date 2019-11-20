@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.UUID;
 import pw.itr0.selidor.identifier.Id128Generator;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
+import pw.itr0.selidor.util.ByteArrayUtil;
 
 public class CridGenerator implements Id128Generator<Crid> {
 

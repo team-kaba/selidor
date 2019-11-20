@@ -4,10 +4,6 @@
 //
 // So OpenJDK compiler reports warning, but `pw.itr0` is not intended to represent version.
 @SuppressWarnings({"module", "JavaModuleNaming"})
-module pw.itr0.selidor.identifier {
-  exports pw.itr0.selidor.identifier;
-  exports pw.itr0.selidor.identifier.crid;
-  exports pw.itr0.selidor.identifier.random;
-
-  requires pw.itr0.selidor.core;
+module pw.itr0.selidor.core {
+  exports pw.itr0.selidor.util;
 }

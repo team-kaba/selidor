@@ -9,11 +9,11 @@
     <relativePath>../../selidor-parent</relativePath>
   </parent>
 
-  <artifactId>selidor-identifier</artifactId>
+  <artifactId>selidor-core</artifactId>
   <packaging>jar</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Selidor Libraries: Random Identifier Generator</description>
+  <description>Selidor Libraries: Core</description>
   <url>${git.url}</url>
 
   <scm>
@@ -22,11 +22,4 @@
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
   </scm>
-
-  <dependencies>
-    <dependency>
-      <groupId>pw.itr0.selidor</groupId>
-      <artifactId>selidor-core</artifactId>
-    </dependency>
-  </dependencies>
 </project>

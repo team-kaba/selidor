@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.UUID;
 import pw.itr0.selidor.identifier.Id128;
 import pw.itr0.selidor.identifier.codec.LowerCrockfordBase32;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
-import pw.itr0.selidor.identifier.util.PreConditions;
+import pw.itr0.selidor.util.ByteArrayUtil;
+import pw.itr0.selidor.util.PreConditions;
 
 /**
  * Java implementation of Chronologically sortable Random Identifier (CRID) which is binary

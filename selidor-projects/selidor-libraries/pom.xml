@@ -16,6 +16,7 @@
   <description>Selidor Libraries: Aggregator</description>
 
   <modules>
+    <module>selidor-core</module>
     <module>selidor-identifier</module>
   </modules>
 

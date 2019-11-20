@@ -1,4 +1,4 @@
-package pw.itr0.selidor.identifier.util;
+package pw.itr0.selidor.util;
 
 import java.util.Objects;
 import java.util.function.Supplier;

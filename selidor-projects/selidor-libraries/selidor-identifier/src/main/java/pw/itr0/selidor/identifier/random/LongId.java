@@ -1,7 +1,7 @@
 package pw.itr0.selidor.identifier.random;
 
 import pw.itr0.selidor.identifier.Id64;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
+import pw.itr0.selidor.util.ByteArrayUtil;
 
 public final class LongId implements Id64, Comparable<LongId> {
 
