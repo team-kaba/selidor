@@ -16,7 +16,6 @@ import pw.itr0.selidor.util.PreConditions;
  *
  * @param <RAW> 値の型
  */
-@SuppressWarnings("WeakerAccess") // utility class
 public abstract class TypedValue<RAW> {
   private final RAW value;
   private final Class<RAW> rawValueClass;
@@ -60,6 +59,6 @@ public abstract class TypedValue<RAW> {
 
   @Override
   public int hashCode() {
-    return getValue() != null ? getValue().hashCode() : 0;
+    return getValue().hashCode();
   }
 }
