@@ -103,6 +103,16 @@
         <artifactId>selidor-identifier</artifactId>
         <version>${revision}</version>
       </dependency>
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-typed-value</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-typed-value-mapstruct</artifactId>
+        <version>${revision}</version>
+      </dependency>
 
       <!-- Spring -->
       <dependency>
