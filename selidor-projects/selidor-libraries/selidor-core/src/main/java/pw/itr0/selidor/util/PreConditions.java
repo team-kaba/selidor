@@ -47,6 +47,6 @@ public abstract class PreConditions {
     return messageSupplier != null
         ? new IllegalArgumentException(
             Objects.requireNonNullElseGet(messageSupplier.get(), defaultValue))
-        : new IllegalArgumentException();
+        : new IllegalArgumentException(defaultValue.get());
   }
 }
