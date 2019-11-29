@@ -56,7 +56,7 @@
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
     <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
     <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-    <testcontainers.version>1.12.3</testcontainers.version>
+    <testcontainers.version>1.12.4</testcontainers.version>
 
     <!-- Maven Plugins -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
