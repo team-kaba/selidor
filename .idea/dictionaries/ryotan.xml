@@ -23,6 +23,7 @@
       <w>intelli</w>
       <w>jaxrs</w>
       <w>jfrog</w>
+      <w>licensable</w>
       <w>mapstruct</w>
       <w>mvnw</w>
       <w>okhttp</w>
@@ -45,7 +46,6 @@
       <w>woff</w>
       <w>xdebug</w>
       <w>xmlstarlet</w>
-      <w>zzzzzzzzzzzzzzzzzzzzzzzzz</w>
     </words>
   </dictionary>
 </component>
