@@ -7,6 +7,8 @@
 module pw.itr0.selidor.type.mapstruct {
   exports pw.itr0.selidor.type.mapstruct;
 
+  // MapStructのなかでjava.sqlを利用しているのでrequiresが必要。IntelliJではそこまで確認しないためredundant requireとして警告される。
+  // noinspection Java9RedundantRequiresStatement
   requires java.sql;
   requires pw.itr0.selidor.identifier;
   requires pw.itr0.selidor.type;
