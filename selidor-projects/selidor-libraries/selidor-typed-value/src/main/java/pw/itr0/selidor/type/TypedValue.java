@@ -44,7 +44,7 @@ public abstract class TypedValue<RAW> {
 
   @Override
   public String toString() {
-    return String.valueOf(this.value);
+    return String.valueOf(getValue());
   }
 
   @Override

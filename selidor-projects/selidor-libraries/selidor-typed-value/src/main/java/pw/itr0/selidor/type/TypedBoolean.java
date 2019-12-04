@@ -24,7 +24,6 @@ package pw.itr0.selidor.type;
  *
  * @param <SELF> このクラスを実装するクラス自身
  */
-@SuppressWarnings("WeakerAccess") // utility class
 public abstract class TypedBoolean<SELF extends TypedBoolean<? super SELF>>
     extends TypedComparable<SELF, Boolean> {
 

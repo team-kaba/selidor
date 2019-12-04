@@ -26,7 +26,7 @@
   <dependencies>
     <dependency>
       <groupId>pw.itr0.selidor</groupId>
-      <artifactId>selidor-core</artifactId>
+      <artifactId>selidor-identifier</artifactId>
     </dependency>
   </dependencies>
 </project>

@@ -9,4 +9,5 @@ module pw.itr0.selidor.type {
 
   requires java.sql;
   requires pw.itr0.selidor.core;
+  requires pw.itr0.selidor.identifier;
 }

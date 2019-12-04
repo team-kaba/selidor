@@ -1,9 +1,10 @@
-package pw.itr0.selidor.type;
+package pw.itr0.selidor.type.test;
 
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import pw.itr0.selidor.type.TypedBoolean;
 
 @ExtendWith(SoftAssertionsExtension.class)
 class TypedBooleanTest {
@@ -17,13 +18,26 @@ class TypedBooleanTest {
 
   @Test
   void truthy(SoftAssertions s) {
-    final Enabled enabled = new Enabled(true);
-    s.assertThat(enabled.isTrue()).isTrue();
-    s.assertThat(enabled.isFalse()).isFalse();
-
-    final Enabled disabled = new Enabled(false);
-    s.assertThat(disabled.isTrue()).isFalse();
-    s.assertThat(disabled.isFalse()).isTrue();
+    {
+      final Active active = new Active(true);
+      s.assertThat(active.isTrue()).isTrue();
+      s.assertThat(active.isFalse()).isFalse();
+    }
+    {
+      final Active inactive = new Active(false);
+      s.assertThat(inactive.isTrue()).isFalse();
+      s.assertThat(inactive.isFalse()).isTrue();
+    }
+    {
+      final Enabled enabled = new Enabled(true);
+      s.assertThat(enabled.isTrue()).isTrue();
+      s.assertThat(enabled.isFalse()).isFalse();
+    }
+    {
+      final Enabled enabled = new Enabled(false);
+      s.assertThat(enabled.isTrue()).isFalse();
+      s.assertThat(enabled.isFalse()).isTrue();
+    }
   }
 
   @Test
