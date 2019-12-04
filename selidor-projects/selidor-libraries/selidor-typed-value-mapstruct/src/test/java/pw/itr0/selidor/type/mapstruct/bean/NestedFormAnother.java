@@ -1,10 +1,12 @@
 package pw.itr0.selidor.type.mapstruct.bean;
 
 import lombok.Data;
+import pw.itr0.selidor.identifier.crid.Crid;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneSomeValue.Money;
 
 @Data
 class NestedFormAnother {
+  private Crid id;
   private Money some;
   private boolean primitiveBoolean;
   private Boolean objectBoolean;

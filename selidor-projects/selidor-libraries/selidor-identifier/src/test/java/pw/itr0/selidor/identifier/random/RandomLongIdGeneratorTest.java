@@ -37,7 +37,8 @@ class RandomLongIdGeneratorTest {
   @Test
   void testParseLongString(SoftAssertions s) {
     final String longString = "1234567890123456789";
-    s.assertThat(new RandomLongIdGenerator().parse(longString)).isEqualTo(new LongId(1234567890123456789L));
+    s.assertThat(new RandomLongIdGenerator().parse(longString))
+        .isEqualTo(new LongId(1234567890123456789L));
   }
 
   @Test
@@ -48,9 +49,7 @@ class RandomLongIdGeneratorTest {
   }
 
   @Test
-  void testNativePRNGNonBlockingNotExists() {
-
-  }
+  void testNativePRNGNonBlockingNotExists() {}
 
   @Test
   void testFromLong(SoftAssertions s) {

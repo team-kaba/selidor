@@ -32,7 +32,7 @@ class BeanTranslatorTest {
 
   @ParameterizedTest
   @MethodSource("entity")
-  @DisplayName("Entityから同じEntityへの変換 (typed -> typed (same)")
+  @DisplayName("Entityから同じEntityへのコピー (typed -> typed (same))")
   void testTranslateEntityToSameEntity(EntityOne entity) {
     final EntityOne copy = sut.copy(entity);
     assertThat(copy).isEqualTo(entity);
@@ -57,7 +57,7 @@ class BeanTranslatorTest {
 
   @ParameterizedTest
   @MethodSource("form")
-  @DisplayName("Formから同じFormへの変換 (raw -> raw (same))")
+  @DisplayName("Formから同じFormへのコピー (raw -> raw (same))")
   void testTranslateFormToSameForm(FormOne form) {
     final FormOne copy = sut.copy(form);
     assertThat(copy).isEqualTo(form);

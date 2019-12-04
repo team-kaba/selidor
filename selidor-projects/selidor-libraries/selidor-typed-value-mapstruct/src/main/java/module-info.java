@@ -7,7 +7,9 @@
 module pw.itr0.selidor.type.mapstruct {
   exports pw.itr0.selidor.type.mapstruct;
 
+  requires java.sql;
   requires pw.itr0.selidor.core;
+  requires pw.itr0.selidor.identifier;
   requires pw.itr0.selidor.type;
   requires org.mapstruct;
 }
