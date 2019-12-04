@@ -29,9 +29,11 @@
       <w>okhttp</w>
       <w>owasp</w>
       <w>postgre</w>
+      <w>prng</w>
       <w>refname</w>
       <w>rpad</w>
       <w>ryotan</w>
+      <w>securerandom</w>
       <w>selidor</w>
       <w>squareup</w>
       <w>suppressions</w>
