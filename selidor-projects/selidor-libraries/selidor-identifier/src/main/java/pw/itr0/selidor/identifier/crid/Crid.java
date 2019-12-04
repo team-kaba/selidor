@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.UUID;
 import pw.itr0.selidor.identifier.Id128;
+import pw.itr0.selidor.identifier.IdParseFailedException;
 import pw.itr0.selidor.identifier.codec.LowerCrockfordBase32;
 import pw.itr0.selidor.util.ByteArrayUtil;
 import pw.itr0.selidor.util.PreConditions;
@@ -131,6 +132,22 @@ public final class Crid implements Id128, Comparable<Crid> {
     this.mostSigBits = ByteArrayUtil.bytesToLong(this.bytes, 0);
     this.leastSigBits = ByteArrayUtil.bytesToLong(this.bytes, 8);
     this.uuid = new UUID(this.mostSigBits, this.leastSigBits);
+  }
+
+  public static Crid parse(String value) {
+    try {
+      return new Crid(value);
+    } catch (IllegalArgumentException e) {
+      throw new IdParseFailedException("Failed to parse value as CRID. value=[" + value + "]", e);
+    }
+  }
+
+  public static Crid from(UUID value) {
+    final long msb = value.getMostSignificantBits();
+    final long lsb = value.getLeastSignificantBits();
+    final byte[] bytes = ByteArrayUtil.longToBytes(msb, lsb);
+    return new Crid(
+        ByteArrayUtil.sixBytesToEpochMilli(bytes), Arrays.copyOfRange(bytes, 6, bytes.length));
   }
 
   public byte[] bytes() {

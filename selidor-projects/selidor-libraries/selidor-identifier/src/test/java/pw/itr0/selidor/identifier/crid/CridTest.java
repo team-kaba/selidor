@@ -1,5 +1,7 @@
 package pw.itr0.selidor.identifier.crid;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -7,14 +9,19 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
+import java.time.Clock;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import pw.itr0.selidor.identifier.IdParseFailedException;
 import pw.itr0.selidor.util.ByteArrayUtil;
 
 @SuppressWarnings("SpellCheckingInspection")
@@ -82,6 +89,35 @@ class CridTest {
         .isExactlyInstanceOf(IllegalArgumentException.class)
         .hasNoCause()
         .hasMessageContaining(exception);
+  }
+
+  @Test
+  @DisplayName("文字列をパースして、CRIDにできること。")
+  void testParseCridString() {
+    final CridGenerator sut = new CridGenerator(Clock.systemDefaultZone(), new SecureRandom());
+
+    final Crid crid = sut.next();
+    assertThat(Crid.parse(crid.toString())).isEqualTo(crid);
+  }
+
+  @Test
+  @DisplayName("文字列のパースに失敗した場合は、IdParseFailedExceptionが発生すること")
+  void testParseCridStringFailure() {
+    assertThatExceptionOfType(IdParseFailedException.class)
+        .isThrownBy(() -> Crid.parse("some invalid string"))
+        .withMessageContaining("value=[some invalid string]");
+  }
+
+  @Test
+  @DisplayName("UUIDからCRIDに変換できること。")
+  void testFromUuid() {
+    final CridGenerator sut = new CridGenerator(Clock.systemDefaultZone(), new SecureRandom());
+
+    final Crid crid = sut.next();
+    final UUID uuid =
+        new UUID(
+            ByteArrayUtil.bytesToLong(crid.bytes(), 0), ByteArrayUtil.bytesToLong(crid.bytes(), 8));
+    assertThat(Crid.from(uuid)).isEqualTo(crid);
   }
 
   @SuppressWarnings("SpellCheckingInspection")

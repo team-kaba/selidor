@@ -1,6 +1,7 @@
 package pw.itr0.selidor.identifier.random;
 
 import pw.itr0.selidor.identifier.Id64;
+import pw.itr0.selidor.identifier.IdParseFailedException;
 import pw.itr0.selidor.util.ByteArrayUtil;
 
 public final class LongId implements Id64, Comparable<LongId> {
@@ -9,6 +10,18 @@ public final class LongId implements Id64, Comparable<LongId> {
 
   LongId(long value) {
     this.value = value;
+  }
+
+  public static LongId parse(String value) {
+    try {
+      return new LongId(Long.parseLong(value));
+    } catch (NumberFormatException e) {
+      throw new IdParseFailedException("Failed to parse value as long. value=[" + value + "]", e);
+    }
+  }
+
+  public static LongId from(long value) {
+    return new LongId(value);
   }
 
   @Override
@@ -26,11 +39,17 @@ public final class LongId implements Id64, Comparable<LongId> {
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof Long) {
-      return value == (Long) obj;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-    return false;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    LongId longId = (LongId) o;
+
+    return value == longId.value;
   }
 
   @Override
