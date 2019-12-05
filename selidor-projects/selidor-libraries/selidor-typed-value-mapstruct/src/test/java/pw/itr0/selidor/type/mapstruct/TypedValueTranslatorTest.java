@@ -25,6 +25,7 @@ import pw.itr0.selidor.type.mapstruct.bean.one.OneBooleanValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneCrid;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneLongId;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneStringValue;
+import pw.itr0.selidor.type.mapstruct.util.TranslatorUtil;
 
 @ExtendWith(SoftAssertionsExtension.class)
 class TypedValueTranslatorTest {
@@ -78,8 +79,7 @@ class TypedValueTranslatorTest {
       final String raw = sut.mapTypedStringToString(typed);
       s.assertThat(raw).isEqualTo(source);
 
-      final AnotherStringValue copied =
-          sut.mapBetweenTypedString(typed, AnotherStringValue.class);
+      final AnotherStringValue copied = sut.mapBetweenTypedString(typed, AnotherStringValue.class);
       s.assertThat(copied.getValue()).isEqualTo(source);
     }
 
@@ -94,8 +94,7 @@ class TypedValueTranslatorTest {
       final String raw = sut.mapTypedStringToString(typed);
       s.assertThat(raw).isNull();
 
-      final AnotherStringValue copied =
-          sut.mapBetweenTypedString(typed, AnotherStringValue.class);
+      final AnotherStringValue copied = sut.mapBetweenTypedString(typed, AnotherStringValue.class);
       s.assertThat(copied).isNull();
     }
   }
@@ -303,15 +302,14 @@ class TypedValueTranslatorTest {
   @Test
   @DisplayName("null")
   void nullMapping(SoftAssertions s) {
-    s.assertThat(TypedValueTranslator.mapGeneric(null, OneCrid.class)).isNull();
+    s.assertThat(TranslatorUtil.mapGeneric(null, OneCrid.class)).isNull();
     s.assertThat(sut.mapTypedStringToString(null)).isNull();
   }
 
   @Test
   @DisplayName("NoSuchMethodException")
   void noSuchMethodException(SoftAssertions s) {
-    s.assertThatThrownBy(
-            () -> TypedValueTranslator.mapGeneric("raw value", NoSuchMethodTypedValue.class))
+    s.assertThatThrownBy(() -> TranslatorUtil.mapGeneric("raw value", NoSuchMethodTypedValue.class))
         .isExactlyInstanceOf(IllegalArgumentException.class)
         .hasCauseInstanceOf(NoSuchMethodException.class)
         .hasMessageContaining("Failed to find a constructor")
@@ -323,7 +321,7 @@ class TypedValueTranslatorTest {
   @DisplayName("InstantiationException")
   void instantiationException(SoftAssertions s) {
     s.assertThatThrownBy(
-            () -> TypedValueTranslator.mapGeneric("raw value", InstantiationFailedTypedValue.class))
+            () -> TranslatorUtil.mapGeneric("raw value", InstantiationFailedTypedValue.class))
         .isExactlyInstanceOf(IllegalStateException.class)
         .hasCauseInstanceOf(InstantiationException.class)
         .hasMessageContaining("Failed to instantiate class")
@@ -335,7 +333,7 @@ class TypedValueTranslatorTest {
   @DisplayName("InvocationTargetException")
   void invocationTargetException(SoftAssertions s) {
     s.assertThatThrownBy(
-            () -> TypedValueTranslator.mapGeneric("raw value", InvocationFailureTypedValue.class))
+            () -> TranslatorUtil.mapGeneric("raw value", InvocationFailureTypedValue.class))
         .isExactlyInstanceOf(IllegalArgumentException.class)
         .hasCauseInstanceOf(InvocationTargetException.class)
         .hasRootCauseExactlyInstanceOf(RuntimeException.class)
