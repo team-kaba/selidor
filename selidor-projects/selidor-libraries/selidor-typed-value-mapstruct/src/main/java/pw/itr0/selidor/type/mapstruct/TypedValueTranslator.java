@@ -14,8 +14,6 @@ import pw.itr0.selidor.type.TypedValue;
 
 /**
  * {@link pw.itr0.selidor.type} に配置されている {@link TypedValue} の抽象クラスと基本クラスの間の変換を行うクラスです。
- *
- * <p>{@link TypedValue} 間での変換はできません。
  */
 public class TypedValueTranslator {
 
@@ -66,7 +64,7 @@ public class TypedValueTranslator {
     return mapGeneric(source, targetType);
   }
 
-  public <S extends TypedString<S>, T extends TypedString<T>> T mapTypedStringToTypedString(
+  public <S extends TypedString<S>, T extends TypedString<T>> T mapBetweenTypedString(
       S source, @TargetType Class<T> targetType) {
     return mapGeneric(getValue(source), targetType);
   }
@@ -142,7 +140,7 @@ public class TypedValueTranslator {
     return Crid.from(source).toString();
   }
 
-  public <S extends TypedCrid<S>, T extends TypedCrid<T>> T mapTypedCridToTypedCrid(
+  public <S extends TypedCrid<S>, T extends TypedCrid<T>> T mapBetweenTypedCrid(
       S source, @TargetType Class<T> targetType) {
     return mapGeneric(getValue(source), targetType);
   }
@@ -199,7 +197,7 @@ public class TypedValueTranslator {
     return id.getValue().longValue();
   }
 
-  public <S extends TypedLongId<S>, T extends TypedLongId<T>> T mapTypedLongIdToTypedLongId(
+  public <S extends TypedLongId<S>, T extends TypedLongId<T>> T mapBetweenTypedLongId(
       S source, @TargetType Class<T> targetType) {
     return mapGeneric(getValue(source), targetType);
   }

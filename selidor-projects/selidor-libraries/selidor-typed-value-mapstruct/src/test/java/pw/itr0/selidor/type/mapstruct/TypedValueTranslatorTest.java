@@ -79,7 +79,7 @@ class TypedValueTranslatorTest {
       s.assertThat(raw).isEqualTo(source);
 
       final AnotherStringValue copied =
-          sut.mapTypedStringToTypedString(typed, AnotherStringValue.class);
+          sut.mapBetweenTypedString(typed, AnotherStringValue.class);
       s.assertThat(copied.getValue()).isEqualTo(source);
     }
 
@@ -95,7 +95,7 @@ class TypedValueTranslatorTest {
       s.assertThat(raw).isNull();
 
       final AnotherStringValue copied =
-          sut.mapTypedStringToTypedString(typed, AnotherStringValue.class);
+          sut.mapBetweenTypedString(typed, AnotherStringValue.class);
       s.assertThat(copied).isNull();
     }
   }
@@ -117,7 +117,7 @@ class TypedValueTranslatorTest {
       final Crid raw = sut.mapTypedCridToCrid(typed);
       s.assertThat(raw).isEqualTo(source);
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(typed, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
       s.assertThat(copied.getValue()).isEqualTo(source);
     }
 
@@ -130,7 +130,7 @@ class TypedValueTranslatorTest {
       final Crid raw = sut.mapTypedCridToCrid(null);
       s.assertThat(raw).isNull();
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(null, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
       s.assertThat(copied).isNull();
     }
 
@@ -146,7 +146,7 @@ class TypedValueTranslatorTest {
       final String raw = sut.mapTypedCridToString(typed);
       s.assertThat(raw).isEqualTo(source);
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(typed, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
       s.assertThat(copied.getValue()).isEqualTo(crid);
     }
 
@@ -159,7 +159,7 @@ class TypedValueTranslatorTest {
       final String raw = sut.mapTypedCridToString(null);
       s.assertThat(raw).isNull();
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(null, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
       s.assertThat(copied).isNull();
     }
 
@@ -180,7 +180,7 @@ class TypedValueTranslatorTest {
       final UUID uuid = sut.mapStringToUuid(string);
       s.assertThat(uuid).isEqualTo(source);
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(typed, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
       s.assertThat(copied.getValue()).isEqualTo(crid);
     }
 
@@ -198,7 +198,7 @@ class TypedValueTranslatorTest {
       final UUID uuid = sut.mapStringToUuid(null);
       s.assertThat(uuid).isNull();
 
-      final AnotherCrid copied = sut.mapTypedCridToTypedCrid(null, AnotherCrid.class);
+      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
       s.assertThat(copied).isNull();
     }
 
@@ -233,7 +233,7 @@ class TypedValueTranslatorTest {
       final LongId raw = sut.mapTypedLongIdToLongId(typed);
       s.assertThat(raw).isEqualTo(source);
 
-      final AnotherLongId copied = sut.mapTypedLongIdToTypedLongId(typed, AnotherLongId.class);
+      final AnotherLongId copied = sut.mapBetweenTypedLongId(typed, AnotherLongId.class);
       s.assertThat(copied.getValue()).isEqualTo(source);
     }
 
@@ -246,7 +246,7 @@ class TypedValueTranslatorTest {
       final LongId raw = sut.mapTypedLongIdToLongId(null);
       s.assertThat(raw).isNull();
 
-      final AnotherLongId copied = sut.mapTypedLongIdToTypedLongId(null, AnotherLongId.class);
+      final AnotherLongId copied = sut.mapBetweenTypedLongId(null, AnotherLongId.class);
       s.assertThat(copied).isNull();
     }
 
@@ -272,7 +272,7 @@ class TypedValueTranslatorTest {
       final String raw = sut.mapTypedLongIdToString(null);
       s.assertThat(raw).isNull();
 
-      final AnotherLongId copied = sut.mapTypedLongIdToTypedLongId(null, AnotherLongId.class);
+      final AnotherLongId copied = sut.mapBetweenTypedLongId(null, AnotherLongId.class);
       s.assertThat(copied).isNull();
     }
 
