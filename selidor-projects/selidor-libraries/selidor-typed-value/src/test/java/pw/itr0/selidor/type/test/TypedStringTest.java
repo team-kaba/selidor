@@ -23,13 +23,13 @@ class TypedStringTest {
       final String string = "";
       final Description description = new Description(string);
       s.assertThat(description.isEmpty()).isTrue();
-      s.assertThat(description.hasValue()).isFalse();
+      s.assertThat(description.hasLength()).isFalse();
     }
     {
       final String string = "Design It!";
       final Title title = new Title(string);
       s.assertThat(title.isEmpty()).isFalse();
-      s.assertThat(title.hasValue()).isTrue();
+      s.assertThat(title.hasLength()).isTrue();
     }
   }
 

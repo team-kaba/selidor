@@ -16,7 +16,7 @@ package pw.itr0.selidor.type;
  *
  * <pre><code class="java">
  * public final class Enabled extends TypedBoolean&lt;Enabled&gt; {
- *   private Enabled(boolean value) {
+ *   public Enabled(boolean value) {
  *     super(value);
  *   }
  * }
@@ -27,7 +27,10 @@ package pw.itr0.selidor.type;
 public abstract class TypedBoolean<SELF extends TypedBoolean<? super SELF>>
     extends TypedComparable<SELF, Boolean> {
 
-  /** @param value 状態に対応する真偽値 */
+  /**
+   * @param value 状態に対応する真偽値
+   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   */
   protected TypedBoolean(boolean value) {
     super(value);
   }

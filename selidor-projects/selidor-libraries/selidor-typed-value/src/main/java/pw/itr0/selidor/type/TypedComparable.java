@@ -3,7 +3,7 @@ package pw.itr0.selidor.type;
 /**
  * 型付けられた値が比較可能であるクラスを実装するための抽象クラスです。
  *
- * <p>{@link #getValue()} で取得した値の {@link Comparable#compareTo} で比較が行われます。
+ * <p>{@link #getValue()} で取得した値の実装する {@link Comparable#compareTo} で比較が行われます。
  *
  * <h3>継承に関する規約</h3>
  *
@@ -29,6 +29,12 @@ public abstract class TypedComparable<
     super(value);
   }
 
+  /**
+   * 値自体の {@code compareTo} の結果を返します。
+   *
+   * @param other 比較対象のオブジェクト
+   * @return このオブジェクトが比較対象と比較して小さい時に {@code -1}, 同値の時に {@code 0}, 大きい時に {@code 1}
+   */
   @Override
   public int compareTo(SELF other) {
     return this.getValue().compareTo(other.getValue());
