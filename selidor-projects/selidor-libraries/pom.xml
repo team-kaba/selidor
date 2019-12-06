@@ -17,6 +17,7 @@
 
   <modules>
     <module>selidor-identifier</module>
+    <module>selidor-http-client</module>
   </modules>
 
   <properties>

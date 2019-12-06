@@ -98,6 +98,11 @@
         <artifactId>selidor-identifier</artifactId>
         <version>${revision}</version>
       </dependency>
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-http-client</artifactId>
+        <version>${revision}</version>
+      </dependency>
 
       <!-- Spring -->
       <dependency>
