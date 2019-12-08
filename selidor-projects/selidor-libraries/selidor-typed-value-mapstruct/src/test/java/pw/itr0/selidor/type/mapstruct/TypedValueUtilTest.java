@@ -2,11 +2,14 @@ package pw.itr0.selidor.type.mapstruct;
 
 import java.lang.reflect.InvocationTargetException;
 import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pw.itr0.selidor.type.TypedValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneCrid;
 
+@ExtendWith(SoftAssertionsExtension.class)
 class TypedValueUtilTest {
 
   @Test
