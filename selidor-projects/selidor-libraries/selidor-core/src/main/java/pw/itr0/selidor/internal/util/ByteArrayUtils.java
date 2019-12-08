@@ -1,6 +1,6 @@
-package pw.itr0.selidor.util;
+package pw.itr0.selidor.internal.util;
 
-public class ByteArrayUtil {
+public abstract class ByteArrayUtils {
 
   public static byte[] epochMilliToSixBytes(long epochMilli) {
     byte[] buffer = new byte[6];

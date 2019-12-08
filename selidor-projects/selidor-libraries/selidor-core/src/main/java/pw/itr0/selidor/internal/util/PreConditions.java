@@ -1,4 +1,4 @@
-package pw.itr0.selidor.util;
+package pw.itr0.selidor.internal.util;
 
 import java.util.function.Supplier;
 
