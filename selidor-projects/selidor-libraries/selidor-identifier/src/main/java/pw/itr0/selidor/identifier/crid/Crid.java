@@ -6,8 +6,8 @@ import java.util.UUID;
 import pw.itr0.selidor.identifier.Id128;
 import pw.itr0.selidor.identifier.IdParseFailedException;
 import pw.itr0.selidor.identifier.codec.LowerCrockfordBase32;
-import pw.itr0.selidor.util.ByteArrayUtil;
-import pw.itr0.selidor.util.PreConditions;
+import pw.itr0.selidor.internal.util.ByteArrayUtils;
+import pw.itr0.selidor.internal.util.PreConditions;
 
 /**
  * Java implementation of Chronologically sortable Random Identifier (CRID) which is binary
@@ -109,10 +109,10 @@ public final class Crid implements Id128, Comparable<Crid> {
 
     this.timestamp = Instant.ofEpochMilli(millis);
     this.randomness = Arrays.copyOf(randomness, randomness.length);
-    this.bytes = ByteArrayUtil.join(ByteArrayUtil.epochMilliToSixBytes(millis), this.randomness);
+    this.bytes = ByteArrayUtils.join(ByteArrayUtils.epochMilliToSixBytes(millis), this.randomness);
     this.base32 = LowerCrockfordBase32.encode(this.bytes);
-    this.mostSigBits = ByteArrayUtil.bytesToLong(this.bytes, 0);
-    this.leastSigBits = ByteArrayUtil.bytesToLong(this.bytes, 8);
+    this.mostSigBits = ByteArrayUtils.bytesToLong(this.bytes, 0);
+    this.leastSigBits = ByteArrayUtils.bytesToLong(this.bytes, 8);
     this.uuid = new UUID(this.mostSigBits, this.leastSigBits);
   }
 
@@ -122,15 +122,15 @@ public final class Crid implements Id128, Comparable<Crid> {
     this.base32 = base32;
     this.bytes = LowerCrockfordBase32.decode(base32);
 
-    final long timestampMilli = ByteArrayUtil.sixBytesToEpochMilli(this.bytes);
+    final long timestampMilli = ByteArrayUtils.sixBytesToEpochMilli(this.bytes);
     validateTimestampMilli(timestampMilli);
     this.timestamp = Instant.ofEpochMilli(timestampMilli);
 
     this.randomness = Arrays.copyOfRange(this.bytes, 6, this.bytes.length);
     validateRandomness(this.randomness);
 
-    this.mostSigBits = ByteArrayUtil.bytesToLong(this.bytes, 0);
-    this.leastSigBits = ByteArrayUtil.bytesToLong(this.bytes, 8);
+    this.mostSigBits = ByteArrayUtils.bytesToLong(this.bytes, 0);
+    this.leastSigBits = ByteArrayUtils.bytesToLong(this.bytes, 8);
     this.uuid = new UUID(this.mostSigBits, this.leastSigBits);
   }
 
@@ -145,9 +145,9 @@ public final class Crid implements Id128, Comparable<Crid> {
   public static Crid from(UUID value) {
     final long msb = value.getMostSignificantBits();
     final long lsb = value.getLeastSignificantBits();
-    final byte[] bytes = ByteArrayUtil.longToBytes(msb, lsb);
+    final byte[] bytes = ByteArrayUtils.longToBytes(msb, lsb);
     return new Crid(
-        ByteArrayUtil.sixBytesToEpochMilli(bytes), Arrays.copyOfRange(bytes, 6, bytes.length));
+        ByteArrayUtils.sixBytesToEpochMilli(bytes), Arrays.copyOfRange(bytes, 6, bytes.length));
   }
 
   public byte[] bytes() {

@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.util.ByteArrayUtil;
+import pw.itr0.selidor.internal.util.ByteArrayUtils;
 
 class CridGeneratorTest {
 
@@ -58,7 +58,7 @@ class CridGeneratorTest {
     final Crid crid = sut.next();
     final UUID uuid =
         new UUID(
-            ByteArrayUtil.bytesToLong(crid.bytes(), 0), ByteArrayUtil.bytesToLong(crid.bytes(), 8));
+            ByteArrayUtils.bytesToLong(crid.bytes(), 0), ByteArrayUtils.bytesToLong(crid.bytes(), 8));
     assertThat(sut.from(uuid)).isEqualTo(crid);
   }
 }

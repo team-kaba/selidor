@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.util.ByteArrayUtil;
+import pw.itr0.selidor.internal.util.ByteArrayUtils;
 
 @SuppressWarnings("SpellCheckingInspection")
 class CridTest {
@@ -116,7 +116,7 @@ class CridTest {
     final Crid crid = sut.next();
     final UUID uuid =
         new UUID(
-            ByteArrayUtil.bytesToLong(crid.bytes(), 0), ByteArrayUtil.bytesToLong(crid.bytes(), 8));
+            ByteArrayUtils.bytesToLong(crid.bytes(), 0), ByteArrayUtils.bytesToLong(crid.bytes(), 8));
     assertThat(Crid.from(uuid)).isEqualTo(crid);
   }
 
@@ -229,7 +229,7 @@ class CridTest {
   private byte[] joinToBytes(long val, byte[] bytes) {
     return ByteBuffer.allocate(16)
         .order(ByteOrder.BIG_ENDIAN)
-        .put(ByteArrayUtil.epochMilliToSixBytes(val))
+        .put(ByteArrayUtils.epochMilliToSixBytes(val))
         .put(bytes)
         .array();
   }
