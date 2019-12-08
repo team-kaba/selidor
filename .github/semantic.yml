@@ -16,6 +16,8 @@ scopes:
   - starter
   # Auto-configuration for spring-boot
   - autoconfig
+  # TypedValue
+  - typed-value
 # By default types specified in commitizen/conventional-commit-types is used.
 # See: https://github.com/commitizen/conventional-commit-types/blob/v2.2.0/index.json
 # You can override the valid types
