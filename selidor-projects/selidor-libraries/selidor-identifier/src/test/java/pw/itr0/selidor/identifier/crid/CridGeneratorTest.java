@@ -58,7 +58,8 @@ class CridGeneratorTest {
     final Crid crid = sut.next();
     final UUID uuid =
         new UUID(
-            ByteArrayUtils.bytesToLong(crid.bytes(), 0), ByteArrayUtils.bytesToLong(crid.bytes(), 8));
+            ByteArrayUtils.bytesToLong(crid.bytes(), 0),
+            ByteArrayUtils.bytesToLong(crid.bytes(), 8));
     assertThat(sut.from(uuid)).isEqualTo(crid);
   }
 }

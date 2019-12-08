@@ -116,7 +116,8 @@ class CridTest {
     final Crid crid = sut.next();
     final UUID uuid =
         new UUID(
-            ByteArrayUtils.bytesToLong(crid.bytes(), 0), ByteArrayUtils.bytesToLong(crid.bytes(), 8));
+            ByteArrayUtils.bytesToLong(crid.bytes(), 0),
+            ByteArrayUtils.bytesToLong(crid.bytes(), 8));
     assertThat(Crid.from(uuid)).isEqualTo(crid);
   }
 
