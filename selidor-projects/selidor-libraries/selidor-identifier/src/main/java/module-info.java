@@ -8,4 +8,6 @@ module pw.itr0.selidor.identifier {
   exports pw.itr0.selidor.identifier;
   exports pw.itr0.selidor.identifier.crid;
   exports pw.itr0.selidor.identifier.random;
+
+  requires pw.itr0.selidor.core;
 }

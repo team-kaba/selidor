@@ -1,12 +1,10 @@
 package pw.itr0.selidor.identifier.crid;
 
 import java.time.Clock;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.UUID;
 import pw.itr0.selidor.identifier.Id128Generator;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
 
 public class CridGenerator implements Id128Generator<Crid> {
 
@@ -25,19 +23,11 @@ public class CridGenerator implements Id128Generator<Crid> {
   }
 
   public Crid parse(String value) throws IdParseFailedException {
-    try {
-      return new Crid(value);
-    } catch (IllegalArgumentException e) {
-      throw new IdParseFailedException("Failed to parse value as CRID. value=[" + value + "]", e);
-    }
+    return Crid.parse(value);
   }
 
   @Override
   public Crid from(UUID value) {
-    final long msb = value.getMostSignificantBits();
-    final long lsb = value.getLeastSignificantBits();
-    final byte[] bytes = ByteArrayUtil.longToBytes(msb, lsb);
-    return new Crid(
-        ByteArrayUtil.sixBytesToEpochMilli(bytes), Arrays.copyOfRange(bytes, 6, bytes.length));
+    return Crid.from(value);
   }
 }

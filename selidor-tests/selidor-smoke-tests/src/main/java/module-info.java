@@ -10,9 +10,7 @@ module pw.itr0.selidor.smoke.tests {
   requires spring.boot;
   requires spring.context;
   requires spring.web;
-  requires java.sql;
 
   opens pw.itr0.selidor.sandbox.app;
   opens pw.itr0.selidor.sandbox.app.crid;
-  opens pw.itr0.selidor.sandbox.app.primer;
 }

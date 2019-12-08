@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.identifier.util.ByteArrayUtil;
+import pw.itr0.selidor.util.ByteArrayUtil;
 
 class CridGeneratorTest {
 

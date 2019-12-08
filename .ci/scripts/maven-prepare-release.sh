@@ -57,4 +57,4 @@ set_project_revision_to_pom "${next_development_version}"
 set_git_refname_to_pom "${current_refname}"
 
 git add 'pom.xml' '**/pom.xml'
-git commit -m "⬆️ Next development version (${next_development_version})"
+git commit -m "⬆️: Next development version (${next_development_version})"
