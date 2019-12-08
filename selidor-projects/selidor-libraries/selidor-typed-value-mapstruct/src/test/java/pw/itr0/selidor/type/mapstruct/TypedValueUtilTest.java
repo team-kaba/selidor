@@ -1,0 +1,76 @@
+package pw.itr0.selidor.type.mapstruct;
+
+import java.lang.reflect.InvocationTargetException;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import pw.itr0.selidor.type.TypedValue;
+import pw.itr0.selidor.type.mapstruct.TypedValueUtil;
+import pw.itr0.selidor.type.mapstruct.bean.one.OneCrid;
+
+class TypedValueUtilTest {
+
+  @Test
+  @DisplayName("null")
+  void nullMapping(SoftAssertions s) {
+    s.assertThat(TypedValueUtil.mapGeneric(null, OneCrid.class)).isNull();
+  }
+
+  @Test
+  @DisplayName("NoSuchMethodException")
+  void noSuchMethodException(SoftAssertions s) {
+    s.assertThatThrownBy(() -> TypedValueUtil.mapGeneric("raw value", NoSuchMethodTypedValue.class))
+        .isExactlyInstanceOf(IllegalArgumentException.class)
+        .hasCauseInstanceOf(NoSuchMethodException.class)
+        .hasMessageContaining("Failed to find a constructor")
+        .hasMessageContaining("java.lang.String")
+        .hasMessageContaining(NoSuchMethodTypedValue.class.getCanonicalName());
+  }
+
+  @Test
+  @DisplayName("InstantiationException")
+  void instantiationException(SoftAssertions s) {
+    s.assertThatThrownBy(
+        () -> TypedValueUtil.mapGeneric("raw value", InstantiationFailedTypedValue.class))
+        .isExactlyInstanceOf(IllegalStateException.class)
+        .hasCauseInstanceOf(InstantiationException.class)
+        .hasMessageContaining("Failed to instantiate class")
+        .hasMessageContaining("java.lang.String")
+        .hasMessageContaining(InstantiationFailedTypedValue.class.getCanonicalName());
+  }
+
+  @Test
+  @DisplayName("InvocationTargetException")
+  void invocationTargetException(SoftAssertions s) {
+    s.assertThatThrownBy(
+        () -> TypedValueUtil.mapGeneric("raw value", InvocationFailureTypedValue.class))
+        .isExactlyInstanceOf(IllegalArgumentException.class)
+        .hasCauseInstanceOf(InvocationTargetException.class)
+        .hasRootCauseExactlyInstanceOf(RuntimeException.class)
+        .hasRootCauseMessage("InvocationFailureException root cause.")
+        .hasMessageContaining("Failed to instantiate class")
+        .hasMessageContaining("java.lang.String")
+        .hasMessageContaining(InvocationFailureTypedValue.class.getCanonicalName())
+        .hasMessageContaining("[raw value]");
+  }
+
+  public static final class NoSuchMethodTypedValue extends TypedValue<String> {
+    public NoSuchMethodTypedValue() {
+      super("");
+    }
+  }
+
+  public abstract static class InstantiationFailedTypedValue extends TypedValue<String> {
+    public InstantiationFailedTypedValue(String value) {
+      super(value);
+    }
+  }
+
+  public static final class InvocationFailureTypedValue extends TypedValue<String> {
+    public InvocationFailureTypedValue(String value) {
+      super(value);
+      throw new RuntimeException("InvocationFailureException root cause.");
+    }
+  }
+
+}

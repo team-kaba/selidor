@@ -1,6 +1,5 @@
 package pw.itr0.selidor.type.mapstruct;
 
-import java.lang.reflect.InvocationTargetException;
 import java.security.SecureRandom;
 import java.time.Clock;
 import java.util.UUID;
@@ -16,7 +15,6 @@ import pw.itr0.selidor.identifier.crid.Crid;
 import pw.itr0.selidor.identifier.crid.CridGenerator;
 import pw.itr0.selidor.identifier.random.LongId;
 import pw.itr0.selidor.identifier.random.RandomLongIdGenerator;
-import pw.itr0.selidor.type.TypedValue;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherBooleanValue;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherCrid;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherLongId;
@@ -25,7 +23,6 @@ import pw.itr0.selidor.type.mapstruct.bean.one.OneBooleanValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneCrid;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneLongId;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneStringValue;
-import pw.itr0.selidor.type.mapstruct.util.TranslatorUtil;
 
 @ExtendWith(SoftAssertionsExtension.class)
 class TypedValueTranslatorTest {
@@ -296,70 +293,6 @@ class TypedValueTranslatorTest {
 
       final Long raw = sut.mapTypedLongIdToLong(null);
       s.assertThat(raw).isNull();
-    }
-  }
-
-  @Test
-  @DisplayName("null")
-  void nullMapping(SoftAssertions s) {
-    s.assertThat(TranslatorUtil.mapGeneric(null, OneCrid.class)).isNull();
-    s.assertThat(sut.mapTypedStringToString(null)).isNull();
-  }
-
-  @Test
-  @DisplayName("NoSuchMethodException")
-  void noSuchMethodException(SoftAssertions s) {
-    s.assertThatThrownBy(() -> TranslatorUtil.mapGeneric("raw value", NoSuchMethodTypedValue.class))
-        .isExactlyInstanceOf(IllegalArgumentException.class)
-        .hasCauseInstanceOf(NoSuchMethodException.class)
-        .hasMessageContaining("Failed to find a constructor")
-        .hasMessageContaining("java.lang.String")
-        .hasMessageContaining(NoSuchMethodTypedValue.class.getCanonicalName());
-  }
-
-  @Test
-  @DisplayName("InstantiationException")
-  void instantiationException(SoftAssertions s) {
-    s.assertThatThrownBy(
-            () -> TranslatorUtil.mapGeneric("raw value", InstantiationFailedTypedValue.class))
-        .isExactlyInstanceOf(IllegalStateException.class)
-        .hasCauseInstanceOf(InstantiationException.class)
-        .hasMessageContaining("Failed to instantiate class")
-        .hasMessageContaining("java.lang.String")
-        .hasMessageContaining(InstantiationFailedTypedValue.class.getCanonicalName());
-  }
-
-  @Test
-  @DisplayName("InvocationTargetException")
-  void invocationTargetException(SoftAssertions s) {
-    s.assertThatThrownBy(
-            () -> TranslatorUtil.mapGeneric("raw value", InvocationFailureTypedValue.class))
-        .isExactlyInstanceOf(IllegalArgumentException.class)
-        .hasCauseInstanceOf(InvocationTargetException.class)
-        .hasRootCauseExactlyInstanceOf(RuntimeException.class)
-        .hasRootCauseMessage("InvocationFailureException root cause.")
-        .hasMessageContaining("Failed to instantiate class")
-        .hasMessageContaining("java.lang.String")
-        .hasMessageContaining(InvocationFailureTypedValue.class.getCanonicalName())
-        .hasMessageContaining("[raw value]");
-  }
-
-  public static final class NoSuchMethodTypedValue extends TypedValue<String> {
-    public NoSuchMethodTypedValue() {
-      super("");
-    }
-  }
-
-  public abstract static class InstantiationFailedTypedValue extends TypedValue<String> {
-    public InstantiationFailedTypedValue(String value) {
-      super(value);
-    }
-  }
-
-  public static final class InvocationFailureTypedValue extends TypedValue<String> {
-    public InvocationFailureTypedValue(String value) {
-      super(value);
-      throw new RuntimeException("InvocationFailureException root cause.");
     }
   }
 }

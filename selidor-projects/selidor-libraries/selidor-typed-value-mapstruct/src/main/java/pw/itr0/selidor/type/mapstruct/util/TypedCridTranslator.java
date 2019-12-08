@@ -1,7 +1,7 @@
 package pw.itr0.selidor.type.mapstruct.util;
 
-import static pw.itr0.selidor.type.mapstruct.util.TranslatorUtil.getValue;
-import static pw.itr0.selidor.type.mapstruct.util.TranslatorUtil.mapGeneric;
+import static pw.itr0.selidor.type.mapstruct.TypedValueUtil.getValue;
+import static pw.itr0.selidor.type.mapstruct.TypedValueUtil.mapGeneric;
 
 import java.util.UUID;
 import org.mapstruct.TargetType;
