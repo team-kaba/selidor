@@ -2,7 +2,7 @@ package pw.itr0.selidor.identifier.random;
 
 import pw.itr0.selidor.identifier.Id64;
 import pw.itr0.selidor.identifier.IdParseFailedException;
-import pw.itr0.selidor.util.ByteArrayUtil;
+import pw.itr0.selidor.internal.util.ByteArrayUtils;
 
 public final class LongId implements Id64, Comparable<LongId> {
 
@@ -30,7 +30,7 @@ public final class LongId implements Id64, Comparable<LongId> {
   }
 
   public byte[] bytes() {
-    return ByteArrayUtil.longToBytes(value);
+    return ByteArrayUtils.longToBytes(value);
   }
 
   @Override

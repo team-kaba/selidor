@@ -1,6 +1,6 @@
 package pw.itr0.selidor.type;
 
-import pw.itr0.selidor.util.PreConditions;
+import pw.itr0.selidor.internal.util.PreConditions;
 
 /**
  * 型付けられた値をあらわす抽象クラスです。
