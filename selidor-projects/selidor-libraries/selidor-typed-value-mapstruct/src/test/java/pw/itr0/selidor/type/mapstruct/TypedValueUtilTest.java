@@ -5,7 +5,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pw.itr0.selidor.type.TypedValue;
-import pw.itr0.selidor.type.mapstruct.TypedValueUtil;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneCrid;
 
 class TypedValueUtilTest {
@@ -31,7 +30,7 @@ class TypedValueUtilTest {
   @DisplayName("InstantiationException")
   void instantiationException(SoftAssertions s) {
     s.assertThatThrownBy(
-        () -> TypedValueUtil.mapGeneric("raw value", InstantiationFailedTypedValue.class))
+            () -> TypedValueUtil.mapGeneric("raw value", InstantiationFailedTypedValue.class))
         .isExactlyInstanceOf(IllegalStateException.class)
         .hasCauseInstanceOf(InstantiationException.class)
         .hasMessageContaining("Failed to instantiate class")
@@ -43,7 +42,7 @@ class TypedValueUtilTest {
   @DisplayName("InvocationTargetException")
   void invocationTargetException(SoftAssertions s) {
     s.assertThatThrownBy(
-        () -> TypedValueUtil.mapGeneric("raw value", InvocationFailureTypedValue.class))
+            () -> TypedValueUtil.mapGeneric("raw value", InvocationFailureTypedValue.class))
         .isExactlyInstanceOf(IllegalArgumentException.class)
         .hasCauseInstanceOf(InvocationTargetException.class)
         .hasRootCauseExactlyInstanceOf(RuntimeException.class)
@@ -72,5 +71,4 @@ class TypedValueUtilTest {
       throw new RuntimeException("InvocationFailureException root cause.");
     }
   }
-
 }
