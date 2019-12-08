@@ -1,4 +1,4 @@
-package pw.itr0.selidor.identifier.util;
+package pw.itr0.selidor.util;
 
 public class ByteArrayUtil {
 
@@ -22,9 +22,9 @@ public class ByteArrayUtil {
         | (bytes[5] & 0xFFL);
   }
 
-  public static byte[] longToBytes(long value1) {
+  public static byte[] longToBytes(long value) {
     byte[] buffer = new byte[8];
-    longToBytes(value1, buffer, 0);
+    longToBytes(value, buffer, 0);
     return buffer;
   }
 

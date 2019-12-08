@@ -16,7 +16,10 @@
   <description>Selidor Libraries: Aggregator</description>
 
   <modules>
+    <module>selidor-core</module>
     <module>selidor-identifier</module>
+    <module>selidor-typed-value</module>
+    <module>selidor-typed-value-mapstruct</module>
     <module>selidor-http-client</module>
   </modules>
 

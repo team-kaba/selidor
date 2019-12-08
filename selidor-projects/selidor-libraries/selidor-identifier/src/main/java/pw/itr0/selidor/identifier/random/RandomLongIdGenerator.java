@@ -19,7 +19,11 @@ public class RandomLongIdGenerator implements Id64Generator<LongId> {
     try {
       random = SecureRandom.getInstance("NativePRNGNonBlocking");
     } catch (NoSuchAlgorithmException e) {
-      random = new SecureRandom();
+      try {
+        random = SecureRandom.getInstanceStrong();
+      } catch (NoSuchAlgorithmException ex) {
+        random = new SecureRandom();
+      }
     }
     this.random = random;
   }
@@ -31,11 +35,7 @@ public class RandomLongIdGenerator implements Id64Generator<LongId> {
 
   @Override
   public LongId parse(String value) throws IdParseFailedException {
-    try {
-      return new LongId(Long.parseLong(value));
-    } catch (NumberFormatException e) {
-      throw new IdParseFailedException("Failed to parse value as long. value=[" + value + "]", e);
-    }
+    return LongId.parse(value);
   }
 
   @Override

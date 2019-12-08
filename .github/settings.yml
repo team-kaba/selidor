@@ -86,7 +86,7 @@ labels:
     color: ffffff
 #  - name: first-timers-only
 #    # include the old name to rename and existing label
-#    oldname: Help Wanted
+#    old_name: Help Wanted
 
 # Collaborators: give specific users access to this repository.
 collaborators: []
