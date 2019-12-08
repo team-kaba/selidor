@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.List;
 
 public class HttpProxy {
-  public static final HttpProxy NOT_PROXIED = new HttpProxy();
+  public static final HttpProxy NOT_PROXIED = new HttpProxy(null);
   private final Proxy proxy;
   private final URL url;
   private final String protocol;
@@ -16,10 +16,6 @@ public class HttpProxy {
   private final String username;
   private final String password;
   private final List<String> noProxy;
-
-  private HttpProxy() {
-    this(null, null);
-  }
 
   public HttpProxy(URL url) {
     this(url, null);
