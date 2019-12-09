@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.client.proxy;
+package pw.itr0.selidor.network.proxy;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -7,8 +7,8 @@ import java.net.URL;
 import java.util.List;
 import pw.itr0.selidor.internal.util.StringUtils;
 
-public class HttpProxy {
-  public static final HttpProxy NOT_PROXIED = new HttpProxy(null);
+public class NetworkProxy {
+  public static final NetworkProxy NOT_PROXIED = new NetworkProxy(null);
   private final Proxy proxy;
   private final URL url;
   private final String protocol;
@@ -18,11 +18,11 @@ public class HttpProxy {
   private final String password;
   private final List<String> noProxy;
 
-  public HttpProxy(URL url) {
+  public NetworkProxy(URL url) {
     this(url, null);
   }
 
-  public HttpProxy(URL url, String noProxyString) {
+  public NetworkProxy(URL url, String noProxyString) {
     this.url = url;
     if (url != null) {
       this.protocol = url.getProtocol();

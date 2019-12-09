@@ -1,4 +1,4 @@
-package pw.itr0.selidor.boot.autoconfigure.http.client.proxy;
+package pw.itr0.selidor.boot.autoconfigure.network.proxy;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,25 +8,33 @@ import java.util.stream.Stream;
 import java.util.stream.Stream.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
-import pw.itr0.selidor.http.client.proxy.HttpProxy;
+import pw.itr0.selidor.network.proxy.NetworkProxy;
 
+@ConditionalOnProperty(
+    prefix = NetworkProxyConfigurationProperties.PROPERTY_PREFIX + ".autoconfigure",
+    name = "enabled",
+    havingValue = "true",
+    matchIfMissing = true)
 @Configuration
-public class HttpProxyAutoConfiguration {
+@EnableConfigurationProperties(NetworkProxyConfigurationProperties.class)
+public class NetworkProxyAutoConfiguration {
   private final Logger log = LoggerFactory.getLogger(getClass());
 
   @Bean
-  HttpProxy httpProxy() {
-    final Optional<HttpProxy> proxy =
+  NetworkProxy httpProxy() {
+    final Optional<NetworkProxy> proxy =
         List.of("http", "https").stream()
             .flatMap(this::findEnvironmentVariables)
             .map(this::parseValue)
             .flatMap(Optional::stream)
-            .map(HttpProxy::new)
+            .map(NetworkProxy::new)
             .findAny();
-    return proxy.orElse(HttpProxy.NOT_PROXIED);
+    return proxy.orElse(NetworkProxy.NOT_PROXIED);
   }
 
   private Optional<URL> parseValue(HttpProxyEnvironmentVariable envVar) {

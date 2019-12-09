@@ -5,10 +5,12 @@
 // So OpenJDK compiler reports warning, but `pw.itr0` is not intended to represent version.
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.boot.autoconfigure {
-  exports pw.itr0.selidor.boot.autoconfigure.http.client.proxy;
+  exports pw.itr0.selidor.boot.autoconfigure.network.proxy;
 
   requires pw.itr0.selidor.http.client;
-  requires spring.context;
-  requires org.slf4j;
   requires spring.core;
+  requires spring.context;
+  requires spring.boot;
+  requires spring.boot.autoconfigure;
+  requires org.slf4j;
 }

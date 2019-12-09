@@ -5,7 +5,7 @@
 // So OpenJDK compiler reports warning, but `pw.itr0` is not intended to represent version.
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.http.client {
-  exports pw.itr0.selidor.http.client.proxy;
+  exports pw.itr0.selidor.network.proxy;
 
   requires pw.itr0.selidor.core;
 }

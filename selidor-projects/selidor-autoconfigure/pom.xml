@@ -36,14 +36,18 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+
     <!-- Spring Boot で、spring-boot-autoconfigureにspring-coreが含まれているのに対応 -->
-    <!-- TODO: selidor-core が入ったらコメントアウトを解除する-->
-    <!--
     <dependency>
       <groupId>pw.itr0.selidor</groupId>
       <artifactId>selidor-core</artifactId>
     </dependency>
-    -->
 
     <!-- TODO: 消す -->
     <dependency>
