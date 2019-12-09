@@ -35,12 +35,13 @@ class StringUtilsTest {
       s.assertThat(StringUtils.hasText(" ")).isFalse();
       s.assertThat(StringUtils.hasText("　")).isFalse();
       s.assertThat(StringUtils.hasText("\t")).isFalse();
+      s.assertThat(StringUtils.hasText(" 　\t\n\r\f\r\n\r\n")).isFalse();
     }
 
     @Test
     void nonEmptyValues(SoftAssertions s) {
       s.assertThat(StringUtils.hasText("a")).isTrue();
-      s.assertThat(StringUtils.hasText("\uD83D\uDCA3⚒️")).isTrue();
+      s.assertThat(StringUtils.hasText("\t 　\n\r\f\uD83D\uDCA3⚒️\r\n")).isTrue();
     }
   }
 }

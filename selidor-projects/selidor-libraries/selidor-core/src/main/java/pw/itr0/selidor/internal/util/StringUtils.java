@@ -7,10 +7,6 @@ public abstract class StringUtils {
   }
 
   public static boolean hasText(String s) {
-    return !isEmpty(s) && containsText(s);
-  }
-
-  private static boolean containsText(String s) {
-    return s.codePoints().anyMatch(c -> !Character.isWhitespace(c));
+    return !isEmpty(s) && !s.isBlank();
   }
 }
