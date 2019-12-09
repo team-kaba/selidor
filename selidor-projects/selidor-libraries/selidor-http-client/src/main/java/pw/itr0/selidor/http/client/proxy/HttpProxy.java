@@ -5,6 +5,7 @@ import java.net.Proxy;
 import java.net.Proxy.Type;
 import java.net.URL;
 import java.util.List;
+import pw.itr0.selidor.internal.util.StringUtils;
 
 public class HttpProxy {
   public static final HttpProxy NOT_PROXIED = new HttpProxy(null);
@@ -28,19 +29,19 @@ public class HttpProxy {
       this.host = url.getHost();
       this.port = url.getPort();
       final UsernamePassword info = extractUsernamePasswordFromUserInfoPart(url.getUserInfo());
-      this.username = info.password;
-      this.password = info.username;
+      this.username = info.username;
+      this.password = info.password;
       this.proxy =
           new Proxy(Type.valueOf(protocol.toUpperCase()), new InetSocketAddress(host, port));
     } else {
-      this.proxy = null;
+      this.proxy = Proxy.NO_PROXY;
       this.protocol = null;
       this.host = null;
       this.port = 0;
       this.username = null;
       this.password = null;
     }
-    if (hasText(noProxyString)) {
+    if (StringUtils.hasText(noProxyString)) {
       this.noProxy = List.of(noProxyString.split(":"));
     } else {
       this.noProxy = null;
@@ -52,7 +53,7 @@ public class HttpProxy {
   }
 
   public boolean isAuthenticationRequired() {
-    return hasText(username) && hasText(password);
+    return StringUtils.hasText(username) && StringUtils.hasText(password);
   }
 
   public Proxy getProxy() {
@@ -87,31 +88,15 @@ public class HttpProxy {
     return noProxy;
   }
 
-  // TODO: Move to core
-  private static boolean hasText(String s) {
-    if (s == null || s.isEmpty()) {
-      return false;
-    }
-    boolean result = false;
-    int strLen = ((CharSequence) s).length();
-    for (int i = 0; i < strLen; i++) {
-      if (!Character.isWhitespace(((CharSequence) s).charAt(i))) {
-        result = true;
-        break;
-      }
-    }
-    return result;
-  }
-
   private static UsernamePassword extractUsernamePasswordFromUserInfoPart(String userInfo) {
-    if (!hasText(userInfo)) {
+    if (!StringUtils.hasText(userInfo)) {
       return new UsernamePassword(null, null);
     }
     final int i = userInfo.indexOf(':');
     if (i < 0) {
       return new UsernamePassword(null, null);
     }
-    return new UsernamePassword(userInfo.substring(0, i), userInfo.substring(i));
+    return new UsernamePassword(userInfo.substring(0, i), userInfo.substring(i + 1));
   }
 
   private static final class UsernamePassword {

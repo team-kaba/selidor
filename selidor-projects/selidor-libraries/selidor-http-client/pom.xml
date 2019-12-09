@@ -22,4 +22,11 @@
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
   </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>pw.itr0.selidor</groupId>
+      <artifactId>selidor-core</artifactId>
+    </dependency>
+  </dependencies>
 </project>

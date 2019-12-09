@@ -6,4 +6,6 @@
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.http.client {
   exports pw.itr0.selidor.http.client.proxy;
+
+  requires pw.itr0.selidor.core;
 }
