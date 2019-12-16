@@ -149,6 +149,8 @@
             </execution>
           </executions>
           <configuration>
+            <!-- Gitリポジトリでなかったとしてもエラーにはしません。 -->
+            <failOnNoGitDirectory>false</failOnNoGitDirectory>
             <!-- リモートリポジトリの情報は取得しないようにします。 -->
             <offline>true</offline>
             <!-- ビルドのログにGitのリビジョン情報を出力します。 -->
@@ -271,6 +273,11 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
             <!--
+                 AdoptOpenJDKのDockerイメージの不具合対応
+                 https://github.com/AdoptOpenJDK/openjdk-docker/issues/105
+            -->
+            <argLine>-Dfile.encoding=UTF-8</argLine>
+            <!--
                  test phaseでは、TestcontainersやSpring Boot Testを利用しないような、軽量のユニットテストのみ実行するようにしておきます。
                  ※ JUnit5の場合、@Tagで指定したタグがexcludedGroupsに含まれているものは実行されないようになります。
             -->
@@ -282,6 +289,11 @@
             <systemPropertyVariables>
               <!-- SecureRandomが遅くならないように、システムプロパティを設定しておきます。 -->
               <java.security.egd>file:/dev/./urandom</java.security.egd>
+              <!--
+                   AdoptOpenJDKのDockerイメージの不具合対応
+                   https://github.com/AdoptOpenJDK/openjdk-docker/issues/105
+              -->
+              <sun.jnu.encoding>UTF-8</sun.jnu.encoding>
             </systemPropertyVariables>
             <!-- スタックトレースを省略しないようにします。 -->
             <trimStackTrace>false</trimStackTrace>
