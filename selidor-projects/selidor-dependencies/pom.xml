@@ -55,7 +55,7 @@
     <retrofit.version>2.6.2</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
     <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-    <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     <testcontainers.version>1.12.4</testcontainers.version>
 
     <!-- Maven Plugins -->
