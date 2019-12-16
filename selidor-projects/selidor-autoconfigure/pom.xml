@@ -7,6 +7,8 @@
     <groupId>pw.itr0.selidor</groupId>
     <artifactId>selidor-parent</artifactId>
     <version>${revision}</version>
+    <!-- IntelliJ IDEAだと、なぜかパスが解決されないというエラーになってしまうが、IDEAでのModuleのimportやmvnコマンドなどでは問題ないので抑止 -->
+    <!--suppress MavenModelInspection -->
     <relativePath>../selidor-parent</relativePath>
   </parent>
 
@@ -49,15 +51,9 @@
       <artifactId>selidor-core</artifactId>
     </dependency>
 
-    <!-- TODO: 消す -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
