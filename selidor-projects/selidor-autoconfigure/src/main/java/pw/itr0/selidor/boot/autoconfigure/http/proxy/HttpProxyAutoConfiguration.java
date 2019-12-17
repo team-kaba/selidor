@@ -3,7 +3,6 @@ package pw.itr0.selidor.boot.autoconfigure.http.proxy;
 import java.net.ProxySelector;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -19,7 +18,6 @@ import org.springframework.core.Ordered;
 import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorResourceFactory;
-import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 import pw.itr0.selidor.boot.autoconfigure.http.proxy.HttpProxyConfigurationProperties.ProxySetting;
 import pw.itr0.selidor.boot.autoconfigure.http.proxy.HttpProxyConfigurationProperties.ProxySetting.BasicAuthenticationSetting;
@@ -56,10 +54,7 @@ public class HttpProxyAutoConfiguration {
   @ConditionalOnMissingBean
   HttpProxies networkProxies() {
     final List<HttpProxy> proxies = new ArrayList<>(getProxiesSize());
-    createNetworkProxy(properties.getProxy()).map(proxies::add);
-    for (ProxySetting proxy : properties.getProxies()) {
-      createNetworkProxy(proxy).map(proxies::add);
-    }
+    properties.getProxies().stream().map(this::createNetworkProxy).forEachOrdered(proxies::add);
     if (properties.isUseEnvironmentVariables()) {
       for (ProxyEnvVar env : PROXY_ENV_VARS) {
         EnvVarProxyLoader.load(env.getVariable(), env.getScheme()).map(proxies::add);
@@ -116,23 +111,18 @@ public class HttpProxyAutoConfiguration {
     };
   }
 
-  private Optional<HttpProxy> createNetworkProxy(ProxySetting proxySetting) {
-    if (proxySetting == null) {
-      return Optional.empty();
-    }
+  private HttpProxy createNetworkProxy(ProxySetting proxySetting) {
     final Builder builder =
         new Builder()
-            .addSchemes(proxySetting.getSchemes())
+            .addSchemes(proxySetting.getProxyFor().getSchemes())
             .uri(proxySetting.getUri())
-            .addIncludes(proxySetting.getIncludes())
-            .addExcludes(proxySetting.getExcludes());
+            .addIncludes(proxySetting.getProxyFor().getIncludes())
+            .addExcludes(proxySetting.getProxyFor().getExcludes());
     final BasicAuthenticationSetting basic = proxySetting.getBasicAuthentication();
-    if (basic != null
-        && StringUtils.hasText(basic.getUsername())
-        && StringUtils.hasText(basic.getPassword())) {
+    if (basic != null) {
       builder.basicAuthentication(basic.getUsername(), basic.getPassword());
     }
-    return Optional.of(builder.build());
+    return builder.build();
   }
 
   private static class ProxyEnvVar {

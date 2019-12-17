@@ -17,20 +17,17 @@ public class HttpProxyConfigurationProperties {
   private final boolean setupSystemProperties;
   private final boolean useEnvironmentVariables;
   private final List<ProxySetting> proxies;
-  private final ProxySetting proxy;
 
   @ConstructorBinding
   public HttpProxyConfigurationProperties(
       @DefaultValue("true") boolean useDefaultProxySelector,
       @DefaultValue("false") boolean setupSystemProperties,
       @DefaultValue("true") boolean useEnvironmentVariables,
-      List<ProxySetting> proxies,
-      ProxySetting proxy) {
+      List<ProxySetting> proxies) {
     this.useDefaultProxySelector = useDefaultProxySelector;
     this.setupSystemProperties = setupSystemProperties;
     this.useEnvironmentVariables = useEnvironmentVariables;
     this.proxies = Objects.requireNonNullElseGet(proxies, List::of);
-    this.proxy = Objects.requireNonNullElseGet(proxy, ProxySetting::new);
   }
 
   public boolean isUseDefaultProxySelector() {
@@ -49,67 +46,60 @@ public class HttpProxyConfigurationProperties {
     return proxies;
   }
 
-  public ProxySetting getProxy() {
-    return proxy;
-  }
-
   public static class ProxySetting {
-    private final Set<Scheme> schemes;
     private final URI uri;
-    private final List<String> includes;
-    private final List<String> excludes;
     private final BasicAuthenticationSetting basicAuthentication;
-
-    public ProxySetting() {
-      this(Set.of(), null, null, List.of(), List.of(), new BasicAuthenticationSetting());
-    }
+    private final ProxyForSetting proxyFor;
 
     @ConstructorBinding
     public ProxySetting(
-        Set<Scheme> schemes,
-        Scheme scheme,
-        URI uri,
-        List<String> includes,
-        List<String> excludes,
-        BasicAuthenticationSetting basicAuthentication) {
-      this.schemes = Objects.requireNonNullElseGet(schemes, Set::of);
-      if (scheme != null) {
-        schemes.add(scheme);
-      }
-      this.uri = uri;
-      this.includes = Objects.requireNonNullElseGet(includes, List::of);
-      this.excludes = Objects.requireNonNullElseGet(excludes, List::of);
-      this.basicAuthentication =
-          Objects.requireNonNullElseGet(basicAuthentication, BasicAuthenticationSetting::new);
-    }
-
-    public Set<Scheme> getSchemes() {
-      return schemes;
+        URI uri, BasicAuthenticationSetting basicAuthentication, ProxyForSetting proxyFor) {
+      this.uri = Objects.requireNonNull(uri, "proxy uri must not be null.");
+      this.basicAuthentication = basicAuthentication;
+      this.proxyFor =
+          Objects.requireNonNullElseGet(
+              proxyFor, () -> new ProxyForSetting(Scheme.ANY, List.of(), List.of()));
     }
 
     public URI getUri() {
       return uri;
     }
 
-    public List<String> getIncludes() {
-      return includes;
-    }
-
-    public List<String> getExcludes() {
-      return excludes;
-    }
-
     public BasicAuthenticationSetting getBasicAuthentication() {
       return basicAuthentication;
+    }
+
+    public ProxyForSetting getProxyFor() {
+      return proxyFor;
+    }
+
+    public static class ProxyForSetting {
+      private final Set<Scheme> schemes;
+      private final List<String> includes;
+      private final List<String> excludes;
+
+      public ProxyForSetting(Set<Scheme> schemes, List<String> includes, List<String> excludes) {
+        this.schemes = Objects.requireNonNullElse(schemes, Scheme.ANY);
+        this.includes = Objects.requireNonNullElseGet(includes, List::of);
+        this.excludes = Objects.requireNonNullElseGet(excludes, List::of);
+      }
+
+      public Set<Scheme> getSchemes() {
+        return schemes;
+      }
+
+      public List<String> getIncludes() {
+        return includes;
+      }
+
+      public List<String> getExcludes() {
+        return excludes;
+      }
     }
 
     public static class BasicAuthenticationSetting {
       private final String username;
       private final String password;
-
-      public BasicAuthenticationSetting() {
-        this(null, null);
-      }
 
       @ConstructorBinding
       public BasicAuthenticationSetting(String username, String password) {

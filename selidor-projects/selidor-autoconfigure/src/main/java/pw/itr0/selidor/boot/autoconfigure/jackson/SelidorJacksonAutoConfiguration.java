@@ -13,8 +13,8 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @ConditionalOnClass(ObjectMapper.class)
 public class SelidorJacksonAutoConfiguration {
   @Bean
-  @Order(Ordered.HIGHEST_PRECEDENCE) // Spring BootのApplication
-  // PropertiesでのJacksonの設定が有効になるように、Listの先頭に入れる。
+  // Spring BootのApplication PropertiesでのJacksonの設定が有効になるように、Listの先頭に入れる。
+  @Order(Ordered.HIGHEST_PRECEDENCE)
   @ConditionalOnClass(Jackson2ObjectMapperBuilder.class)
   Jackson2ObjectMapperBuilderCustomizer selidorStandardJacksonConfiguration() {
     return new SelidorStandardJacksonConfiguration();

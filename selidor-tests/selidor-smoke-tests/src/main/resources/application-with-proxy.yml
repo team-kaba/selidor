@@ -6,25 +6,15 @@ selidor:
       use-default-proxy-selector: true
       use-environment-variables: true
       proxies:
-        - schemes:
-            - http
-            - https
-          uri: http://proxy.example.com:8080/
+        - uri: http://only-uri.intra.example.com:8080/
+        - proxy-for:
+            schemes:
+              - https
+            includes:
+              - '*.example.com'
+            excludes:
+              - '*.intra.example.com'
+          uri: http://proxy.intra.example.com:8080/
           basic-authentication:
-            username:
-            password:
-          includes:
-            - '*'
-          excludes:
-            - '*.example.com'
-      proxy:
-        scheme: http
-        schemes:
-          - https
-        uri: http://proxy.intra.example.com:8080/
-        basic-authentication:
-          username:
-          password:
-        includes:
-          - '*.example.com'
-
+            username: u
+            password: p

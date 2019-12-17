@@ -70,7 +70,7 @@ public class HttpProxy {
                 new HttpProxy(
                     Scheme.ANY, new URI(p.type().toString().toLowerCase() + "://" + p.address())));
           } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("", e);
+            throw new IllegalArgumentException("Failed to build proxy url. proxy=[" + p + "]", e);
           }
         });
   }
