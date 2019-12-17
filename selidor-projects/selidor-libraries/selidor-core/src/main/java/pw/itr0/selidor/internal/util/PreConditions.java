@@ -8,6 +8,10 @@ public abstract class PreConditions {
     require(object != null, message);
   }
 
+  public static void requireNonEmpty(String string, Supplier<String> message) {
+    require(StringUtils.isNotEmpty(string), message);
+  }
+
   public static void requireExactSize(byte[] bytes, int expected, Supplier<String> message) {
     require(bytes.length == expected, message);
   }
