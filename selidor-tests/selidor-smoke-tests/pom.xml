@@ -36,6 +36,14 @@
       <groupId>pw.itr0.selidor</groupId>
       <artifactId>selidor-identifier</artifactId>
     </dependency>
+    <dependency>
+      <groupId>pw.itr0.selidor</groupId>
+      <artifactId>selidor-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>pw.itr0.selidor</groupId>
+      <artifactId>selidor-http-client</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

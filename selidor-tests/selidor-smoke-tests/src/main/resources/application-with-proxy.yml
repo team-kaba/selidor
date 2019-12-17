@@ -1,0 +1,30 @@
+debug: true
+
+selidor:
+  http:
+    client:
+      use-default-proxy-selector: true
+      use-environment-variables: true
+      proxies:
+        - schemes:
+            - http
+            - https
+          uri: http://proxy.example.com:8080/
+          basic-authentication:
+            username:
+            password:
+          includes:
+            - '*'
+          excludes:
+            - '*.example.com'
+      proxy:
+        scheme: http
+        schemes:
+          - https
+        uri: http://proxy.intra.example.com:8080/
+        basic-authentication:
+          username:
+          password:
+        includes:
+          - '*.example.com'
+
