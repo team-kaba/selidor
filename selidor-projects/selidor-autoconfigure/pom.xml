@@ -16,7 +16,7 @@
   <packaging>jar</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Selidor AutoConfigure</description>
+  <description>Selidor Boot AutoConfigure</description>
   <url>${git.url}</url>
 
   <scm>
@@ -27,10 +27,48 @@
   </scm>
 
   <dependencies>
+    <dependency>
+      <groupId>pw.itr0.selidor</groupId>
+      <artifactId>selidor-http-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor.netty</groupId>
+      <artifactId>reactor-netty</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <optional>true</optional>
+    </dependency>
+
     <!-- Spring Boot AutoConfigure の必須ライブラリ -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure-processor</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -39,9 +77,21 @@
       <optional>true</optional>
     </dependency>
 
+    <!-- 共通的に利用しているライブラリ -->
+    <dependency>
+      <groupId>pw.itr0.selidor</groupId>
+      <artifactId>selidor-core</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <optional>true</optional>
     </dependency>
   </dependencies>
 </project>
