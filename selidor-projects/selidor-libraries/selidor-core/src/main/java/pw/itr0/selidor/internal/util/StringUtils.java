@@ -6,11 +6,15 @@ public abstract class StringUtils {
     return s == null || s.isEmpty();
   }
 
-  public static boolean hasText(String s) {
-    return !isEmpty(s) && containsText(s);
+  public static boolean isNotEmpty(String s) {
+    return s != null && !s.isEmpty();
   }
 
-  private static boolean containsText(String s) {
-    return s.codePoints().anyMatch(c -> !Character.isWhitespace(c));
+  public static boolean isBlank(String s) {
+    return isEmpty(s) || s.isBlank();
+  }
+
+  public static boolean isNotBlank(String s) {
+    return !isEmpty(s) && !s.isBlank();
   }
 }

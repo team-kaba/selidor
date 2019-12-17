@@ -48,6 +48,7 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
+    <annotations.version>18.0.0</annotations.version>
     <assertj-core.version>3.14.0</assertj-core.version>
     <dbunit.version>2.6.0</dbunit.version>
     <doma.boot.version>1.2.1</doma.boot.version>
