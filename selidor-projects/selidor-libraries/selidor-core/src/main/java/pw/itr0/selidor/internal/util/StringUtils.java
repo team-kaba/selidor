@@ -6,7 +6,15 @@ public abstract class StringUtils {
     return s == null || s.isEmpty();
   }
 
-  public static boolean hasText(String s) {
+  public static boolean isNotEmpty(String s) {
+    return s != null && !s.isEmpty();
+  }
+
+  public static boolean isBlank(String s) {
+    return isEmpty(s) || s.isBlank();
+  }
+
+  public static boolean isNotBlank(String s) {
     return !isEmpty(s) && !s.isBlank();
   }
 }
