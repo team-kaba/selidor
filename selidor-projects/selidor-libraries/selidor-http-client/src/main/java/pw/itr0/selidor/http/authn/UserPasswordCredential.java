@@ -1,6 +1,6 @@
 package pw.itr0.selidor.http.authn;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import pw.itr0.selidor.internal.util.PreConditions;
 
 /** ユーザ名とパスワードで認証する場合の資格情報を保持するクラスです。 */
@@ -18,7 +18,7 @@ class UserPasswordCredential implements Credential {
    * @param username 認証に利用するユーザ名
    * @param password 認証に利用するパスワード
    */
-  public UserPasswordCredential(@NotNull String username, @NotNull String password) {
+  public UserPasswordCredential(@Nonnull String username, @Nonnull String password) {
     PreConditions.requireNonEmpty(username, () -> "username must not be null or empty.");
     PreConditions.requireNonEmpty(password, () -> "password must not be null or empty.");
     this.username = username;

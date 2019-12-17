@@ -9,18 +9,18 @@ module pw.itr0.selidor.boot.autoconfigure {
   exports pw.itr0.selidor.boot.autoconfigure.http.proxy;
   exports pw.itr0.selidor.boot.autoconfigure.jackson;
 
-  requires pw.itr0.selidor.http.client;
-  requires org.jetbrains.annotations;
-  requires com.fasterxml.jackson.databind;
-  requires okhttp3;
-  requires reactor.core;
-  requires reactor.netty;
-  requires io.netty.codec.http;
-  requires spring.beans;
-  requires spring.boot;
-  requires spring.boot.autoconfigure;
-  requires spring.core;
-  requires spring.context;
-  requires spring.web;
-  requires spring.webflux;
+  requires static pw.itr0.selidor.http.client;
+  requires static com.fasterxml.jackson.databind;
+  requires static okhttp3;
+  requires static reactor.core;
+  requires static reactor.netty;
+  requires static io.netty.codec.http;
+  requires static spring.beans;
+  requires static spring.boot;
+  requires static spring.boot.autoconfigure;
+  requires static spring.core;
+  requires static spring.context;
+  requires static spring.web;
+  requires static spring.webflux;
+  requires static jsr305;
 }

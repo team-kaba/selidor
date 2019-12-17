@@ -363,8 +363,8 @@
   <!-- 基本的なテストライブラリと静的解析用のアノテーションを追加しておきます。 -->
   <dependencies>
     <dependency>
-      <groupId>org.jetbrains</groupId>
-      <artifactId>annotations</artifactId>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>

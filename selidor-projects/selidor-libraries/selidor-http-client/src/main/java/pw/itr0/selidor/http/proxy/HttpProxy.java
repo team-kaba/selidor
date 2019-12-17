@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import pw.itr0.selidor.http.AuthMethod;
 import pw.itr0.selidor.http.Scheme;
 import pw.itr0.selidor.http.authn.BasicAuthentication;
@@ -175,17 +175,17 @@ public class HttpProxy {
       return this;
     }
 
-    public Builder addIncludes(@NotNull List<String> includes) {
+    public Builder addIncludes(@Nonnull List<String> includes) {
       this.includes.addAll(includes);
       return this;
     }
 
-    public Builder addExcludes(@NotNull List<String> excludes) {
+    public Builder addExcludes(@Nonnull List<String> excludes) {
       this.excludes.addAll(excludes);
       return this;
     }
 
-    public Builder basicAuthentication(@NotNull String username, @NotNull String password) {
+    public Builder basicAuthentication(@Nonnull String username, @Nonnull String password) {
       this.authentication = new BasicAuthentication(username, password);
       return this;
     }

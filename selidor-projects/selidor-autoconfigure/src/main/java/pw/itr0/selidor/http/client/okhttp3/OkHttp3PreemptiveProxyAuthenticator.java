@@ -3,11 +3,11 @@ package pw.itr0.selidor.http.client.okhttp3;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import javax.annotation.Nonnull;
 import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-import org.jetbrains.annotations.NotNull;
 import pw.itr0.selidor.http.proxy.HttpProxies;
 import pw.itr0.selidor.http.proxy.HttpProxy;
 
@@ -20,7 +20,7 @@ public class OkHttp3PreemptiveProxyAuthenticator implements Authenticator {
   }
 
   @Override
-  public Request authenticate(Route route, @NotNull Response response) {
+  public Request authenticate(Route route, @Nonnull Response response) {
     if (isPreemptiveAuthRequired(response)) {
       final Request request = response.request();
       final Optional<HttpProxy> proxy = proxies.selectOne(request.url().uri());

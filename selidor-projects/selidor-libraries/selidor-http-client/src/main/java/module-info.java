@@ -9,6 +9,6 @@ module pw.itr0.selidor.http.client {
   exports pw.itr0.selidor.http.proxy;
 
   requires pw.itr0.selidor.core;
-  requires org.jetbrains.annotations;
   requires org.slf4j;
+  requires static jsr305;
 }

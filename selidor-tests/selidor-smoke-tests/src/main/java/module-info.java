@@ -6,6 +6,7 @@
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.smoke.tests {
   requires pw.itr0.selidor.identifier;
+  requires com.fasterxml.classmate;
   requires spring.boot.autoconfigure;
   requires spring.boot;
   requires spring.context;

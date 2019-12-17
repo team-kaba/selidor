@@ -48,12 +48,12 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
-    <annotations.version>18.0.0</annotations.version>
     <assertj-core.version>3.14.0</assertj-core.version>
     <dbunit.version>2.6.0</dbunit.version>
     <doma.boot.version>1.2.1</doma.boot.version>
     <doma.version>2.25.1</doma.version>
     <flyway-dbunit-test.version>6.0.0</flyway-dbunit-test.version>
+    <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
     <mapstruct.version>1.3.1.Final</mapstruct.version>
     <mybatis.version>3.5.3</mybatis.version>
@@ -270,11 +270,11 @@
         <version>${twitter4j.version}</version>
       </dependency>
 
-      <!-- JetBrains Annotations -->
+      <!-- JSR305 Annotations -->
       <dependency>
-        <groupId>org.jetbrains</groupId>
-        <artifactId>annotations</artifactId>
-        <version>${annotations.version}</version>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${jsr305.version}</version>
       </dependency>
 
       <!-- JUnit -->
