@@ -6,7 +6,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -49,7 +48,7 @@ public class HttpProxies {
             customProxies.addAll(
                 proxy.stream()
                     .map(HttpProxy::from)
-                    .filter(Objects::nonNull)
+                    .flatMap(Optional::stream)
                     .collect(Collectors.toList()));
           }
           return customProxies;

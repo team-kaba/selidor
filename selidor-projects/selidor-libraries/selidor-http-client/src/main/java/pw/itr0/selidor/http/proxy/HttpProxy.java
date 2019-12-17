@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -44,7 +45,7 @@ public class HttpProxy {
   private static final List<String> DEFAULT_INCLUDED_HOST = List.of("*");
   private static final List<String> DEFAULT_EXCLUDED_HOST =
       List.of("localhost", "127.*", "[::1]", "0.0.0.0", "[::0]");
-  private static final ConcurrentMap<Proxy, HttpProxy> cache = new ConcurrentHashMap<>();
+  private static final ConcurrentMap<Proxy, Optional<HttpProxy>> cache = new ConcurrentHashMap<>();
 
   private final URI uri;
   private final HttpAuthentication<?> authentication;
@@ -57,16 +58,17 @@ public class HttpProxy {
   private final String host;
   private final int port;
 
-  public static HttpProxy from(Proxy proxy) {
+  public static Optional<HttpProxy> from(Proxy proxy) {
     return cache.computeIfAbsent(
         proxy,
         p -> {
           if (!Type.HTTP.equals(p.type()) || p.address() == null) {
-            return null;
+            return Optional.empty();
           }
           try {
-            return new HttpProxy(
-                Scheme.ANY, new URI(p.type().toString().toLowerCase() + "://" + p.address()));
+            return Optional.of(
+                new HttpProxy(
+                    Scheme.ANY, new URI(p.type().toString().toLowerCase() + "://" + p.address())));
           } catch (URISyntaxException e) {
             throw new IllegalArgumentException("", e);
           }
