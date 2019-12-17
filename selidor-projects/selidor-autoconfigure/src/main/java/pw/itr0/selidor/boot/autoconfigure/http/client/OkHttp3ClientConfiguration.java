@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClas
 import org.springframework.boot.web.client.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import pw.itr0.selidor.http.client.okhttp3.OkHttp3PreemptiveProxyAuthenticator;
@@ -20,7 +21,7 @@ abstract class OkHttp3ClientConfiguration {
   static class SpringRestTemplate {
     @Bean
     @ConditionalOnBean(OkHttpClient.class)
-    @ConditionalOnMissingBean(OkHttp3ClientHttpRequestFactory.class)
+    @ConditionalOnMissingBean(ClientHttpRequestFactory.class)
     RestTemplateCustomizer okHttpRestTemplate(
         // @ConditionalOnBeanを付けているので問題ないはずですが、IntelliJ IDEAでは警告が出てしまうので抑止します。
         @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
