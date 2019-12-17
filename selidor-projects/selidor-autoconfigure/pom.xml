@@ -27,12 +27,6 @@
   </scm>
 
   <dependencies>
-    <dependency>
-      <groupId>pw.itr0.selidor</groupId>
-      <artifactId>selidor-http-client</artifactId>
-      <optional>true</optional>
-    </dependency>
-
     <!-- Spring Boot AutoConfigure の必須ライブラリ -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -43,12 +37,6 @@
       <artifactId>spring-boot-configuration-processor</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
-    </dependency>
-
-    <!-- Spring Boot で、spring-boot-autoconfigureにspring-coreが含まれているのに対応 -->
-    <dependency>
-      <groupId>pw.itr0.selidor</groupId>
-      <artifactId>selidor-core</artifactId>
     </dependency>
 
     <dependency>

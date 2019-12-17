@@ -28,5 +28,10 @@
       <groupId>pw.itr0.selidor</groupId>
       <artifactId>selidor-core</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
   </dependencies>
 </project>
