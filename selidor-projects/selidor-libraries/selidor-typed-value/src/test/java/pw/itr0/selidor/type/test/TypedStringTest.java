@@ -45,12 +45,6 @@ class TypedStringTest {
     s.assertThat(vol1).isLessThan(vol2);
   }
 
-  @Test
-  void rawValueClass(SoftAssertions s) {
-    final Title title = new Title("title");
-    s.assertThat(title.getRawValueClass()).isEqualTo(String.class);
-  }
-
   private static final class Title extends TypedString<Title> {
     private Title(String value) {
       super(value);

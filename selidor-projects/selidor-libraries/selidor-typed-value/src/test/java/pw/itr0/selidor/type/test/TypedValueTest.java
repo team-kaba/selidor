@@ -1,7 +1,6 @@
 package pw.itr0.selidor.type.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
@@ -10,10 +9,9 @@ import pw.itr0.selidor.type.TypedValue;
 class TypedValueTest {
   @Test
   void nullValue() {
-    assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new TypedValue<>(null) {})
-        .withMessageContaining("`value` must not be null")
-        .withMessageContaining("make variable itself be null");
+    final TypedObject typed = new TypedObject(null);
+    assertThat(typed).isEqualTo(typed).isEqualTo(new TypedObject(null));
+    assertThat(typed.getValue()).isNull();
   }
 
   @Test

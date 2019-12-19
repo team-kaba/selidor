@@ -36,7 +36,6 @@ class TypedValueTranslatorTest {
     @DisplayName("Boolean - not null")
     void mapBoolean(boolean source, SoftAssertions s) {
       final OneBooleanValue typed = sut.mapBooleanToTypedBoolean(source, OneBooleanValue.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(Boolean.class);
       s.assertThat(typed.getValue()).isEqualTo(source);
 
       final boolean raw = sut.mapTypedBooleanToBoolean(typed);
@@ -70,7 +69,6 @@ class TypedValueTranslatorTest {
     void mapString(SoftAssertions s) {
       final String source = "raw string value";
       final OneStringValue typed = sut.mapStringToTypedString(source, OneStringValue.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(String.class);
       s.assertThat(typed.getValue()).isEqualTo(source);
 
       final String raw = sut.mapTypedStringToString(typed);
@@ -107,7 +105,6 @@ class TypedValueTranslatorTest {
     void mapCrid(SoftAssertions s) {
       final Crid source = generator.next();
       final OneCrid typed = sut.mapCridToTypedCrid(source, OneCrid.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(Crid.class);
       s.assertThat(typed.getValue()).isEqualTo(source);
 
       final Crid raw = sut.mapTypedCridToCrid(typed);
@@ -136,7 +133,6 @@ class TypedValueTranslatorTest {
       final Crid crid = generator.next();
       final String source = crid.toString();
       final OneCrid typed = sut.mapStringToTypedCrid(source, OneCrid.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(Crid.class);
       s.assertThat(typed.getValue()).isEqualTo(crid);
 
       final String raw = sut.mapTypedCridToString(typed);
@@ -165,7 +161,6 @@ class TypedValueTranslatorTest {
       final Crid crid = generator.next();
       final UUID source = crid.uuid();
       final OneCrid typed = sut.mapUuidToTypedCrid(source, OneCrid.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(Crid.class);
       s.assertThat(typed.getValue()).isEqualTo(crid);
 
       final UUID raw = sut.mapTypedCridToUuid(typed);
@@ -223,7 +218,6 @@ class TypedValueTranslatorTest {
     void mapLongId(SoftAssertions s) {
       final LongId source = generator.next();
       final OneLongId typed = sut.mapLongIdToTypedLongId(source, OneLongId.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(LongId.class);
       s.assertThat(typed.getValue()).isEqualTo(source);
 
       final LongId raw = sut.mapTypedLongIdToLongId(typed);
@@ -252,7 +246,6 @@ class TypedValueTranslatorTest {
       final LongId id = generator.next();
       final String source = id.toString();
       final OneLongId typed = sut.mapStringToTypedLongId(source, OneLongId.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(LongId.class);
       s.assertThat(typed.getValue()).isEqualTo(id);
 
       final String raw = sut.mapTypedLongIdToString(typed);
@@ -278,7 +271,6 @@ class TypedValueTranslatorTest {
       final LongId id = generator.next();
       final Long source = id.longValue();
       final OneLongId typed = sut.mapLongToTypedLongId(source, OneLongId.class);
-      s.assertThat(typed.getRawValueClass()).isEqualTo(LongId.class);
       s.assertThat(typed.getValue()).isEqualTo(id);
 
       final Long raw = sut.mapTypedLongIdToLong(typed);

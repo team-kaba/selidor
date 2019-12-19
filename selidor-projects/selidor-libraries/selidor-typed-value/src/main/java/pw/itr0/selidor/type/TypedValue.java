@@ -1,7 +1,5 @@
 package pw.itr0.selidor.type;
 
-import pw.itr0.selidor.internal.util.PreConditions;
-
 /**
  * 型付けられた値をあらわす抽象クラスです。
  *
@@ -18,28 +16,15 @@ import pw.itr0.selidor.internal.util.PreConditions;
  */
 public abstract class TypedValue<RAW> {
   private final RAW value;
-  private final Class<RAW> rawValueClass;
 
-  /**
-   * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
-   */
-  @SuppressWarnings("unchecked")
+  /** @param value 値 */
   protected TypedValue(RAW value) {
-    PreConditions.requireNonNull(
-        value, () -> "`value` must not be null. Instead, make variable itself be null.");
     this.value = value;
-    this.rawValueClass = (Class<RAW>) value.getClass();
   }
 
   /** @return 元の値 */
   public RAW getValue() {
     return this.value;
-  }
-
-  /** @return 元の値の型 */
-  public Class<RAW> getRawValueClass() {
-    return this.rawValueClass;
   }
 
   @Override
@@ -54,11 +39,11 @@ public abstract class TypedValue<RAW> {
 
     TypedValue<?> that = (TypedValue<?>) o;
 
-    return getValue().equals(that.getValue());
+    return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
   }
 
   @Override
   public int hashCode() {
-    return getValue().hashCode();
+    return getValue() != null ? getValue().hashCode() : 0;
   }
 }

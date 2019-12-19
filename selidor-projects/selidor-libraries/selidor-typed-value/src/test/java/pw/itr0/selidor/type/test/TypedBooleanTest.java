@@ -50,12 +50,6 @@ class TypedBooleanTest {
     s.assertThat(disabled).isLessThan(enabled);
   }
 
-  @Test
-  void rawValueClass(SoftAssertions s) {
-    final Enabled enabled = new Enabled(true);
-    s.assertThat(enabled.getRawValueClass()).isEqualTo(Boolean.class);
-  }
-
   private static final class Enabled extends TypedBoolean<Enabled> {
 
     private Enabled(boolean value) {
