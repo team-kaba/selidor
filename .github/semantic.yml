@@ -10,11 +10,8 @@
 titleOnly: true
 # You can define a list of valid scopes
 scopes:
-  # dependencies
   - deps
-  # Starter libraries and parent
   - starter
-  # Auto-configuration for spring-boot
   - autoconfig
   - core
   - typed-value
