@@ -228,11 +228,6 @@
         <version>${okhttp.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.launchdarkly</groupId>
-        <artifactId>okhttp-eventsource</artifactId>
-        <version>${okhttp-eventsource.version}</version>
-      </dependency>
-      <dependency>
         <groupId>com.squareup.retrofit2</groupId>
         <artifactId>retrofit</artifactId>
         <version>${retrofit.version}</version>
