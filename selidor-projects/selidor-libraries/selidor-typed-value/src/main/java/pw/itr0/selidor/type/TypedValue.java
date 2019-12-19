@@ -27,6 +27,16 @@ public abstract class TypedValue<RAW> {
     return this.value;
   }
 
+  /** @return 元の値が {@code null} の場合 {@code true} */
+  public boolean isNull() {
+    return this.value == null;
+  }
+
+  /** @return 元の値が {@code null} でない場合 {@code true} */
+  public boolean isNotNull() {
+    return !isNull();
+  }
+
   @Override
   public String toString() {
     return String.valueOf(getValue());
