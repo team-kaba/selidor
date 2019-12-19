@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.authn;
+package pw.itr0.selidor.http.client.authn;
 
 import javax.annotation.Nonnull;
 import pw.itr0.selidor.internal.util.PreConditions;

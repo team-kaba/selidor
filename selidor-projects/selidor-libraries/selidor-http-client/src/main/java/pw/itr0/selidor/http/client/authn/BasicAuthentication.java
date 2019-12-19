@@ -1,10 +1,10 @@
-package pw.itr0.selidor.http.authn;
+package pw.itr0.selidor.http.client.authn;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
-import pw.itr0.selidor.http.AuthMethod;
+import pw.itr0.selidor.http.client.AuthMethod;
 
 /** Basic認証をあらわす {@link HttpAuthentication} です。 */
 public class BasicAuthentication implements HttpAuthentication<UserPasswordCredential> {

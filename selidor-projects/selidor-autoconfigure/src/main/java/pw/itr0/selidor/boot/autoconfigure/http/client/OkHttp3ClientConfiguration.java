@@ -13,7 +13,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import pw.itr0.selidor.http.client.okhttp3.OkHttp3PreemptiveProxyAuthenticator;
-import pw.itr0.selidor.http.proxy.HttpProxies;
+import pw.itr0.selidor.http.client.proxy.HttpProxies;
 
 abstract class OkHttp3ClientConfiguration {
   @Configuration(proxyBeanMethods = false)
@@ -32,7 +32,7 @@ abstract class OkHttp3ClientConfiguration {
   }
 
   @Configuration(proxyBeanMethods = false)
-  @ConditionalOnMissingClass("pw.itr0.selidor.http.proxy.HttpProxies")
+  @ConditionalOnMissingClass("pw.itr0.selidor.http.client.proxy.HttpProxies")
   static class Direct {
     @Bean
     @ConditionalOnMissingBean

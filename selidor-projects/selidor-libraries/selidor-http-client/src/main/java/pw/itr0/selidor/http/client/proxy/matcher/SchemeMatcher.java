@@ -1,9 +1,9 @@
-package pw.itr0.selidor.http.proxy.matcher;
+package pw.itr0.selidor.http.client.proxy.matcher;
 
 import java.net.URI;
 import java.util.Set;
 import java.util.stream.Collectors;
-import pw.itr0.selidor.http.Scheme;
+import pw.itr0.selidor.http.client.Scheme;
 
 public class SchemeMatcher {
 

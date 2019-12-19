@@ -7,7 +7,7 @@ import java.util.Set;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.boot.context.properties.bind.DefaultValue;
-import pw.itr0.selidor.http.Scheme;
+import pw.itr0.selidor.http.client.Scheme;
 
 @ConfigurationProperties(HttpProxyConfigurationProperties.PROPERTY_PREFIX)
 public class HttpProxyConfigurationProperties {

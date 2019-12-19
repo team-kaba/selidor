@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.proxy;
+package pw.itr0.selidor.http.client.proxy;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -14,11 +14,11 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import javax.annotation.Nonnull;
-import pw.itr0.selidor.http.AuthMethod;
-import pw.itr0.selidor.http.Scheme;
-import pw.itr0.selidor.http.authn.BasicAuthentication;
-import pw.itr0.selidor.http.authn.HttpAuthentication;
-import pw.itr0.selidor.http.proxy.matcher.UriMatcher;
+import pw.itr0.selidor.http.client.AuthMethod;
+import pw.itr0.selidor.http.client.Scheme;
+import pw.itr0.selidor.http.client.authn.BasicAuthentication;
+import pw.itr0.selidor.http.client.authn.HttpAuthentication;
+import pw.itr0.selidor.http.client.proxy.matcher.UriMatcher;
 
 /**
  * HTTP Proxyをあらわすクラスです。

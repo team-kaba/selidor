@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.proxy;
+package pw.itr0.selidor.http.client.proxy;
 
 import java.io.IOException;
 import java.net.Proxy;

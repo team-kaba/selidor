@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.proxy.matcher;
+package pw.itr0.selidor.http.client.proxy.matcher;
 
 import java.net.URI;
 import java.util.List;

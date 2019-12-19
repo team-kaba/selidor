@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.proxy;
+package pw.itr0.selidor.http.client.proxy;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pw.itr0.selidor.http.Scheme;
+import pw.itr0.selidor.http.client.Scheme;
 import pw.itr0.selidor.internal.util.StringUtils;
 
 public abstract class EnvVarProxyLoader {

@@ -8,8 +8,8 @@ import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-import pw.itr0.selidor.http.proxy.HttpProxies;
-import pw.itr0.selidor.http.proxy.HttpProxy;
+import pw.itr0.selidor.http.client.proxy.HttpProxies;
+import pw.itr0.selidor.http.client.proxy.HttpProxy;
 
 public class OkHttp3PreemptiveProxyAuthenticator implements Authenticator {
 

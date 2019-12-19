@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http.proxy;
+package pw.itr0.selidor.http.client.proxy;
 
 import java.net.Proxy;
 import java.net.ProxySelector;
@@ -10,8 +10,8 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
-import pw.itr0.selidor.http.AuthMethod;
-import pw.itr0.selidor.http.Scheme;
+import pw.itr0.selidor.http.client.AuthMethod;
+import pw.itr0.selidor.http.client.Scheme;
 
 public class HttpProxies {
 

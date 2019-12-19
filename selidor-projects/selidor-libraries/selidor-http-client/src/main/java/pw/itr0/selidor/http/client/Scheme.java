@@ -1,4 +1,4 @@
-package pw.itr0.selidor.http;
+package pw.itr0.selidor.http.client;
 
 import java.util.EnumSet;
 import java.util.Set;
