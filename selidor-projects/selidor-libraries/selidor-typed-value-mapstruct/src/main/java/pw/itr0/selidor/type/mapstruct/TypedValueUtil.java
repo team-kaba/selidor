@@ -6,12 +6,8 @@ import pw.itr0.selidor.type.TypedValue;
 
 public abstract class TypedValueUtil {
 
-  public static <S, T extends TypedValue<S>> T mapGeneric(S source, Class<T> targetType) {
-    if (source == null) {
-      return null;
-    }
+  public static <S, T extends TypedValue<S>> T mapGeneric(S source, Class<S> sourceType, Class<T> targetType) {
     Constructor<T> constructor;
-    Class<?> sourceType = source.getClass();
     constructor = getConstructor(sourceType, targetType);
     return newInstance(source, targetType, constructor, sourceType);
   }

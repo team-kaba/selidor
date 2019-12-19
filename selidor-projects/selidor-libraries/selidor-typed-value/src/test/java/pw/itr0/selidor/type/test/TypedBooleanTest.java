@@ -53,14 +53,14 @@ class TypedBooleanTest {
   private static final class Enabled extends TypedBoolean<Enabled> {
 
     private Enabled(boolean value) {
-      super(value);
+      super(value, false);
     }
   }
 
   private static final class Active extends TypedBoolean<Enabled> {
 
     private Active(boolean value) {
-      super(value);
+      super(value, true);
     }
   }
 }

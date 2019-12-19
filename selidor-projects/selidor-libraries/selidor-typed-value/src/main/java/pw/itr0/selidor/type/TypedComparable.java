@@ -1,5 +1,7 @@
 package pw.itr0.selidor.type;
 
+import java.util.Comparator;
+
 /**
  * 型付けられた値が比較可能であるクラスを実装するための抽象クラスです。
  *
@@ -21,12 +23,20 @@ public abstract class TypedComparable<
         SELF extends TypedValue<RAW>, RAW extends Comparable<? super RAW>>
     extends TypedValue<RAW> implements Comparable<SELF> {
 
+  private final Comparator<RAW> comparator;
+
   /**
    * @param value 値
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    * @throws IllegalArgumentException {@code value} が {@code null} の場合
    */
-  protected TypedComparable(RAW value) throws IllegalArgumentException {
+  protected TypedComparable(RAW value, boolean nullFirst) throws IllegalArgumentException {
     super(value);
+    if (nullFirst) {
+      comparator = Comparator.nullsFirst(Comparator.naturalOrder());
+    } else {
+      comparator = Comparator.nullsLast(Comparator.naturalOrder());
+    }
   }
 
   /**
@@ -37,6 +47,6 @@ public abstract class TypedComparable<
    */
   @Override
   public int compareTo(SELF other) {
-    return this.getValue().compareTo(other.getValue());
+    return comparator.compare(this.getValue(), other.getValue());
   }
 }

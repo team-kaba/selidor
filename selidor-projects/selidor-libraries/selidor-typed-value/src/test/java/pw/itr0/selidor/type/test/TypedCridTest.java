@@ -52,13 +52,13 @@ class TypedCridTest {
 
   private static final class DocumentId extends TypedCrid<DocumentId> {
     private DocumentId(Crid value) {
-      super(value);
+      super(value, false);
     }
   }
 
   private static final class IndexId extends TypedCrid<IndexId> {
     private IndexId(Crid value) {
-      super(value);
+      super(value, true);
     }
   }
 }

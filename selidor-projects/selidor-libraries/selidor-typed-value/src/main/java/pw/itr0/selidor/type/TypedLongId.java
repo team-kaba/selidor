@@ -19,7 +19,7 @@ import pw.itr0.selidor.identifier.random.LongId;
  * <pre><code class="java">
  * public final class EventId extends TypedLongId&lt;EventId&gt; {
  *   public EventId(LongId value) {
- *     super(value);
+ *     super(value, true);
  *   }
  * }
  * </code></pre>
@@ -33,16 +33,16 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
    * @param value 値
    * @throws IllegalArgumentException {@code value} が {@code null} の場合
    */
-  protected TypedLongId(LongId value) {
-    super(value);
+  protected TypedLongId(LongId value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
   /**
-   * IDの値を {@code long} として返します。
+   * IDの値を {@code long} として返します。元の値の {@link LongId} が {@code null} の場合、 {@code -1} を返します。
    *
    * @return IDの値
    */
   public long longValue() {
-    return getValue().longValue();
+    return getValue() != null ? getValue().longValue() : -1;
   }
 }

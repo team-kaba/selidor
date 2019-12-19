@@ -11,25 +11,39 @@ class TypedStringTest {
 
   @Test
   void equality(SoftAssertions s) {
-    final String string = "this is a title";
-    final Title title = new Title(string);
-    s.assertThat(title).isEqualTo(new Title(string));
-    s.assertThat(title).isNotEqualTo(new Description(string));
+    {
+      final String string = "this is a title";
+      final Title title = new Title(string);
+      s.assertThat(title).isEqualTo(new Title(string));
+      s.assertThat(title).isNotEqualTo(new Description(string));
+    }
+    {
+      final String string = null;
+      final Title title = new Title(string);
+      s.assertThat(title).isEqualTo(new Title(string));
+      s.assertThat(title).isNotEqualTo(new Description(string));
+    }
   }
 
   @Test
   void empty(SoftAssertions s) {
     {
+      final String string = null;
+      final Description description = new Description(string);
+      s.assertThat(description.isEmpty()).isTrue();
+      s.assertThat(description.isNotEmpty()).isFalse();
+    }
+    {
       final String string = "";
       final Description description = new Description(string);
       s.assertThat(description.isEmpty()).isTrue();
-      s.assertThat(description.hasLength()).isFalse();
+      s.assertThat(description.isNotEmpty()).isFalse();
     }
     {
       final String string = "Design It!";
       final Title title = new Title(string);
       s.assertThat(title.isEmpty()).isFalse();
-      s.assertThat(title.hasLength()).isTrue();
+      s.assertThat(title.isNotEmpty()).isTrue();
     }
   }
 
@@ -40,20 +54,25 @@ class TypedStringTest {
     final Title vol1 = new Title(v1);
     final String v2 = "The Feynman Lectures on Physics Vol 2: Mainly Electromagnetism and Matter.";
     final Title vol2 = new Title(v2);
+    final String nullValue = null;
+    final Title notExist = new Title(nullValue);
     s.assertThat(vol1).isEqualByComparingTo(new Title(v1));
     s.assertThat(vol2).isGreaterThan(vol1);
     s.assertThat(vol1).isLessThan(vol2);
+    s.assertThat(notExist).isEqualByComparingTo(new Title(null));
+    s.assertThat(notExist).isLessThan(vol1);
+    s.assertThat(notExist).isLessThan(vol2);
   }
 
   private static final class Title extends TypedString<Title> {
     private Title(String value) {
-      super(value);
+      super(value, false);
     }
   }
 
   private static final class Description extends TypedString<Description> {
     private Description(String value) {
-      super(value);
+      super(value, true);
     }
   }
 }

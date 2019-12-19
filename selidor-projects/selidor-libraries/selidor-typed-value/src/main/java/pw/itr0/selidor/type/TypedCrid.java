@@ -21,7 +21,7 @@ import pw.itr0.selidor.identifier.crid.Crid;
  * <pre><code class="java">
  * public final class EventId extends TypedCrid&lt;EventId&gt; {
  *   public EventId(Crid value) {
- *     super(value);
+ *     super(value, true);
  *   }
  * }
  * </code></pre>
@@ -33,10 +33,11 @@ public abstract class TypedCrid<SELF extends TypedCrid<? super SELF>>
 
   /**
    * @param value 値
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    * @throws IllegalArgumentException {@code value} が {@code null} の場合
    */
-  protected TypedCrid(Crid value) {
-    super(value);
+  protected TypedCrid(Crid value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
   /**

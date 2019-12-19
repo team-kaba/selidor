@@ -5,6 +5,6 @@ import pw.itr0.selidor.type.TypedComparable;
 
 public class AnotherComparableValue extends TypedComparable<AnotherComparableValue, ZoneOffset> {
   public AnotherComparableValue(ZoneOffset value) throws IllegalArgumentException {
-    super(value);
+    super(value, true);
   }
 }

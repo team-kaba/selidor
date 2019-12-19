@@ -1,5 +1,7 @@
 package pw.itr0.selidor.type;
 
+import pw.itr0.selidor.internal.util.StringUtils;
+
 /**
  * 型付けられた文字列を表すクラスを実装するための抽象クラスです。
  *
@@ -17,7 +19,7 @@ package pw.itr0.selidor.type;
  * <pre><code class="java">
  * public final class Title extends TypedString&lt;Title&gt; {
  *   public Title(String value) {
- *     super(value);
+ *     super(value, false);
  *   }
  * }
  * </code></pre>
@@ -31,17 +33,27 @@ public abstract class TypedString<SELF extends TypedString<? super SELF>>
    * @param value 値
    * @throws IllegalArgumentException {@code value} が {@code null} の場合
    */
-  protected TypedString(String value) {
-    super(value);
+  protected TypedString(String value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
   /** @return 値が空文字列の場合 {@code true} */
   public boolean isEmpty() {
-    return getValue().isEmpty();
+    return StringUtils.isEmpty(getValue());
   }
 
   /** @return 値が空文字列でない場合 {@code true} */
-  public boolean hasLength() {
+  public boolean isNotEmpty() {
     return !isEmpty();
+  }
+
+  /** @return 値が空白文字のみから構成される文字列の場合 {@code true} */
+  public boolean isBlank() {
+    return StringUtils.isBlank(getValue());
+  }
+
+  /** @return 値が空白文字のみから構成される文字列でない場合 {@code true} */
+  public boolean isNotBlank() {
+    return !isBlank();
   }
 }

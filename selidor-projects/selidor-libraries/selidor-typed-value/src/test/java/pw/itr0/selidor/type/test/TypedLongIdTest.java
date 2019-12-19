@@ -27,13 +27,13 @@ class TypedLongIdTest {
 
   private static final class DocumentId extends TypedLongId<DocumentId> {
     private DocumentId(LongId value) {
-      super(value);
+      super(value, true);
     }
   }
 
   private static final class IndexId extends TypedLongId<IndexId> {
     private IndexId(LongId value) {
-      super(value);
+      super(value, false);
     }
   }
 }
