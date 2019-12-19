@@ -32,9 +32,9 @@
          その時に利用しやすいようにプロパティとして定義しています。
     -->
     <git.refname>master</git.refname>
-    <git.url>https://github.com/ryotan/selidor/tree/${git.refname}</git.url>
-    <git.connection>scm:git:git@github.com:ryotan/selidor.git</git.connection>
-    <git.developerConnection>scm:git:git@github.com:ryotan/selidor.git</git.developerConnection>
+    <git.url>https://github.com/team-kaba/selidor/tree/${git.refname}</git.url>
+    <git.connection>scm:git:git@github.com:team-kaba/selidor.git</git.connection>
+    <git.developerConnection>scm:git:git@github.com:team-kaba/selidor.git</git.developerConnection>
 
     <!--
          Root Aggregator のディレクトリを表すためのプロパティ。
