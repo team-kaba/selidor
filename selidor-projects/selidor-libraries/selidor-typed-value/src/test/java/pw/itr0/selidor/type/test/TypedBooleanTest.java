@@ -12,8 +12,13 @@ class TypedBooleanTest {
   @Test
   void equality(SoftAssertions s) {
     final Enabled enabled = new Enabled(true);
+    final Enabled disabled = new Enabled(false);
+    final Enabled undefined = new Enabled(null);
     s.assertThat(enabled).isEqualTo(new Enabled(true));
     s.assertThat(enabled).isNotEqualTo(new Active(true));
+
+    s.assertThat(disabled).isNotEqualTo(enabled);
+    s.assertThat(disabled).isNotEqualTo(undefined);
   }
 
   @Test
@@ -29,37 +34,45 @@ class TypedBooleanTest {
       s.assertThat(inactive.isFalse()).isTrue();
     }
     {
-      final Enabled enabled = new Enabled(true);
-      s.assertThat(enabled.isTrue()).isTrue();
-      s.assertThat(enabled.isFalse()).isFalse();
-    }
-    {
-      final Enabled enabled = new Enabled(false);
-      s.assertThat(enabled.isTrue()).isFalse();
-      s.assertThat(enabled.isFalse()).isTrue();
+      final Enabled undefined = new Enabled(null);
+      s.assertThat(undefined.isTrue()).isFalse();
+      s.assertThat(undefined.isFalse()).isTrue();
     }
   }
 
   @Test
   void compare(SoftAssertions s) {
-    final Enabled enabled = new Enabled(true);
-    final Enabled disabled = new Enabled(false);
-    s.assertThat(enabled).isEqualByComparingTo(new Enabled(true));
-    s.assertThat(disabled).isEqualByComparingTo(new Enabled(false));
-    s.assertThat(enabled).isGreaterThan(disabled);
-    s.assertThat(disabled).isLessThan(enabled);
+    {
+      final Enabled enabled = new Enabled(true);
+      final Enabled disabled = new Enabled(false);
+      final Enabled undefined = new Enabled(null);
+      s.assertThat(enabled).isEqualByComparingTo(new Enabled(true));
+      s.assertThat(disabled).isEqualByComparingTo(new Enabled(false));
+      s.assertThat(undefined).isEqualByComparingTo(new Enabled(null));
+      s.assertThat(enabled).isGreaterThan(disabled);
+      s.assertThat(disabled).isLessThan(enabled);
+      s.assertThat(undefined).isGreaterThan(disabled);
+      s.assertThat(undefined).isGreaterThan(enabled);
+    }
+    {
+      final Active enabled = new Active(true);
+      final Active disabled = new Active(false);
+      final Active undefined = new Active(null);
+      s.assertThat(undefined).isLessThan(disabled);
+      s.assertThat(undefined).isLessThan(enabled);
+    }
   }
 
   private static final class Enabled extends TypedBoolean<Enabled> {
 
-    private Enabled(boolean value) {
+    private Enabled(Boolean value) {
       super(value, false);
     }
   }
 
-  private static final class Active extends TypedBoolean<Enabled> {
+  private static final class Active extends TypedBoolean<Active> {
 
-    private Active(boolean value) {
+    private Active(Boolean value) {
       super(value, true);
     }
   }

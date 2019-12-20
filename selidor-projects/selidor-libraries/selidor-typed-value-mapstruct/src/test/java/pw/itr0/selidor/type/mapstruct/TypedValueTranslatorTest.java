@@ -48,17 +48,18 @@ class TypedValueTranslatorTest {
 
     @Test
     @DisplayName("Boolean - null")
-    @SuppressWarnings("ConstantConditions")
     void mapBooleanNullValue(SoftAssertions s) {
       final OneBooleanValue typed = sut.mapBooleanToTypedBoolean(null, OneBooleanValue.class);
-      s.assertThat(typed).isNull();
+      s.assertThat(typed.getValue()).isNull();
+      s.assertThat(typed.isNull()).isTrue();
 
       final Boolean raw = sut.mapTypedBooleanToBoolean(typed);
       s.assertThat(raw).isNull();
 
       final AnotherBooleanValue copied =
           sut.mapBetweenTypedBoolean(null, AnotherBooleanValue.class);
-      s.assertThat(copied).isNull();
+      s.assertThat(copied.getValue()).isNull();
+      s.assertThat(copied.isNull()).isTrue();
     }
   }
 
