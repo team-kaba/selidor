@@ -85,13 +85,13 @@ class TypedValueTranslatorTest {
     void mapStringNullValue(SoftAssertions s) {
       final String source = null;
       final OneStringValue typed = sut.mapStringToTypedString(source, OneStringValue.class);
-      s.assertThat(typed).isNull();
+      s.assertThat(typed.isNull()).isTrue();
 
       final String raw = sut.mapTypedStringToString(typed);
       s.assertThat(raw).isNull();
 
       final AnotherStringValue copied = sut.mapBetweenTypedString(typed, AnotherStringValue.class);
-      s.assertThat(copied).isNull();
+      s.assertThat(copied.isNull()).isTrue();
     }
   }
 
@@ -118,14 +118,25 @@ class TypedValueTranslatorTest {
     @Test
     @DisplayName("Crid - null")
     void mapCridNullValue(SoftAssertions s) {
-      final OneCrid typed = sut.mapCridToTypedCrid(null, OneCrid.class);
-      s.assertThat(typed).isNull();
+      {
+        final OneCrid typed = sut.mapCridToTypedCrid(null, OneCrid.class);
+        s.assertThat(typed.isNull()).isTrue();
 
-      final Crid raw = sut.mapTypedCridToCrid(null);
-      s.assertThat(raw).isNull();
+        final Crid raw = sut.mapTypedCridToCrid(null);
+        s.assertThat(raw).isNull();
 
-      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
-      s.assertThat(copied).isNull();
+        final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
+        s.assertThat(copied.isNull()).isTrue();
+      }
+      {
+        final OneCrid typed = new OneCrid(null);
+
+        final Crid raw = sut.mapTypedCridToCrid(typed);
+        s.assertThat(raw).isNull();
+
+        final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
+        s.assertThat(copied.isNull()).isTrue();
+      }
     }
 
     @Test
@@ -138,22 +149,24 @@ class TypedValueTranslatorTest {
 
       final String raw = sut.mapTypedCridToString(typed);
       s.assertThat(raw).isEqualTo(source);
-
-      final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
-      s.assertThat(copied.getValue()).isEqualTo(crid);
     }
 
     @Test
     @DisplayName("String - null")
     void mapStringNullValue(SoftAssertions s) {
-      final OneCrid typed = sut.mapStringToTypedCrid(null, OneCrid.class);
-      s.assertThat(typed).isNull();
+      {
+        final OneCrid typed = sut.mapStringToTypedCrid(null, OneCrid.class);
+        s.assertThat(typed.isNull()).isTrue();
 
-      final String raw = sut.mapTypedCridToString(null);
-      s.assertThat(raw).isNull();
+        final String raw = sut.mapTypedCridToString(null);
+        s.assertThat(raw).isNull();
+      }
+      {
+        final OneCrid typed = new OneCrid(null);
 
-      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
-      s.assertThat(copied).isNull();
+        final String raw = sut.mapTypedCridToString(typed);
+        s.assertThat(raw).isNull();
+      }
     }
 
     @Test
@@ -171,27 +184,29 @@ class TypedValueTranslatorTest {
       s.assertThat(string).isEqualTo(raw.toString());
       final UUID uuid = sut.mapStringToUuid(string);
       s.assertThat(uuid).isEqualTo(source);
-
-      final AnotherCrid copied = sut.mapBetweenTypedCrid(typed, AnotherCrid.class);
-      s.assertThat(copied.getValue()).isEqualTo(crid);
     }
 
     @Test
     @DisplayName("UUID - null")
     void mapUuidNullValue(SoftAssertions s) {
-      final OneCrid typed = sut.mapUuidToTypedCrid(null, OneCrid.class);
-      s.assertThat(typed).isNull();
+      {
+        final OneCrid typed = sut.mapUuidToTypedCrid(null, OneCrid.class);
+        s.assertThat(typed.isNull()).isTrue();
 
-      final UUID raw = sut.mapTypedCridToUuid(null);
-      s.assertThat(raw).isNull();
+        final UUID raw = sut.mapTypedCridToUuid(null);
+        s.assertThat(raw).isNull();
 
-      final String string = sut.mapUuidToString(null);
-      s.assertThat(string).isNull();
-      final UUID uuid = sut.mapStringToUuid(null);
-      s.assertThat(uuid).isNull();
+        final String string = sut.mapUuidToString(null);
+        s.assertThat(string).isNull();
+        final UUID uuid = sut.mapStringToUuid(null);
+        s.assertThat(uuid).isNull();
+      }
+      {
+        final OneCrid typed = new OneCrid(null);
 
-      final AnotherCrid copied = sut.mapBetweenTypedCrid(null, AnotherCrid.class);
-      s.assertThat(copied).isNull();
+        final UUID raw = sut.mapTypedCridToUuid(typed);
+        s.assertThat(raw).isNull();
+      }
     }
 
     @Test
