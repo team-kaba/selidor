@@ -36,12 +36,20 @@ public abstract class TypedBoolean<SELF extends TypedBoolean<? super SELF>>
     super(value, nullFirst);
   }
 
-  /** @return クラスの表す状態が「真」をあらわす時、 {@code true} */
+  /**
+   * 元の値が {@code true} である時、 {@code true} を返します。 {@code null} の場合は {@code false} となります。
+   *
+   * @return クラスの表す状態が「真」をあらわす時、 {@code true}
+   */
   public boolean isTrue() {
     return getValue() != null && getValue();
   }
 
-  /** @return クラスの表す状態が「真」をあらわす時、 {@code false} */
+  /**
+   * 元の値が {@code false} または {@code null} である時、 {@code true} を返します。
+   *
+   * @return クラスの表す状態が「真」をあらわす時、 {@code false}
+   */
   public boolean isFalse() {
     return !isTrue();
   }
