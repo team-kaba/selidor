@@ -1,5 +1,7 @@
 package pw.itr0.selidor.type;
 
+import java.util.Objects;
+
 /**
  * 型付けられた値をあらわす抽象クラスです。
  *
@@ -49,11 +51,11 @@ public abstract class TypedValue<RAW> {
 
     TypedValue<?> that = (TypedValue<?>) o;
 
-    return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
+    return Objects.equals(getValue(), that.getValue());
   }
 
   @Override
   public int hashCode() {
-    return getValue() != null ? getValue().hashCode() : 0;
+    return Objects.hashCode(getValue());
   }
 }
