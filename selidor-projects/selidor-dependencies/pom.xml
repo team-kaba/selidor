@@ -48,12 +48,12 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
-    <annotations.version>18.0.0</annotations.version>
     <assertj-core.version>3.14.0</assertj-core.version>
     <dbunit.version>2.6.0</dbunit.version>
     <doma.boot.version>1.2.1</doma.boot.version>
     <doma.version>2.25.1</doma.version>
     <flyway-dbunit-test.version>6.0.0</flyway-dbunit-test.version>
+    <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
     <mapstruct.version>1.3.1.Final</mapstruct.version>
     <mybatis.version>3.5.3</mybatis.version>
@@ -105,6 +105,11 @@
       <!-- Selidor -->
       <dependency>
         <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-autoconfigure</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
         <artifactId>selidor-core</artifactId>
         <version>${revision}</version>
       </dependency>
@@ -121,6 +126,11 @@
       <dependency>
         <groupId>pw.itr0.selidor</groupId>
         <artifactId>selidor-typed-value-mapstruct</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>pw.itr0.selidor</groupId>
+        <artifactId>selidor-http-client</artifactId>
         <version>${revision}</version>
       </dependency>
 
@@ -253,6 +263,13 @@
         <groupId>org.twitter4j</groupId>
         <artifactId>twitter4j-stream</artifactId>
         <version>${twitter4j.version}</version>
+      </dependency>
+
+      <!-- JSR305 Annotations -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${jsr305.version}</version>
       </dependency>
 
       <!-- JUnit -->

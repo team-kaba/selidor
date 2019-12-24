@@ -17,6 +17,7 @@
 
   <modules>
     <module>selidor-core</module>
+    <module>selidor-http-client</module>
     <module>selidor-identifier</module>
     <module>selidor-typed-value</module>
     <module>selidor-typed-value-mapstruct</module>

@@ -30,7 +30,7 @@ set_project_revision_to_pom "${release_version}"
 set_git_refname_to_pom "${version_tag}"
 
 git add 'pom.xml' '**/pom.xml'
-git commit -m ":bookmark: Release ${release_version}"
+git commit -m "🎉: Release ${release_version}"
 git tag --cleanup=whitespace -a "${version_tag}" -m "${release_version}"
 
 clean_worktree="${PROJECT_ROOT_DIR}/.release-worktree"
