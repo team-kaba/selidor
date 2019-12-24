@@ -49,6 +49,34 @@ class TypedStringTest {
   }
 
   @Test
+  void blank(SoftAssertions s) {
+    {
+      final String value = null;
+      final Title title = new Title(value);
+      s.assertThat(title.isBlank()).isTrue();
+      s.assertThat(title.isNotBlank()).isFalse();
+    }
+    {
+      final String value = "";
+      final Title title = new Title(value);
+      s.assertThat(title.isBlank()).isTrue();
+      s.assertThat(title.isNotBlank()).isFalse();
+    }
+    {
+      final String value = "\t 　\n\r\f\r\n";
+      final Title title = new Title(value);
+      s.assertThat(title.isBlank()).isTrue();
+      s.assertThat(title.isNotBlank()).isFalse();
+    }
+    {
+      final String value = "\t 　\n\r\f\uD83D\uDCA3⚒️\r\n";
+      final Title title = new Title(value);
+      s.assertThat(title.isBlank()).isFalse();
+      s.assertThat(title.isNotBlank()).isTrue();
+    }
+  }
+
+  @Test
   void compare(SoftAssertions s) {
     {
       final String v1 =
