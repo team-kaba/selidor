@@ -38,7 +38,8 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
   }
 
   /**
-   * IDの値を {@code long} として返します。元の値の {@link LongId} が {@code null} の場合、 {@link IllegalStateException} を送出します。
+   * IDの値を {@code long} として返します。元の値の {@link LongId} が {@code null} の場合、 {@link
+   * IllegalStateException} を送出します。
    *
    * @return IDの値
    * @throws IllegalStateException 元の値が {@code null} の場合
