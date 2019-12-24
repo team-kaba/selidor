@@ -20,6 +20,7 @@
     <module>selidor-parent</module>
     <module>selidor-dependencies</module>
     <module>selidor-libraries</module>
+    <module>selidor-autoconfigure</module>
     <module>selidor-starters</module>
   </modules>
 
