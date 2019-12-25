@@ -30,7 +30,10 @@ class TypedCridTest {
     final CridGenerator id =
         new CridGenerator(Clock.fixed(instant, ZoneId.systemDefault()), new Random());
     final DocumentId document = new DocumentId(id.next());
-    s.assertThat(document.timestamp().toEpochMilli()).isEqualTo(instant.toEpochMilli());
+    s.assertThat(document.timestamp())
+        .map(Instant::toEpochMilli)
+        .get()
+        .isEqualTo(instant.toEpochMilli());
   }
 
   @Test
@@ -41,7 +44,7 @@ class TypedCridTest {
     final Random newRandom = new Random(1);
     byte[] expected = new byte[10];
     newRandom.nextBytes(expected);
-    s.assertThat(document.randomness()).isEqualTo(expected);
+    s.assertThat(document.randomness()).get().isEqualTo(expected);
   }
 
   @Test
@@ -52,13 +55,13 @@ class TypedCridTest {
 
   private static final class DocumentId extends TypedCrid<DocumentId> {
     private DocumentId(Crid value) {
-      super(value);
+      super(value, false);
     }
   }
 
   private static final class IndexId extends TypedCrid<IndexId> {
     private IndexId(Crid value) {
-      super(value);
+      super(value, true);
     }
   }
 }

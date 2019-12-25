@@ -17,7 +17,7 @@ package pw.itr0.selidor.type;
  * <pre><code class="java">
  * public final class Enabled extends TypedBoolean&lt;Enabled&gt; {
  *   public Enabled(boolean value) {
- *     super(value);
+ *     super(value, false);
  *   }
  * }
  * </code></pre>
@@ -29,19 +29,27 @@ public abstract class TypedBoolean<SELF extends TypedBoolean<? super SELF>>
 
   /**
    * @param value 状態に対応する真偽値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
-  protected TypedBoolean(boolean value) {
-    super(value);
+  protected TypedBoolean(Boolean value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
-  /** @return クラスの表す状態が「真」をあらわす時、 {@code true} */
+  /**
+   * 元の値が {@code true} である時、 {@code true} を返します。 {@code null} の場合は {@code false} となります。
+   *
+   * @return クラスの表す状態が「真」をあらわす時、 {@code true}
+   */
   public boolean isTrue() {
-    return getValue();
+    return getValue().orElse(false);
   }
 
-  /** @return クラスの表す状態が「真」をあらわす時、 {@code false} */
+  /**
+   * 元の値が {@code false} または {@code null} である時、 {@code true} を返します。
+   *
+   * @return クラスの表す状態が「真」をあらわす時、 {@code false}
+   */
   public boolean isFalse() {
-    return !getValue();
+    return !isTrue();
   }
 }

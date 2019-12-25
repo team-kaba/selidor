@@ -5,6 +5,6 @@ import pw.itr0.selidor.type.TypedCrid;
 
 public class OneCrid extends TypedCrid<OneCrid> {
   public OneCrid(Crid value) {
-    super(value);
+    super(value, false);
   }
 }

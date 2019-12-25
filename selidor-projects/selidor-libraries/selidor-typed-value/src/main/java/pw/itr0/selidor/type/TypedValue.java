@@ -1,6 +1,9 @@
 package pw.itr0.selidor.type;
 
-import pw.itr0.selidor.internal.util.PreConditions;
+import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * 型付けられた値をあらわす抽象クラスです。
@@ -17,34 +20,39 @@ import pw.itr0.selidor.internal.util.PreConditions;
  * @param <RAW> 値の型
  */
 public abstract class TypedValue<RAW> {
-  private final RAW value;
-  private final Class<RAW> rawValueClass;
 
-  /**
-   * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
-   */
-  @SuppressWarnings("unchecked")
-  protected TypedValue(RAW value) {
-    PreConditions.requireNonNull(
-        value, () -> "`value` must not be null. Instead, make variable itself be null.");
-    this.value = value;
-    this.rawValueClass = (Class<RAW>) value.getClass();
+  private final RAW raw;
+
+  /** @param raw 値 */
+  protected TypedValue(@Nullable RAW raw) {
+    this.raw = raw;
   }
 
   /** @return 元の値 */
-  public RAW getValue() {
-    return this.value;
+  @Nonnull
+  public Optional<RAW> getValue() {
+    return Optional.ofNullable(this.raw);
   }
 
-  /** @return 元の値の型 */
-  public Class<RAW> getRawValueClass() {
-    return this.rawValueClass;
+  /** @return 元の値 */
+  @Nullable
+  public RAW getNullableValue() {
+    return this.raw;
+  }
+
+  /** @return 元の値が {@code null} の場合 {@code true} */
+  public boolean isNull() {
+    return this.raw == null;
+  }
+
+  /** @return 元の値が {@code null} でない場合 {@code true} */
+  public boolean isNotNull() {
+    return !isNull();
   }
 
   @Override
   public String toString() {
-    return String.valueOf(getValue());
+    return String.valueOf(raw);
   }
 
   @Override
@@ -54,11 +62,11 @@ public abstract class TypedValue<RAW> {
 
     TypedValue<?> that = (TypedValue<?>) o;
 
-    return getValue().equals(that.getValue());
+    return Objects.equals(getValue(), that.getValue());
   }
 
   @Override
   public int hashCode() {
-    return getValue().hashCode();
+    return Objects.hashCode(getValue());
   }
 }

@@ -14,7 +14,7 @@ public interface TypedCridTranslator {
   // Crid
   default <T extends TypedCrid<T>> T mapCridToTypedCrid(
       Crid source, @TargetType Class<T> targetType) {
-    return mapGeneric(source, targetType);
+    return mapGeneric(source, Crid.class, targetType);
   }
 
   default <T extends TypedCrid<T>> Crid mapTypedCridToCrid(T source) {
@@ -24,33 +24,24 @@ public interface TypedCridTranslator {
   // String
   default <T extends TypedCrid<T>> T mapStringToTypedCrid(
       String source, @TargetType Class<T> targetType) {
-    if (source == null) {
-      return null;
-    }
-    return mapGeneric(Crid.parse(source), targetType);
+    return mapGeneric(source != null ? Crid.parse(source) : null, Crid.class, targetType);
   }
 
   default <T extends TypedCrid<T>> String mapTypedCridToString(T id) {
     if (id == null) {
       return null;
     }
-    return id.getValue().toString();
+    return id.getValue().map(Crid::toString).orElse(null);
   }
 
   // UUID
   default <T extends TypedCrid<T>> T mapUuidToTypedCrid(
       UUID source, @TargetType Class<T> targetType) {
-    if (source == null) {
-      return null;
-    }
-    return mapGeneric(Crid.from(source), targetType);
+    return mapGeneric(source != null ? Crid.from(source) : null, Crid.class, targetType);
   }
 
   default <T extends TypedCrid<T>> UUID mapTypedCridToUuid(T source) {
-    if (source == null) {
-      return null;
-    }
-    return source.getValue().uuid();
+    return source != null ? source.uuid().orElse(null) : null;
   }
 
   // Crid String <-> UUID
@@ -72,6 +63,6 @@ public interface TypedCridTranslator {
 
   default <S extends TypedCrid<S>, T extends TypedCrid<T>> T mapBetweenTypedCrid(
       S source, @TargetType Class<T> targetType) {
-    return mapGeneric(getValue(source), targetType);
+    return mapGeneric(getValue(source), Crid.class, targetType);
   }
 }

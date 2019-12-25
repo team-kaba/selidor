@@ -13,11 +13,11 @@ public interface TypedStringTranslator {
 
   default <T extends TypedString<T>> T mapStringToTypedString(
       String source, @TargetType Class<T> targetType) {
-    return mapGeneric(source, targetType);
+    return mapGeneric(source, String.class, targetType);
   }
 
   default <S extends TypedString<S>, T extends TypedString<T>> T mapBetweenTypedString(
       S source, @TargetType Class<T> targetType) {
-    return mapGeneric(getValue(source), targetType);
+    return mapGeneric(getValue(source), String.class, targetType);
   }
 }

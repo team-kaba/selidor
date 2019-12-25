@@ -7,9 +7,10 @@
 module pw.itr0.selidor.type {
   exports pw.itr0.selidor.type;
 
+  requires pw.itr0.selidor.core;
+  requires pw.itr0.selidor.identifier;
   // Javadocでjava.sqlを利用しているのでrequiresが必要。IntelliJではそこまで確認しないためredundant requireとして警告される。
   // noinspection Java9RedundantRequiresStatement
   requires java.sql;
-  requires pw.itr0.selidor.core;
-  requires pw.itr0.selidor.identifier;
+  requires jsr305;
 }

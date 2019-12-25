@@ -16,7 +16,7 @@ class ValueObjectTranslator {
     if (s == null) {
       return null;
     }
-    return s.getValue();
+    return s.getNullableValue();
   }
 
   OneSomeValue mapToOne(Money s) {
@@ -34,7 +34,7 @@ class ValueObjectTranslator {
     if (s == null) {
       return null;
     }
-    return s.getValue();
+    return s.getNullableValue();
   }
 
   AnotherSomeValue mapToAnother(Money s) {
@@ -52,14 +52,14 @@ class ValueObjectTranslator {
     if (s == null) {
       return null;
     }
-    return new AnotherSomeValue(s.getValue());
+    return new AnotherSomeValue(s.getNullableValue());
   }
 
   OneSomeValue mapToOne(AnotherSomeValue s) {
     if (s == null) {
       return null;
     }
-    return new OneSomeValue(s.getValue());
+    return new OneSomeValue(s.getNullableValue());
   }
 
   OneComparableValue mapToOne(ZoneOffset s) {
@@ -73,7 +73,7 @@ class ValueObjectTranslator {
     if (s == null) {
       return null;
     }
-    return s.getValue();
+    return s.getNullableValue();
   }
 
   OneComparableValue copy(OneComparableValue s) {
@@ -91,7 +91,7 @@ class ValueObjectTranslator {
     if (s == null) {
       return null;
     }
-    return s.getValue();
+    return s.getNullableValue();
   }
 
   AnotherComparableValue copy(AnotherComparableValue s) {

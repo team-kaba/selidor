@@ -1,6 +1,7 @@
 package pw.itr0.selidor.type;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 import pw.itr0.selidor.identifier.crid.Crid;
 
@@ -21,7 +22,7 @@ import pw.itr0.selidor.identifier.crid.Crid;
  * <pre><code class="java">
  * public final class EventId extends TypedCrid&lt;EventId&gt; {
  *   public EventId(Crid value) {
- *     super(value);
+ *     super(value, true);
  *   }
  * }
  * </code></pre>
@@ -33,10 +34,10 @@ public abstract class TypedCrid<SELF extends TypedCrid<? super SELF>>
 
   /**
    * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
-  protected TypedCrid(Crid value) {
-    super(value);
+  protected TypedCrid(Crid value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
   /**
@@ -44,8 +45,8 @@ public abstract class TypedCrid<SELF extends TypedCrid<? super SELF>>
    *
    * @return CRIDのタイムスタンプ
    */
-  public Instant timestamp() {
-    return getValue().timestamp();
+  public Optional<Instant> timestamp() {
+    return getValue().map(Crid::timestamp);
   }
 
   /**
@@ -53,8 +54,8 @@ public abstract class TypedCrid<SELF extends TypedCrid<? super SELF>>
    *
    * @return CRIDの乱数部分
    */
-  public byte[] randomness() {
-    return getValue().randomness();
+  public Optional<byte[]> randomness() {
+    return getValue().map(Crid::randomness);
   }
 
   /**
@@ -62,7 +63,7 @@ public abstract class TypedCrid<SELF extends TypedCrid<? super SELF>>
    *
    * @return CRIDのUUID表現
    */
-  public UUID uuid() {
-    return getValue().uuid();
+  public Optional<UUID> uuid() {
+    return getValue().map(Crid::uuid);
   }
 }

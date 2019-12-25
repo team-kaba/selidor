@@ -19,7 +19,7 @@ import pw.itr0.selidor.identifier.random.LongId;
  * <pre><code class="java">
  * public final class EventId extends TypedLongId&lt;EventId&gt; {
  *   public EventId(LongId value) {
- *     super(value);
+ *     super(value, true);
  *   }
  * }
  * </code></pre>
@@ -31,18 +31,22 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
 
   /**
    * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
-  protected TypedLongId(LongId value) {
-    super(value);
+  protected TypedLongId(LongId value, boolean nullFirst) {
+    super(value, nullFirst);
   }
 
   /**
-   * IDの値を {@code long} として返します。
+   * IDの値を {@code long} として返します。元の値の {@link LongId} が {@code null} の場合、 {@link
+   * IllegalStateException} を送出します。
    *
    * @return IDの値
+   * @throws IllegalStateException 元の値が {@code null} の場合
    */
   public long longValue() {
-    return getValue().longValue();
+    return getValue()
+        .map(LongId::longValue)
+        .orElseThrow(() -> new IllegalStateException("LongId is holding null."));
   }
 }

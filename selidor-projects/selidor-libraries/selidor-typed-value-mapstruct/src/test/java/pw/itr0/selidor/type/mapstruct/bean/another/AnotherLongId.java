@@ -5,6 +5,6 @@ import pw.itr0.selidor.type.TypedLongId;
 
 public class AnotherLongId extends TypedLongId<AnotherLongId> {
   public AnotherLongId(LongId value) {
-    super(value);
+    super(value, true);
   }
 }

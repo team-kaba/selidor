@@ -1,4 +1,4 @@
-package pw.itr0.selidor.boot.autoconfigure.http.proxy;
+package pw.itr0.selidor.boot.autoconfigure.http.client.proxy;
 
 import java.net.URI;
 import java.util.List;

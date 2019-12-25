@@ -13,11 +13,11 @@ public interface TypedBooleanTranslator {
 
   default <T extends TypedBoolean<T>> T mapBooleanToTypedBoolean(
       Boolean source, @TargetType Class<T> targetType) {
-    return mapGeneric(source, targetType);
+    return mapGeneric(source, Boolean.class, targetType);
   }
 
   default <S extends TypedBoolean<S>, T extends TypedBoolean<T>> T mapBetweenTypedBoolean(
       S source, @TargetType Class<T> targetType) {
-    return mapGeneric(getValue(source), targetType);
+    return mapGeneric(getValue(source), Boolean.class, targetType);
   }
 }

@@ -6,12 +6,12 @@
 @SuppressWarnings({"module", "JavaModuleNaming"})
 module pw.itr0.selidor.boot.autoconfigure {
   exports pw.itr0.selidor.boot.autoconfigure.http.client;
-  exports pw.itr0.selidor.boot.autoconfigure.http.proxy;
+  exports pw.itr0.selidor.boot.autoconfigure.http.client.proxy;
   exports pw.itr0.selidor.boot.autoconfigure.jackson;
 
   opens pw.itr0.selidor.boot.autoconfigure.http.client to
       spring.core;
-  opens pw.itr0.selidor.boot.autoconfigure.http.proxy to
+  opens pw.itr0.selidor.boot.autoconfigure.http.client.proxy to
       spring.core;
   opens pw.itr0.selidor.boot.autoconfigure.jackson to
       spring.core;

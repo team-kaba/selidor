@@ -1,4 +1,4 @@
-package pw.itr0.selidor.boot.autoconfigure.http.proxy;
+package pw.itr0.selidor.boot.autoconfigure.http.client.proxy;
 
 import java.net.ProxySelector;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorResourceFactory;
 import org.springframework.web.reactive.function.client.WebClient;
-import pw.itr0.selidor.boot.autoconfigure.http.proxy.HttpProxyConfigurationProperties.ProxySetting;
-import pw.itr0.selidor.boot.autoconfigure.http.proxy.HttpProxyConfigurationProperties.ProxySetting.BasicAuthenticationSetting;
+import pw.itr0.selidor.boot.autoconfigure.http.client.proxy.HttpProxyConfigurationProperties.ProxySetting;
+import pw.itr0.selidor.boot.autoconfigure.http.client.proxy.HttpProxyConfigurationProperties.ProxySetting.BasicAuthenticationSetting;
 import pw.itr0.selidor.http.client.Scheme;
 import pw.itr0.selidor.http.client.proxy.EnvVarProxyLoader;
 import pw.itr0.selidor.http.client.proxy.HttpProxies;
