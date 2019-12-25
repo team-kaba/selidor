@@ -1,5 +1,33 @@
+# https://github.com/marketplace/actions/release-drafter
+
+# The template for the body of the draft release. Use template variables to insert values.
+# template variables: https://github.com/marketplace/actions/release-drafter#template-variables
+template: |
+  ## Changes
+
+  $CHANGES
+
+# The template for the name of the draft release. For example: "v$NEXT_PATCH_VERSION".
 name-template: '$NEXT_PATCH_VERSION'
+
+# The template for the tag of the draft release. For example: "v$NEXT_PATCH_VERSION".
 tag-template: 'v$NEXT_PATCH_VERSION'
+
+# The template to use when calculating the next version number for the release. Useful for projects that don't use semantic versioning. Default: "$MAJOR.$MINOR.$PATCH"
+#version-template: '$MAJOR.$MINOR.$PATCH'
+
+# The template to use for each merged pull request. Use change template variables to insert values. Default: "* $TITLE (#$NUMBER) @$AUTHOR".
+# change template variables: https://github.com/marketplace/actions/release-drafter#change-template-variables
+change-template: '- $TITLE (#$NUMBER)'
+
+# The template to use for when there’s no changes. Default: "* No changes".
+#no-changes-template: '* No changes'
+
+# The branches to listen for configuration updates to .github/release-drafter.yml and for merge commits. Useful if you want to test the app on a pull request branch. Default is the repository’s default branch.
+#branches: master
+
+# Categorize pull requests using labels. Refer to Categorize Pull Requests to learn more about this option.
+# Categorize Pull Requests: https://github.com/marketplace/actions/release-drafter#categorize-pull-requests
 categories:
   - title: '💣 BREAKING CHANGES'
     labels:
@@ -20,14 +48,22 @@ categories:
   - title: '⬆️ Dependency Updates'
     labels:
       - 'deps'
+
+# Exclude pull requests using labels. Refer to Exclude Pull Requests to learn more about this option.
+# Exclude Pull Requests: https://github.com/marketplace/actions/release-drafter#exclude-pull-requests
 exclude-labels:
   - 'chore'
-  - 'no release note'
-change-template: '- $TITLE (#$NUMBER)'
-replacers:
-  - search: '\b(:seedling:|🌱|:bug:|🐛|:sparkles:|✨|:black_nib:|✒️|:bomb:|💣|:arrow_up:|⬆️):\b'
-    replace: ''
-template: |
-  ## Changes
+  - 'skip-release-note'
 
-  $CHANGES
+# Search and replace content in the generated changelog body. Refer to Replacers to learn more about this option.
+# Replacers: https://github.com/marketplace/actions/release-drafter#replacers
+replacers:
+  - search: '(:seedling:|🌱|:bug:|🐛|:sparkles:|✨|:black_nib:|✒️|:bomb:|💣|:arrow_up:|⬆️):\s*'
+    replace: ''
+
+# Sort changelog by merged_at or title. Can be one of: merged_at, title. Default: merged_at.
+#sort-by: merged_at
+
+# Sort changelog in ascending or descending order. Can be one of: ascending, descending. Default: descending.
+sort-direction: ascending
+

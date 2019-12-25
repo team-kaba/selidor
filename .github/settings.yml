@@ -96,6 +96,9 @@ labels:
   - name: skip-auto-complete
     description: Prevent pull requests from being merged automatically.
     color: eeeeee
+  - name: skip-release-note
+    description: Prevent creating release note draft from pull request.
+    color: eeeeee
 #  - name: first-timers-only
 #    # include the old name to rename and existing label
 #    old_name: Help Wanted
