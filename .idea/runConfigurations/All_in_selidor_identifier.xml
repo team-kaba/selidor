@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All in selidor-core" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-    <module name="selidor-core" />
+  <configuration default="false" name="All in selidor-identifier" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="selidor-identifier" />
     <extension name="coverage" sample_coverage="false">
       <pattern>
-        <option name="PATTERN" value="pw.itr0.selidor.*" />
+        <option name="PATTERN" value="pw.itr0.selidor.identifier.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

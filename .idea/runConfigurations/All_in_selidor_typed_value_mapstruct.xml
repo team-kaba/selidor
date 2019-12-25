@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All in selidor-core" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-    <module name="selidor-core" />
+  <configuration default="false" name="All in selidor-typed-value-mapstruct" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="selidor-typed-value-mapstruct" />
     <extension name="coverage" sample_coverage="false">
       <pattern>
-        <option name="PATTERN" value="pw.itr0.selidor.*" />
+        <option name="PATTERN" value="pw.itr0.selidor.type.mapstruct.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
@@ -22,6 +22,7 @@
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="package" />
+    <option name="VM_PARAMETERS" value="-ea --add-opens pw.itr0.selidor.type.mapstruct/pw.itr0.selidor.type.mapstruct.bean=org.mapstruct" />
     <option name="PARAMETERS" value="" />
     <method v="2">
       <option name="Make" enabled="true" />
