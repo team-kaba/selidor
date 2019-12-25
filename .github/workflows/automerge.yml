@@ -1,4 +1,5 @@
-name: automerge
+name: Auto-complete
+
 on:
   pull_request:
     types:
@@ -14,6 +15,7 @@ on:
     types:
       - submitted
   status: {}
+
 jobs:
   automerge:
     runs-on: ubuntu-latest
@@ -22,11 +24,11 @@ jobs:
         uses: "pascalgn/automerge-action@v0.6.1"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: auto-complete
+          MERGE_LABELS: '!skip-auto-complete,!wip'
           MERGE_METHOD: squash
           MERGE_COMMIT_MESSAGE: pull-request-title-and-description
           MERGE_FORKS: false
-          UPDATE_LABELS: auto-complete
+          UPDATE_LABELS: '!skip-auto-complete'
           UPDATE_METHOD: merge
           MERGE_RETRY: 10
           MERGE_RETRIES_SLEEP: 30000
