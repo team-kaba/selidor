@@ -28,3 +28,5 @@ jobs:
           MERGE_FORKS: false
           UPDATE_LABELS: auto-complete
           UPDATE_METHOD: merge
+          MERGE_RETRY: 10
+          MERGE_RETRIES_SLEEP: 30000

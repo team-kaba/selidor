@@ -84,6 +84,9 @@ labels:
   - name: wontfix
     description: This will not be worked on.
     color: ffffff
+  - name: auto-complete
+    description: Automatically merge pull request if it is considered ready.
+    color: eeeeee
 #  - name: first-timers-only
 #    # include the old name to rename and existing label
 #    old_name: Help Wanted
