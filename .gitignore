@@ -192,6 +192,8 @@ buildNumber.properties
 
 ### Junk ###
 junk.md
+tmp/
+_*Scratch.java
 
 
 ### Maven ###
