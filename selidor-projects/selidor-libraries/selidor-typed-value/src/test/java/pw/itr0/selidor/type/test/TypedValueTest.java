@@ -10,7 +10,8 @@ class TypedValueTest {
   @Test
   void nullValue() {
     final TypedObject typedNull = new TypedObject(null);
-    assertThat(typedNull.getValue()).isNull();
+    assertThat(typedNull.getNullableValue()).isNull();
+    assertThat(typedNull.getValue()).isEmpty();
     assertThat(typedNull.isNull()).isTrue();
     assertThat(typedNull.isNotNull()).isFalse();
 

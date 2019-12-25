@@ -28,7 +28,6 @@ public abstract class TypedComparable<
   /**
    * @param value 値
    * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
    */
   protected TypedComparable(RAW value, boolean nullFirst) throws IllegalArgumentException {
     super(value);
@@ -42,11 +41,13 @@ public abstract class TypedComparable<
   /**
    * 値自体の {@code compareTo} の結果を返します。
    *
+   * 比較対象の値として {@code null} が渡された場合、 {@link NullPointerException} を送出します。
+   *
    * @param other 比較対象のオブジェクト
    * @return このオブジェクトが比較対象と比較して小さい時に {@code -1}, 同値の時に {@code 0}, 大きい時に {@code 1}
    */
   @Override
   public int compareTo(SELF other) {
-    return comparator.compare(this.getValue(), other.getValue());
+    return comparator.compare(this.getNullableValue(), other.getNullableValue());
   }
 }

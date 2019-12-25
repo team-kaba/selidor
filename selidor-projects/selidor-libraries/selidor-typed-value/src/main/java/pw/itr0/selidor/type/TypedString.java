@@ -31,7 +31,7 @@ public abstract class TypedString<SELF extends TypedString<? super SELF>>
 
   /**
    * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
   protected TypedString(String value, boolean nullFirst) {
     super(value, nullFirst);
@@ -39,7 +39,7 @@ public abstract class TypedString<SELF extends TypedString<? super SELF>>
 
   /** @return 値が空文字列の場合 {@code true} */
   public boolean isEmpty() {
-    return StringUtils.isEmpty(getValue());
+    return StringUtils.isEmpty(getNullableValue());
   }
 
   /** @return 値が空文字列でない場合 {@code true} */
@@ -49,7 +49,7 @@ public abstract class TypedString<SELF extends TypedString<? super SELF>>
 
   /** @return 値が空白文字のみから構成される文字列の場合 {@code true} */
   public boolean isBlank() {
-    return StringUtils.isBlank(getValue());
+    return StringUtils.isBlank(getNullableValue());
   }
 
   /** @return 値が空白文字のみから構成される文字列でない場合 {@code true} */

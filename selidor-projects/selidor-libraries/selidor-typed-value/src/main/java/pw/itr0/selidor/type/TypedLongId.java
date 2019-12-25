@@ -31,7 +31,7 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
 
   /**
    * @param value 値
-   * @throws IllegalArgumentException {@code value} が {@code null} の場合
+   * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
   protected TypedLongId(LongId value, boolean nullFirst) {
     super(value, nullFirst);
@@ -45,10 +45,8 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
    * @throws IllegalStateException 元の値が {@code null} の場合
    */
   public long longValue() {
-    final LongId value = getValue();
-    if (value == null) {
-      throw new IllegalStateException("LongId is holding null.");
-    }
-    return value.longValue();
+    return getValue()
+        .map(LongId::longValue)
+        .orElseThrow(() -> new IllegalStateException("LongId is holding null."));
   }
 }

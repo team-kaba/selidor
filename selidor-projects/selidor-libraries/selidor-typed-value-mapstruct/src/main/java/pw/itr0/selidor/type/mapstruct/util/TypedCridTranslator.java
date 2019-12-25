@@ -28,10 +28,10 @@ public interface TypedCridTranslator {
   }
 
   default <T extends TypedCrid<T>> String mapTypedCridToString(T id) {
-    if (id == null || id.isNull()) {
+    if (id == null) {
       return null;
     }
-    return id.getValue().toString();
+    return id.getValue().map(Crid::toString).orElse(null);
   }
 
   // UUID
@@ -41,7 +41,7 @@ public interface TypedCridTranslator {
   }
 
   default <T extends TypedCrid<T>> UUID mapTypedCridToUuid(T source) {
-    return (source != null && source.getValue() != null) ? source.getValue().uuid() : null;
+    return source != null ? source.uuid().orElse(null) : null;
   }
 
   // Crid String <-> UUID

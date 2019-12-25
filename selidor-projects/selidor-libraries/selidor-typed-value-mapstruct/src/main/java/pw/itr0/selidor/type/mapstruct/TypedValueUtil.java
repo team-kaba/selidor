@@ -14,7 +14,7 @@ public abstract class TypedValueUtil {
   }
 
   public static <S, T extends TypedValue<S>> S getValue(T source) {
-    return source != null ? source.getValue() : null;
+    return source != null ? source.getNullableValue() : null;
   }
 
   private static <S, T extends TypedValue<S>> T newInstance(

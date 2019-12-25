@@ -28,7 +28,7 @@ public interface TypedLongIdTranslator {
     if (id == null) {
       return null;
     }
-    return String.valueOf(id.getValue());
+    return id.getValue().map(LongId::toString).orElse(null);
   }
 
   // Long
@@ -41,7 +41,7 @@ public interface TypedLongIdTranslator {
     if (id == null) {
       return null;
     }
-    return id.getValue().longValue();
+    return id.getValue().map(LongId::longValue).orElse(null);
   }
 
   default <S extends TypedLongId<S>, T extends TypedLongId<T>> T mapBetweenTypedLongId(

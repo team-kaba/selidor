@@ -1,6 +1,9 @@
 package pw.itr0.selidor.type;
 
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * 型付けられた値をあらわす抽象クラスです。
@@ -17,21 +20,29 @@ import java.util.Objects;
  * @param <RAW> 値の型
  */
 public abstract class TypedValue<RAW> {
-  private final RAW value;
 
-  /** @param value 値 */
-  protected TypedValue(RAW value) {
-    this.value = value;
+  private final RAW raw;
+
+  /** @param raw 値 */
+  protected TypedValue(@Nullable RAW raw) {
+    this.raw = raw;
   }
 
   /** @return 元の値 */
-  public RAW getValue() {
-    return this.value;
+  @Nonnull
+  public Optional<RAW> getValue() {
+    return Optional.ofNullable(this.raw);
+  }
+
+  /** @return 元の値 */
+  @Nullable
+  public RAW getNullableValue() {
+    return this.raw;
   }
 
   /** @return 元の値が {@code null} の場合 {@code true} */
   public boolean isNull() {
-    return this.value == null;
+    return this.raw == null;
   }
 
   /** @return 元の値が {@code null} でない場合 {@code true} */
@@ -41,7 +52,7 @@ public abstract class TypedValue<RAW> {
 
   @Override
   public String toString() {
-    return String.valueOf(getValue());
+    return String.valueOf(raw);
   }
 
   @Override
