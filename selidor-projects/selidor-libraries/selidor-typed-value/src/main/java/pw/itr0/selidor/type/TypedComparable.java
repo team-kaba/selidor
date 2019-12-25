@@ -41,7 +41,7 @@ public abstract class TypedComparable<
   /**
    * 値自体の {@code compareTo} の結果を返します。
    *
-   * 比較対象の値として {@code null} が渡された場合、 {@link NullPointerException} を送出します。
+   * <p>比較対象の値として {@code null} が渡された場合、 {@link NullPointerException} を送出します。
    *
    * @param other 比較対象のオブジェクト
    * @return このオブジェクトが比較対象と比較して小さい時に {@code -1}, 同値の時に {@code 0}, 大きい時に {@code 1}

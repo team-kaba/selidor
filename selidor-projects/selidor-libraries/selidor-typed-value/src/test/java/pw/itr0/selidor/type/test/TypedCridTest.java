@@ -30,7 +30,10 @@ class TypedCridTest {
     final CridGenerator id =
         new CridGenerator(Clock.fixed(instant, ZoneId.systemDefault()), new Random());
     final DocumentId document = new DocumentId(id.next());
-    s.assertThat(document.timestamp()).map(Instant::toEpochMilli).get().isEqualTo(instant.toEpochMilli());
+    s.assertThat(document.timestamp())
+        .map(Instant::toEpochMilli)
+        .get()
+        .isEqualTo(instant.toEpochMilli());
   }
 
   @Test
