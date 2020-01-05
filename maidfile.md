@@ -155,7 +155,7 @@ circleci config process .circleci/config.yml
 mvnwをセットアップします。
 
 ```bash
-mvn -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.2
+mvn -N io.takari:maven:0.7.7:wrapper -Dmaven=3.6.3
 ```
 
 # Test tasks
