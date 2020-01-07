@@ -1,5 +1,6 @@
 {
-  "commitMessagePrefix": "⬆️: ",
+  "commitMessagePrefix": "⬆️(deps): ",
+  "labels": ["deps"],
   "extends": [
     "config:base"
   ],
