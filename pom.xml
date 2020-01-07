@@ -74,19 +74,20 @@
     -->
     <disable.coverage>false</disable.coverage>
 
+    <!-- Aggregator projectはdeployする必要がないので、skipしています。 -->
+    <disable.deploy>true</disable.deploy>
+
     <!-- Mavenプラグインバージョン -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
     <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>5.2.4</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
-
-    <!-- Aggregator projectはdeployする必要がないので、skipしています。 -->
-    <disable.deploy>true</disable.deploy>
   </properties>
 
   <modules>
@@ -102,6 +103,13 @@
     -->
     <pluginManagement>
       <plugins>
+        <!-- インストール -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+        </plugin>
+
         <!-- デプロイ -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -304,6 +312,17 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+      <!--
+          インストール
+            Aggregator projectはinstallする必要がないので、skipできるようにしています。
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <configuration>
+          <skip>${disable.deploy}</skip>
+        </configuration>
       </plugin>
       <!--
           デプロイ
