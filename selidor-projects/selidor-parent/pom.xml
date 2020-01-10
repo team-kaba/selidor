@@ -37,7 +37,7 @@
   </developers>
 
   <scm>
-    <url>${git.url}/selidor-projects/${project.artifactId</url>
+    <url>${git.url}/selidor-projects/${project.artifactId}</url>
     <connection>${git.connection}</connection>
     <developerConnection>${git.developerConnection}</developerConnection>
     <tag>${git.refname}</tag>
@@ -380,6 +380,16 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5-engine</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
