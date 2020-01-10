@@ -44,7 +44,7 @@ public class HttpProxyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  HttpProxies networkProxies() {
+  HttpProxies httpProxies() {
     final List<HttpProxy> proxies = new ArrayList<>(getProxiesSize());
     properties.getProxies().stream().map(this::createNetworkProxy).forEachOrdered(proxies::add);
     if (properties.isUseEnvironmentVariables()) {
