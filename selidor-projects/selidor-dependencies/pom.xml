@@ -137,23 +137,6 @@
         <version>${revision}</version>
       </dependency>
 
-      <!-- ArchUnit -->
-      <dependency>
-        <groupId>com.tngtech.archunit</groupId>
-        <artifactId>archunit</artifactId>
-        <version>${archunit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.tngtech.archunit</groupId>
-        <artifactId>archunit-junit5-api</artifactId>
-        <version>${archunit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.tngtech.archunit</groupId>
-        <artifactId>archunit-junit5-engine</artifactId>
-        <version>${archunit.version}</version>
-      </dependency>
-
       <!-- Spring -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -179,6 +162,23 @@
             <artifactId>junit</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+
+      <!-- ArchUnit -->
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit</artifactId>
+        <version>${archunit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5-api</artifactId>
+        <version>${archunit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5-engine</artifactId>
+        <version>${archunit.version}</version>
       </dependency>
 
       <!-- AssertJ -->
