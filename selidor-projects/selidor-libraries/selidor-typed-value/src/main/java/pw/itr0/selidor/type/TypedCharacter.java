@@ -8,6 +8,7 @@ public abstract class TypedCharacter<SELF extends TypedCharacter<? super SELF>>
 
   public char charValue() {
     return getValue()
-        .orElseThrow(() -> new IllegalStateException("TypedCharacter is holding null."));
+        .orElseThrow(
+            () -> new IllegalStateException(getClass().getSimpleName() + " is holding null."));
   }
 }
