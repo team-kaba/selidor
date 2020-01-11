@@ -46,7 +46,7 @@ public class HttpProxyAutoConfiguration {
   @ConditionalOnMissingBean
   HttpProxies httpProxies() {
     final List<HttpProxy> proxies = new ArrayList<>(getProxiesSize());
-    properties.getProxies().stream().map(this::createNetworkProxy).forEachOrdered(proxies::add);
+    properties.getProxies().stream().map(this::createHttpProxy).forEachOrdered(proxies::add);
     if (properties.isUseEnvironmentVariables()) {
       for (ProxyEnvVar env : PROXY_ENV_VARS) {
         EnvVarProxyLoader.load(env.getVariable(), env.getScheme()).map(proxies::add);
@@ -68,7 +68,7 @@ public class HttpProxyAutoConfiguration {
         + (properties.isUseEnvironmentVariables() ? PROXY_ENV_VARS.size() : 0);
   }
 
-  private HttpProxy createNetworkProxy(ProxySetting proxySetting) {
+  private HttpProxy createHttpProxy(ProxySetting proxySetting) {
     final Builder builder =
         new Builder()
             .addSchemes(proxySetting.getProxyFor().getSchemes())
