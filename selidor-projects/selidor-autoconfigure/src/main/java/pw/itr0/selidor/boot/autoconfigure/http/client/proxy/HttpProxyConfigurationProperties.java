@@ -54,7 +54,7 @@ public class HttpProxyConfigurationProperties {
     @ConstructorBinding
     public ProxySetting(
         URI uri, BasicAuthenticationSetting basicAuthentication, ProxyForSetting proxyFor) {
-      this.uri = Objects.requireNonNull(uri, "proxy uri must not be null.");
+      this.uri = Objects.requireNonNull(uri, "proxy uri must not be null. key=[uri]");
       this.basicAuthentication = basicAuthentication;
       this.proxyFor =
           Objects.requireNonNullElseGet(

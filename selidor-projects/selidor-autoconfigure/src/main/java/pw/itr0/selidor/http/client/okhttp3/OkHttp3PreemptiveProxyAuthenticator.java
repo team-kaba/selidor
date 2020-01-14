@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nonnull;
-import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 import pw.itr0.selidor.http.client.proxy.HttpProxies;
 import pw.itr0.selidor.http.client.proxy.HttpProxy;
 
-public class OkHttp3PreemptiveProxyAuthenticator implements Authenticator {
+public class OkHttp3PreemptiveProxyAuthenticator implements ProxyAuthenticator {
 
   private final HttpProxies proxies;
 

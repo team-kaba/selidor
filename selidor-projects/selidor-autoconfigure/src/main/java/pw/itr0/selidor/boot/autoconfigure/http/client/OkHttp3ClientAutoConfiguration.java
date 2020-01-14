@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(OkHttpClient.class)
 @Import({
-  OkHttp3ClientConfiguration.Direct.class,
+  OkHttp3ClientConfiguration.OkHttp3ClientBuilder.class,
   OkHttp3ClientConfiguration.ProxyAware.class,
   OkHttp3ClientConfiguration.SpringRestTemplate.class
 })

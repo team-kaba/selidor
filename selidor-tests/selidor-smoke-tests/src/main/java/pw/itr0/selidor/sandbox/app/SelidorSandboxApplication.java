@@ -3,6 +3,7 @@ package pw.itr0.selidor.sandbox.app;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.Clock;
+import okhttp3.OkHttpClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +28,10 @@ public class SelidorSandboxApplication {
   @Bean
   IdGenerator<LongId> randomLongGenerator() {
     return new RandomLongIdGenerator();
+  }
+
+  @Bean
+  OkHttpClient okHttpClient(OkHttpClient.Builder builder) {
+    return builder.build();
   }
 }
