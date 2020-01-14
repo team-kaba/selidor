@@ -158,8 +158,8 @@
         <version>${spring-boot.version}</version>
         <exclusions>
           <exclusion>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
