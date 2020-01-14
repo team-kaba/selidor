@@ -47,6 +47,7 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
   public long longValue() {
     return getValue()
         .map(LongId::longValue)
-        .orElseThrow(() -> new IllegalStateException("LongId is holding null."));
+        .orElseThrow(
+            () -> new IllegalStateException(getClass().getSimpleName() + " is holding null."));
   }
 }
