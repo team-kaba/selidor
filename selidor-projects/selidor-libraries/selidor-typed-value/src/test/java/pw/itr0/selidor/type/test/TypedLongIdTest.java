@@ -43,7 +43,7 @@ class TypedLongIdTest {
       s.assertThatThrownBy(id::longValue)
           .isExactlyInstanceOf(IllegalStateException.class)
           .hasNoCause()
-          .hasMessageContaining("LongId is holding null.");
+          .hasMessageContaining("DocumentId is holding null.");
     }
   }
 
