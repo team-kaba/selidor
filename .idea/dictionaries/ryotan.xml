@@ -7,6 +7,7 @@
       <w>artifactory</w>
       <w>artifactory_apikey</w>
       <w>assertj</w>
+      <w>baseof</w>
       <w>bento</w>
       <w>bintray</w>
       <w>circleci</w>
@@ -22,6 +23,7 @@
       <w>doma</w>
       <w>drepository</w>
       <w>fqcn</w>
+      <w>getenv</w>
       <w>gitignore</w>
       <w>hankey</w>
       <w>hotfix</w>
@@ -39,6 +41,7 @@
       <w>postgre</w>
       <w>prng</w>
       <w>refname</w>
+      <w>robotstxt</w>
       <w>rpad</w>
       <w>ryotan</w>
       <w>securerandom</w>
