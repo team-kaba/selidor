@@ -1,0 +1,7 @@
+# i18n関数に文字列を渡すと、[Count: value]のmapになってしまうらしい。
+
+[date_human_readable]
+other = """{{- .Format "2006-01-02" -}}"""
+
+[datetime_human_readable]
+other = """{{- .Format "2006-01-02 15:04:05" -}}"""
