@@ -1,0 +1,4 @@
+{{ $title := partial "funcs/page-link-title" . }}
+<a href="{{- .RelPermalink | relLangURL -}}" title="{{ $title }}">
+  {{ .Params.nav.pre }}<span>{{ $title }}</span>
+</a>

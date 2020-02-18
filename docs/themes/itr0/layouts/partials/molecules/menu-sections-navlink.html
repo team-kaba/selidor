@@ -2,9 +2,7 @@
   {{ $current := . }}
   {{ range partial "funcs/menu-sections" . }}
     <div class="{{ if .IsAncestor $current }} is-active{{ end }}">
-      <a href="{{- .URL | safeURL | relLangURL -}}" title="{{ partial "atoms/menu-section-title-plain" . | safeHTMLAttr }}">
-        {{ partial "atoms/menu-section-title" . | safeHTML }}
-      </a>
+      {{ partial "atoms/anchor-page" . }}
     </div>
   {{ end }}
 </nav>

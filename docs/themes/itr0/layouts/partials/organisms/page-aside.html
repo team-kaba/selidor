@@ -1,0 +1,21 @@
+{{ define "tree" }}
+  <li>
+    {{ partial "atoms/anchor-page" . }}
+    {{ if .IsNode }}
+      <ul>
+        {{ range where .Pages ".IsNode" "eq" true }}
+          {{ template "tree" . }}
+        {{ end }}
+        {{ range where .Pages ".IsNode" "ne" true }}
+          {{ template "tree" . }}
+        {{ end }}
+      </ul>
+    {{ end }}
+  </li>
+{{ end }}
+
+<aside>
+  <ul>
+    {{ template "tree" .FirstSection }}
+  </ul>
+</aside>
