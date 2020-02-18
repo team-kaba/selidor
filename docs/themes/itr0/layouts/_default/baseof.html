@@ -4,7 +4,7 @@
   {{ partial "organisms/head" . }}
 
   {{/* blockはbaseof.htmlでしか定義できないみたいなので、head.htmlではなくてここに定義しています。 */}}
-  <title>{{ block "title" . }}{{ site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
+  <title>{{ block "title" . }}{{ site.Title }} | {{ partial "funcs/page-title" . }}{{ end }}</title>
   {{ block "favicon" . }}{{ partialCached "atoms/favicon" . }}{{ end }}
   {{ block "head-scripts" . }}{{ end }}
 </head>
@@ -15,7 +15,7 @@
   {{ block "site-header" . }}{{ partialCached "organisms/site-header" . }}{{ end }}
 </div>
 <div id="hero">
-  {{ block "hero" . }}{{ partial "organisms/page-hero" . }}{{ end }}
+  {{ block "hero" . }}{{ end }}
 </div>
 <main role="main">
   <section id="main-section">
@@ -23,7 +23,7 @@
       {{ block "aside" . }}{{ end }}
     </div>
     <div id="page-header ">
-      {{ block "page-header" . }}{{ partial "organisms/page-header" . }}{{ end }}
+      {{ block "page-header" . }}{{ end }}
     </div>
     {{/* content-id が page-content となっているページ（テンプレートで上書きしていないページ）は、ヘッダにアンカーリンクが付与されます。 */}}
     <div id="{{ block "content-id" . }}page-content{{ end }}">
@@ -34,7 +34,7 @@
         {{ block "content" . }}{{ end }}
       </div>
       <div id="page-footer">
-        {{ block "page-footer" . }}{{ partial "organisms/page-footer" . }}{{ end }}
+        {{ block "page-footer" . }}{{ end }}
       </div>
     </div>
   </section>
