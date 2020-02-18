@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html>
-    {{- partial "head.html" . -}}
-    <body>
-        {{- partial "header.html" . -}}
-        <div id="content">
-        {{- block "main" . }}{{- end }}
-        </div>
-        {{- partial "footer.html" . -}}
-    </body>
+<html id="docs" lang="{{ site.Language }}">
+<head>
+  {{ partial "head" . }}
+
+  {{/* blockはbaseof.htmlでしか定義できないみたいなので、head.htmlではなくてここに定義しています。 */}}
+  <title>{{ block "title" . }}{{ site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
+  {{ block "favicon" . }}{{ partialCached "atoms/favicon" . }}{{ end }}
+  {{ block "head-scripts" . }}{{ end }}
+</head>
+
+{{/* `HUGO_ENV`に値が設定されていれば、それを body のクラスとして指定します。 */}}
+<body class="{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+<div id="site-header">
+  {{ block "site-header" . }}{{ partialCached "organisms/site-header" . }}{{ end }}
+</div>
+<div id="hero">
+  {{ block "hero" . }}{{ partial "organisms/page-hero" . }}{{ end }}
+</div>
+<main role="main">
+  <section id="main-section">
+    <div id="aside">
+      {{ block "aside" . }}{{ end }}
+    </div>
+    <div id="page-header ">
+      {{ block "page-header" . }}{{ partial "organisms/page-header" . }}{{ end }}
+    </div>
+    <div id="{{ block "content-id" . }}page-content{{ end }}">
+      <div id="announcement">
+        {{ block "announcement" . }}{{ partial "announcement" . }}{{ end }}
+      </div>
+      <div id="page-content">
+        {{ block "content" . }}{{ end }}
+      </div>
+      <div id="page-footer">
+        {{ block "page-footer" . }}{{ partial "organisms/page-footer" . }}{{ end }}
+      </div>
+    </div>
+  </section>
+</main>
+<div id="site-footer">{{ block "footer" . }}{{ partialCached "organisms/site-footer" . }}{{ end }}</div>
+{{ block "scripts" . }}{{ partialCached "scripts" . }}{{ end }}
+</body>
 </html>
