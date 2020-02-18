@@ -5,3 +5,9 @@ other = """{{- .Format "2006-01-02" -}}"""
 
 [datetime_human_readable]
 other = """{{- .Format "2006-01-02 15:04:05" -}}"""
+
+[content_created_at]
+other = """Created:"""
+
+[content_last_modified_at]
+other = """Last Updated:"""
