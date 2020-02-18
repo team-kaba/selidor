@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html id="docs" lang="{{ site.Language }}">
 <head>
-  {{ partial "head" . }}
+  {{ partial "organisms/head" . }}
 
   {{/* blockはbaseof.htmlでしか定義できないみたいなので、head.htmlではなくてここに定義しています。 */}}
   <title>{{ block "title" . }}{{ site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
@@ -25,6 +25,7 @@
     <div id="page-header ">
       {{ block "page-header" . }}{{ partial "organisms/page-header" . }}{{ end }}
     </div>
+    {{/* content-id が page-content となっているページ（テンプレートで上書きしていないページ）は、ヘッダにアンカーリンクが付与されます。 */}}
     <div id="{{ block "content-id" . }}page-content{{ end }}">
       <div id="announcement">
         {{ block "announcement" . }}{{ partial "organisms/announcement" . }}{{ end }}
