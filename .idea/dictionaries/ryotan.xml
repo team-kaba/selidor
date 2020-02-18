@@ -33,8 +33,11 @@
       <w>intra</w>
       <w>jaxrs</w>
       <w>jfrog</w>
+      <w>kaba</w>
       <w>licensable</w>
+      <w>linkify</w>
       <w>mapstruct</w>
+      <w>multilingualization</w>
       <w>mvnw</w>
       <w>okhttp</w>
       <w>owasp</w>
