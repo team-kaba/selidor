@@ -1,0 +1,33 @@
+{{ define "title" }}
+  {{ site.Title }}
+{{ end }}
+
+{{ define "hero" }}
+  {{ partial "organisms/home-page-hero" . }}
+{{ end }}
+
+{{ define "page-header" }}
+  {{ partial "organisms/home-page-header" . }}
+{{ end }}
+
+{{ define "content-id" }}selidor-documents{{ end }}
+
+{{ define "content" }}
+  {{ with .Content }}
+    <article>
+      {{ . }}
+    </article>
+  {{ end }}
+
+  <section>
+    {{ range first 10 site.RegularPages.ByLastmod }}
+      <div>
+        {{ partial "summary.html" . }}
+      </div>
+    {{ end }}
+  </section>
+{{ end }}
+
+{{ define "page-footer" }}
+  {{ partial "organisms/home-page-footer" . }}
+{{ end }}
