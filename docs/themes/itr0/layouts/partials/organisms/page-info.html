@@ -1,0 +1,32 @@
+{{ $isGitHub := and site.Params.github.username site.Params.github.repository }}
+{{ $github := printf "https://github.com/%s/%s" site.Params.github.username site.Params.github.repository }}
+{{ $issueTitle := printf "Document issue with %s" (.RelPermalink | relLangURL) }}
+{{ $contentRootDir := printf "%s/content" (site.Params.rootDirInRepo | default "") }}
+<section id="page-info">
+  {{ if $isGitHub }}
+    <div id="page-info-git">
+      {{ if and (not .Params.noIssue) (ne .Kind "404") (not (strings.Contains .Path "search")) }}
+        <a target="_blank" rel="external nofollow noreferrer noopener"
+           href="{{ printf "%s/issues/new?title=%s" $github $issueTitle | safeURL | absURL }}">
+          {{ i18n "github_create_an_issue" }}
+        </a>
+      {{ end }}
+      {{ if not .Params.noEdit }}
+        {{ with .File }}
+          <a target="_blank" rel="external nofollow noreferrer noopener"
+             href="{{ printf "%s/edit/master/%s/%s" $github $contentRootDir .Path | safeURL | absURL }}">
+            {{ i18n "github_edit_this_page" }}
+          </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  {{ end }}
+
+  <div id="page-info-last-modified">
+    {{ partial "molecules/content_published_at.html" . }}
+    {{ partial "molecules/content_last_modified_at.html" . }}
+    {{ with .File }}
+      (<a href="{{ printf "%s/commits/master/%s/%s" $github $contentRootDir .Path | safeURL | absURL }}">{{ T "page_history" }}</a>)
+    {{ end }}
+  </div>
+</section>
