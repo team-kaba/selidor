@@ -17,28 +17,26 @@
 <div id="hero">
   {{ block "hero" . }}{{ end }}
 </div>
-<main role="main">
-  <section id="main-section">
-    <div id="aside">
-      {{ block "aside" . }}{{ end }}
+<div id="page-container">
+  <div id="aside">
+    {{ block "aside" . }}{{ end }}
+  </div>
+  <div id="page-header ">
+    {{ block "page-header" . }}{{ end }}
+  </div>
+  {{/* content-id が page-content となっているページ（テンプレートで上書きしていないページ）は、ヘッダにアンカーリンクが付与されます。 */}}
+  <div id="{{ block "content-id" . }}page-content{{ end }}">
+    <div id="announcement">
+      {{ block "announcement" . }}{{ partial "organisms/announcement" . }}{{ end }}
     </div>
-    <div id="page-header ">
-      {{ block "page-header" . }}{{ end }}
+    <main role="main" id="page-content">
+      {{ block "content" . }}{{ end }}
+    </main>
+    <div id="page-footer">
+      {{ block "page-footer" . }}{{ end }}
     </div>
-    {{/* content-id が page-content となっているページ（テンプレートで上書きしていないページ）は、ヘッダにアンカーリンクが付与されます。 */}}
-    <div id="{{ block "content-id" . }}page-content{{ end }}">
-      <div id="announcement">
-        {{ block "announcement" . }}{{ partial "organisms/announcement" . }}{{ end }}
-      </div>
-      <div id="page-content">
-        {{ block "content" . }}{{ end }}
-      </div>
-      <div id="page-footer">
-        {{ block "page-footer" . }}{{ end }}
-      </div>
-    </div>
-  </section>
-</main>
+  </div>
+</div>
 <div id="site-footer">{{ block "footer" . }}{{ partialCached "organisms/site-footer" . }}{{ end }}</div>
 {{ block "scripts" . }}{{ partialCached "scripts" . }}{{ end }}
 </body>
