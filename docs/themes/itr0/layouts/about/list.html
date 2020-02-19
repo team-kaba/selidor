@@ -1,0 +1,12 @@
+{{ define "hero" }}
+  {{ partial "organisms/page-hero" . }}
+{{ end }}
+
+{{ define "content" }}
+  <article>
+    <header>
+      <h1>{{ partial "funcs/page-title" . }}</h1>
+    </header>
+    {{ .Content }}
+  </article>
+{{ end }}
