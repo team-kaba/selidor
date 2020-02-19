@@ -1,0 +1,31 @@
+{{ define "hero" }}
+  {{ partial "organisms/page-hero" . }}
+{{ end }}
+
+{{ define "page-header" }}
+  {{ partial "organisms/page-header" . }}
+{{ end }}
+
+{{ define "aside" }}
+  {{ partial "organisms/page-aside" . }}
+{{ end }}
+
+{{ define "content" }}
+  <article>
+    <header>
+      <h1>{{ partial "funcs/page-title" . }}</h1>
+    </header>
+    {{ .Content }}
+  </article>
+  <ul>
+    {{ range .Pages }}
+      <li>
+        {{ partial "summary.html" . }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+
+{{ define "page-footer" }}
+  {{ partial "organisms/page-footer" . }}
+{{ end }}

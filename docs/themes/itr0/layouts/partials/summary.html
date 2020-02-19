@@ -1,0 +1,11 @@
+<article>
+  <div>
+    <span>{{- .Section | humanize | title -}}</span>
+    {{ partial "molecules/content_published_at.html" . }}
+    {{ partial "molecules/content_last_modified_at.html" . }}
+    <h1>{{ partial "atoms/anchor-page" . }}</h1>
+    <div>
+      {{ .Summary }}
+    </div>
+  </div>
+</article>
