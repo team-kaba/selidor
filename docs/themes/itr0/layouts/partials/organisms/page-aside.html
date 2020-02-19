@@ -1,6 +1,6 @@
 {{ define "tree" }}
   <li>
-    {{ partial "atoms/anchor-page" . }}
+    {{ partial "atoms/page-link" . }}
     {{ if .IsNode }}
       <ul>
         {{ range where .Pages ".IsNode" "eq" true }}

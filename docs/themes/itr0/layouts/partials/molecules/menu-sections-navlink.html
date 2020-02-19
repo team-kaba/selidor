@@ -2,7 +2,7 @@
   {{ $current := . }}
   {{ range partial "funcs/menu-sections" . }}
     <div class="{{ if .IsAncestor $current }} is-active{{ end }}">
-      {{ partial "atoms/anchor-page" . }}
+      {{ partial "atoms/page-link" . }}
     </div>
   {{ end }}
 </nav>
