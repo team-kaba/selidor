@@ -1,0 +1,29 @@
+theme = "itr0"
+verbose = true
+themesDir = "../.."
+baseURL = "https://itr0-hugo-theme.itr0.pw/"
+
+enableGitInfo = true
+
+defaultContentLanguage = "ja"
+defaultContentLanguageInSubdir = true
+
+[params]
+rootDirInRepo = "docs/themes/itr0/exampleSite"
+
+[params.anchor]
+headings = true
+
+[taxonomies]
+tag = "tags"
+series = "series"
+keyword = "keywords"
+
+[languages]
+[languages.ja]
+title = "Itr0 Hugo Theme"
+description = "Itr0 Hugo Theme example site"
+hasCJKLanguage = true
+
+[languages.ja.author]
+name = "Ryo Tanaka"
