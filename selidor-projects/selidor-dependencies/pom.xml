@@ -51,7 +51,7 @@
     <archunit.version>0.13.1</archunit.version>
     <assertj-core.version>3.15.0</assertj-core.version>
     <cloudevents-api.version>1.2.0</cloudevents-api.version>
-    <dbunit.version>2.6.0</dbunit.version>
+    <dbunit.version>2.7.0</dbunit.version>
     <doma.boot.version>1.2.1</doma.boot.version>
     <doma.version>2.27.1</doma.version>
     <flyway-dbunit-test.version>6.1.0</flyway-dbunit-test.version>
