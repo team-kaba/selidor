@@ -62,7 +62,7 @@
     <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
     <okhttp.version>4.4.0</okhttp.version>
     <org.json.version>20190722</org.json.version>
-    <retrofit.version>2.7.1</retrofit.version>
+    <retrofit.version>2.7.2</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
     <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
     <spring-cloud.version>Hoxton.SR2</spring-cloud.version>
