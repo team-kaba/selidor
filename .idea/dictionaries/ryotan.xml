@@ -11,6 +11,7 @@
       <w>bento</w>
       <w>bintray</w>
       <w>circleci</w>
+      <w>cmark</w>
       <w>codeclimate</w>
       <w>commitizen</w>
       <w>crid</w>
@@ -26,6 +27,7 @@
       <w>getenv</w>
       <w>gitignore</w>
       <w>gohugo</w>
+      <w>goldmark</w>
       <w>hankey</w>
       <w>hotfix</w>
       <w>hoxton</w>
@@ -51,6 +53,7 @@
       <w>ryotan</w>
       <w>securerandom</w>
       <w>selidor</w>
+      <w>shortcode</w>
       <w>squareup</w>
       <w>suppressions</w>
       <w>tada</w>
