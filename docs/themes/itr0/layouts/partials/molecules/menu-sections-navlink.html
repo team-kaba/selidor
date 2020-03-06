@@ -1,5 +1,5 @@
 <nav>
-  {{ $current := . }}
+  {{ $current := .Page }}
   {{ range partial "funcs/menu-sections" . }}
     <div class="{{ if .IsAncestor $current }} is-active{{ end }}">
       {{ partial "atoms/page-link" . }}
