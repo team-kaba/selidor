@@ -8,13 +8,14 @@ title: "Itr0 Hugo Theme"
 
 ## Markdownの例
 
-* [CommonMark]({{< relref "/markdown/cmark-spec.md" >}})
-* [GitHub flavored markdown]({{< relref "/markdown/gfm-spec.md" >}})
-* [Goldmark extensions]({{< relref "/markdown/goldmark/_index.md" >}})
-* [Emoji cheat sheet]({{< relref "/markdown/emoji-cheat-sheet.md" >}})
+* [CommonMark]({{< relref "/markdown/cmark-spec" >}})
+* [GitHub flavored markdown]({{< relref "/markdown/gfm-spec" >}})
+* [Goldmark extensions]({{< relref "/markdown/goldmark" >}})
+* [Emoji cheat sheet]({{< relref "/markdown/emoji-cheat-sheet" >}})
 
 ## テンプレートのテスト
 
 * [セクションリンク]({{< relref "nav-link-order-test-w-100" >}})
 * {{< page "aside-tree-test" >}}
-* [タイトル]({{< relref "title-generation-test" >}})
+* {{< page "title-generation-test" >}}
+* {{< page "link-test" >}}

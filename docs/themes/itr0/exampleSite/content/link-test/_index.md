@@ -33,14 +33,10 @@ https://google.com
 
 [Emoji Cheat Sheet]({{< relref "/markdown/emoji-cheat-sheet.md" >}})
 
-### Shortcodeのみ
+### Custom Shortcode
 
-{{< highlight markdown >}}
-{{&lt; relref "/markdown/cmark-spec.md" >}}
-{{< / highlight >}}
-
-<pre><code class="language-markdown" data-lang="markdown">
-{{&lt; relref "/markdown/cmark-spec.md" >}}
-</code></pre>
+```hugo
+{{< echo "{{< page \"/markdown/emoji-cheat-sheet.md\" >}}" >}}
+```
 
 {{< relref "/markdown/emoji-cheat-sheet.md" >}}
