@@ -1,17 +1,19 @@
 {{ define "tree" }}
-  <li>
-    {{ partial "atoms/page-link" . }}
-    {{ if .IsNode }}
-      <ul>
-        {{ range where .Pages ".IsNode" "eq" true }}
-          {{ template "tree" . }}
-        {{ end }}
-        {{ range where .Pages ".IsNode" "ne" true }}
-          {{ template "tree" . }}
-        {{ end }}
-      </ul>
-    {{ end }}
-  </li>
+  {{ if not .Params.nav.skip }}
+    <li>
+      {{ partial "atoms/page-link" . }}
+      {{ if .IsNode }}
+        <ul>
+          {{ range where .Pages ".IsNode" "eq" true }}
+            {{ template "tree" . }}
+          {{ end }}
+          {{ range where .Pages ".IsNode" "ne" true }}
+            {{ template "tree" . }}
+          {{ end }}
+        </ul>
+      {{ end }}
+    </li>
+  {{ end }}
 {{ end }}
 
 <aside>

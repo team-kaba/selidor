@@ -9,18 +9,18 @@ weight: -200
 ### Markdown書式で書くと、外部リンクは別タブで開くようになる（`layouts/_default/_markup/render-link.html`が効く）
 
 ```markdown
-[Google](https://google.com)
+[`relref`](https://gohugo.io/content-management/shortcodes/#ref-and-relref)
 ```
 
-[Google](https://google.com)
+[`relref`](https://gohugo.io/content-management/shortcodes/#ref-and-relref)
 
 ### URLだけで書くと、同じタブで開く（`layouts/_default/_markup/render-link.html`が効かない）
 
 ```markdown
-https://google.com
+https://gohugo.io/content-management/shortcodes/#ref-and-relref
 ```
 
-https://google.com
+https://gohugo.io/content-management/shortcodes/#ref-and-relref
 
 ## 内部リンク
 
@@ -40,4 +40,4 @@ https://google.com
 {{< echo "{{< page \"/markdown/emoji-cheat-sheet.md\" >}}" >}}
 ```
 
-{{< relref "/markdown/emoji-cheat-sheet.md" >}}
+{{< page "/markdown/emoji-cheat-sheet.md" >}}
