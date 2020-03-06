@@ -1,7 +1,0 @@
-{{ $sections := slice }}
-{{ range site.Sections }}
-  {{ if and .File (not .Params.nav.skip) }}
-    {{ $sections = $sections | append . }}
-  {{ end }}
-{{ end }}
-{{ return $sections }}

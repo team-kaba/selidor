@@ -1,3 +1,0 @@
-{{ if ne .PublishDate .Lastmod }}
-  <span>{{ T "content_last_modified_at" .Lastmod | safeHTML }}{{ partial "atoms/datetime.html" .Lastmod }}</span>
-{{ end }}

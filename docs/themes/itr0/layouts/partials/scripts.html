@@ -1,4 +1,0 @@
-{{ $assets := .Site.Data.webpack.app }}
-{{ with $assets.js }}
-  <script src="{{ relURL (printf "%s/%s" "dist" .) }}"></script>
-{{ end }}

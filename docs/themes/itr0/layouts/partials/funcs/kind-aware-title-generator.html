@@ -1,7 +1,0 @@
-{{ $title := "" }}
-{{ if eq .Kind "section" }}
-  {{ $title = .File.Dir | path.Base | humanize | title }}
-{{ else if eq .Kind "page" }}
-  {{ $title = .File.ContentBaseName | humanize | title }}
-{{ end }}
-{{ return $title }}

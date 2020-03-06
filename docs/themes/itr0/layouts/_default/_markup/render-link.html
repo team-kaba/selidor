@@ -1,5 +1,0 @@
-{{ $attrs := "" }}
-{{ if strings.HasPrefix .Destination "http" }}
-  {{ $attrs = "target=\"_blank\" rel=\"external nofollow noreferrer noopener\"" }}
-{{ end }}
-{{ partial "atoms/link" (dict "url" (.Destination | safeURL) "title" .Title "text" (.Text | safeHTML) "attrs" $attrs) . }}
