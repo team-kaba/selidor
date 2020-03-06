@@ -1,0 +1,58 @@
+theme: "github.com/team-kaba/itr0-hugo-theme"
+verbose: true
+
+baseURL: "https://selidor.itr0.pw"
+enableEmoji: true
+enableGitInfo: true
+enableInlineShortcodes: true
+enableRobotsTXT: true
+footnoteAnchorPrefix: ""
+footnoteReturnLinkContents: ""
+googleAnalytics: "UA-111111111111-1"
+
+params:
+  anchor:
+    headings: true
+    # TODO: heading-anchor-icon で fa fa-anchor を継承するようにしたら、ここの fa fa-anchor は消す。
+    icon: "<i class=\"heading-anchor-icon fas fa-anchor\" />"
+  rootDirInRepo: "docs"
+  favicon: "favicon.ico"
+  github:
+    username: "team-kaba"
+    repository: "selidor"
+
+defaultContentLanguage: "ja"
+defaultContentLanguageInSubdir: true
+languages:
+  ja:
+    title: "Selidor"
+    description: "Documents for Selidor"
+    languageCode: "ja-JP"
+    hasCJKLanguage: true
+    author:
+      name: "Ryo Tanaka"
+  en:
+    title: "Selidor"
+    description: "Documents for Selidor"
+    languageCode: "en"
+    hasCJKLanguage: true
+    author:
+      name: "Ryo Tanaka"
+
+taxonomies:
+  # タグ
+  tag: "tags"
+  # 連載
+  series: "series"
+  # 関連ページ検索
+  keyword: "keywords"
+
+outputs:
+  home:
+    - "html"
+    - "rss"
+    - "json"
+
+module:
+  imports:
+    - path: "github.com/team-kaba/itr0-hugo-theme"
