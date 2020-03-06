@@ -16,5 +16,5 @@ title: "Itr0 Hugo Theme"
 ## テンプレートのテスト
 
 * [セクションリンク]({{< relref "nav-link-order-test-w-100" >}})
-* [サイドメニュー]({{< relref "aside-tree-test" >}})
+* {{< page "aside-tree-test" >}}
 * [タイトル]({{< relref "title-generation-test" >}})

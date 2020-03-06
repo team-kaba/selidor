@@ -16,10 +16,10 @@ date: 2020-02-29T03:22:28+09:00
 ### URLだけで書くと、同じタブで開く（`layouts/_default/_markup/render-link.html`が効かない）
 
 ```markdown
-[Google](https://google.com)
+https://google.com
 ```
 
-[Google](https://google.com)
+https://google.com
 
 ## 内部リンク
 

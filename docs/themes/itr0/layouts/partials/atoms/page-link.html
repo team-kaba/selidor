@@ -1,4 +1,1 @@
-{{ $title := partial "funcs/page-link-title" . }}
-<a href="{{- .RelPermalink | relLangURL -}}" title="{{ $title }}">
-  {{ .Params.nav.pre }}<span>{{ $title }}</span>
-</a>
+{{ partial "atoms/link" (dict "url" (.RelPermalink | relLangURL) "text" (partial "funcs/page-link-title" .) "pre" .Params.nav.pre ) . }}
