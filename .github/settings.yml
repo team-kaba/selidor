@@ -121,7 +121,8 @@ branches:
         require_code_owner_reviews: false
         # Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
         dismissal_restrictions:
-          users: []
+          users:
+            - ryotan
           teams: []
       # Required. Require status checks to pass before merging. Set to null to disable
       required_status_checks:
