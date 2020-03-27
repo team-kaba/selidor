@@ -86,7 +86,7 @@
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>5.3.1</dependency-check-maven.version>
+    <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
   </properties>
 
