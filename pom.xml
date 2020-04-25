@@ -74,14 +74,6 @@
     -->
     <disable.coverage>false</disable.coverage>
 
-    <!--
-         変更のあったモジュールだけをビルドする設定。
-         Maven実行時に `-Denable.partial-build` を設定することで、指定ブランチからの変更内容に影響を受けるモジュールだけがビルドされるようになります。
-    -->
-    <enable.partial-build>false</enable.partial-build>
-    <!-- origin/masterブランチから変更があったモジュールのみビルドします -->
-    <partial-build.reference-branch>refs/remotes/origin/master</partial-build.reference-branch>
-
     <!-- Aggregator projectはdeployする必要がないので、skipしています。 -->
     <disable.deploy>true</disable.deploy>
 
@@ -96,7 +88,6 @@
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
-    <partial-build-plugin.version>2.7</partial-build-plugin.version>
   </properties>
 
   <modules>
@@ -290,19 +281,6 @@
           </configuration>
         </plugin>
 
-        <!-- 変更影響のあるモジュールのみビルド -->
-        <plugin>
-          <groupId>com.lesfurets</groupId>
-          <artifactId>partial-build-plugin</artifactId>
-          <version>${partial-build-plugin.version}</version>
-          <extensions>true</extensions>
-          <configuration>
-            <referenceBranch>${partial-build.reference-branch}</referenceBranch>
-            <ignoreAllReactorProjects>true</ignoreAllReactorProjects>
-            <enabled>${enable.partial-build}</enabled>
-          </configuration>
-        </plugin>
-
         <!-- 依存ライブラリ、プラグインのバージョン -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -334,10 +312,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>com.lesfurets</groupId>
-        <artifactId>partial-build-plugin</artifactId>
       </plugin>
       <!--
           インストール
