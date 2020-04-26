@@ -335,27 +335,27 @@
       <dependency>
         <groupId>com.github.database-rider</groupId>
         <artifactId>rider-core</artifactId>
-        <version>${database-rider.version</version>
+        <version>${database-rider.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.database-rider</groupId>
         <artifactId>rider-spring</artifactId>
-        <version>${database-rider.version</version>
+        <version>${database-rider.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.database-rider</groupId>
         <artifactId>rider-cdi</artifactId>
-        <version>${database-rider.version</version>
+        <version>${database-rider.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.database-rider</groupId>
         <artifactId>rider-junit5</artifactId>
-        <version>${database-rider.version</version>
+        <version>${database-rider.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.database-rider</groupId>
         <artifactId>rider-cucumber</artifactId>
-        <version>${database-rider.version</version>
+        <version>${database-rider.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
