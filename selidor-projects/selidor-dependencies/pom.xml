@@ -63,7 +63,7 @@
     <mybatis.version>3.5.3</mybatis.version>
     <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
     <okhttp.version>4.7.2</okhttp.version>
-    <org.json.version>20190722</org.json.version>
+    <org.json.version>20200518</org.json.version>
     <retrofit.version>2.9.0</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
     <spring-boot.version>2.2.7.RELEASE</spring-boot.version>
