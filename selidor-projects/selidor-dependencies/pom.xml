@@ -96,7 +96,7 @@
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
     <duplicate-finder-maven-plugin.version>1.4.0</duplicate-finder-maven-plugin.version>
-    <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
+    <fmt-maven-plugin.version>2.10</fmt-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
 
     <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
