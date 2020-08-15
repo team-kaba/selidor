@@ -3,7 +3,7 @@ package pw.itr0.selidor.type;
 import java.util.function.Function;
 
 public abstract class TypedNumeric<
-    SELF extends TypedNumeric<? super SELF, RAW>, RAW extends Number & Comparable<RAW>>
+        SELF extends TypedNumeric<? super SELF, RAW>, RAW extends Number & Comparable<RAW>>
     extends TypedComparable<SELF, RAW> {
 
   protected TypedNumeric(RAW value, boolean nullFirst) {
