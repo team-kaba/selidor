@@ -3,7 +3,7 @@ package pw.itr0.selidor.type;
 import java.util.function.Function;
 
 public abstract class TypedNumeric<
-        SELF extends TypedNumeric<? super SELF, RAW>, RAW extends Number & Comparable<RAW>>
+    SELF extends TypedNumeric<? super SELF, RAW>, RAW extends Number & Comparable<RAW>>
     extends TypedComparable<SELF, RAW> {
 
   protected TypedNumeric(RAW value, boolean nullFirst) {
@@ -51,9 +51,6 @@ public abstract class TypedNumeric<
   }
 
   protected <T> T getPrimitiveValue(Function<Number, T> mapper) {
-    return getValue()
-        .map(mapper)
-        .orElseThrow(
-            () -> new IllegalStateException(getClass().getSimpleName() + " is holding null."));
+    return getValue().map(mapper).orElseThrow(() -> new NullValueException(getClass()));
   }
 }
