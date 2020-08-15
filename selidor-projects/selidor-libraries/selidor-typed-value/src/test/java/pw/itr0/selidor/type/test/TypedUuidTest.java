@@ -1,13 +1,12 @@
 package pw.itr0.selidor.type.test;
 
+import java.util.UUID;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pw.itr0.selidor.type.NullValueUnboxingException;
 import pw.itr0.selidor.type.TypedUuid;
-
-import java.util.UUID;
 
 @ExtendWith(SoftAssertionsExtension.class)
 class TypedUuidTest {

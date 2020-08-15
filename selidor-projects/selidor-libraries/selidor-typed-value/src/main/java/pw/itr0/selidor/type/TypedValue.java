@@ -1,9 +1,9 @@
 package pw.itr0.selidor.type;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * 型付けられた値をあらわす抽象クラスです。

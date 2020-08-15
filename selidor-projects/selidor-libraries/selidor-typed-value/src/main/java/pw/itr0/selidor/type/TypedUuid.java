@@ -33,7 +33,7 @@ public abstract class TypedUuid<SELF extends TypedUuid<? super SELF>>
    * @param value 値
    * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
-  protected TypedUuid(UUID value, boolean nullFirst) throws IllegalArgumentException {
+  protected TypedUuid(UUID value, boolean nullFirst) {
     super(value, nullFirst);
   }
 
@@ -62,8 +62,7 @@ public abstract class TypedUuid<SELF extends TypedUuid<? super SELF>>
   }
 
   /**
-   * {@link UUID#version()}の値を返します。値が{@code null}の場合は、{@link
-   * NullValueUnboxingException}が送出されます。
+   * {@link UUID#version()}の値を返します。値が{@code null}の場合は、{@link NullValueUnboxingException}が送出されます。
    *
    * @return {@link UUID#version()}
    */
