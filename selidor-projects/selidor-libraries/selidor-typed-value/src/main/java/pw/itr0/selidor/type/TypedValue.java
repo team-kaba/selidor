@@ -17,6 +17,13 @@ import java.util.Optional;
  *   <li>型パラメータ {@code <SELF>} に自分自身の型を設定してください。
  * </ul>
  *
+ * <h3>{@code null}の扱いに関する規約</h3>
+ *
+ * <p>値として{@code null}を保持している{@code TypedValue}に対して、値に対してアクセスしてオブジェクトを返すメソッドが呼び出された場合は、{@code
+ * null}を返してください。
+ *
+ * <p>プリミティブ型を返すメソッドが呼び出された場合、{@link NullValueUnboxingException}を送出してください。
+ *
  * @param <RAW> 値の型
  */
 public abstract class TypedValue<RAW> {

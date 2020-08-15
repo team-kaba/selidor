@@ -50,7 +50,7 @@ public abstract class TypedNumeric<
     return this.compareTo(other) >= 0;
   }
 
-  protected <T> T getPrimitiveValue(Function<Number, T> mapper) {
-    return getValue().map(mapper).orElseThrow(() -> new NullValueException(getClass()));
+  protected <T> T getPrimitiveValue(Function<Number, T> mapper) throws NullValueUnboxingException {
+    return getValue().map(mapper).orElseThrow(() -> new NullValueUnboxingException(getClass()));
   }
 }

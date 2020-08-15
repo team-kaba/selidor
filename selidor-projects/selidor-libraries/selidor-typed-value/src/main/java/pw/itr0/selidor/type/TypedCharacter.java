@@ -7,7 +7,7 @@ public abstract class TypedCharacter<SELF extends TypedCharacter<? super SELF>>
     super(value, nullFirst);
   }
 
-  public char charValue() {
-    return getValue().orElseThrow(() -> new NullValueException(getClass()));
+  public char charValue() throws NullValueUnboxingException {
+    return getValue().orElseThrow(() -> new NullValueUnboxingException(getClass()));
   }
 }
