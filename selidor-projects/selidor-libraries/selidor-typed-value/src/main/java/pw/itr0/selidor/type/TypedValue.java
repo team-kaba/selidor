@@ -1,9 +1,9 @@
 package pw.itr0.selidor.type;
 
-import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * 型付けられた値をあらわす抽象クラスです。
@@ -57,16 +57,20 @@ public abstract class TypedValue<RAW> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     TypedValue<?> that = (TypedValue<?>) o;
 
-    return Objects.equals(getValue(), that.getValue());
+    return Objects.equals(raw, that.raw);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(getValue());
+    return Objects.hashCode(raw);
   }
 }
