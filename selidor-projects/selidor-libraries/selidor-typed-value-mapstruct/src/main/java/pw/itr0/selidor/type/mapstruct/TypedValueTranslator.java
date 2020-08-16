@@ -15,6 +15,7 @@ import pw.itr0.selidor.type.mapstruct.util.TypedLongIdTranslator;
 import pw.itr0.selidor.type.mapstruct.util.TypedLongTranslator;
 import pw.itr0.selidor.type.mapstruct.util.TypedShortTranslator;
 import pw.itr0.selidor.type.mapstruct.util.TypedStringTranslator;
+import pw.itr0.selidor.type.mapstruct.util.TypedUuidTranslator;
 
 /** {@link pw.itr0.selidor.type} に配置されている {@link TypedValue} の抽象クラスと基本クラスの間の変換を行うクラスです。 */
 public class TypedValueTranslator
@@ -30,7 +31,8 @@ public class TypedValueTranslator
         TypedLongIdTranslator,
         TypedLongTranslator,
         TypedShortTranslator,
-        TypedStringTranslator {
+        TypedStringTranslator,
+        TypedUuidTranslator {
 
   ////////////////////////////////////////////////////////////////////////////////////
   // Basic types

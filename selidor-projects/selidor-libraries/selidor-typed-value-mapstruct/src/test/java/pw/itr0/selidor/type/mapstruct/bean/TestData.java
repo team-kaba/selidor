@@ -38,4 +38,6 @@ class TestData {
   static final Money MONEY = new Money((int) LONG);
 
   static final ZoneOffset ZONE_OFFSET = ZoneOffset.ofHours(9);
+
+  static final UUID RANDOM_UUID = UUID.randomUUID();
 }

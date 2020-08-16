@@ -18,6 +18,7 @@ import pw.itr0.selidor.type.mapstruct.bean.another.AnotherLongValue;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherShortValue;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherSomeValue;
 import pw.itr0.selidor.type.mapstruct.bean.another.AnotherStringValue;
+import pw.itr0.selidor.type.mapstruct.bean.another.AnotherUuidValue;
 
 @Data
 class EntityAnother {
@@ -54,6 +55,7 @@ class EntityAnother {
   private AnotherStringValue string;
   private ValueObjectAnother child;
   private List<ValueObjectAnother> children;
+  private AnotherUuidValue uuid;
 
   static EntityAnother nonNullValues() {
     final EntityAnother entity = new EntityAnother();
@@ -83,6 +85,7 @@ class EntityAnother {
     entity.setChild(ValueObjectAnother.nonNullValues());
     entity.setChildren(
         List.of(ValueObjectAnother.nonNullValues(), ValueObjectAnother.nonNullValues()));
+    entity.setUuid(new AnotherUuidValue(TestData.RANDOM_UUID));
     return entity;
   }
 }
