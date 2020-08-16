@@ -7,6 +7,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pw.itr0.selidor.identifier.random.LongId;
+import pw.itr0.selidor.type.NullValueUnboxingException;
 import pw.itr0.selidor.type.TypedLongId;
 
 @ExtendWith(SoftAssertionsExtension.class)
@@ -41,7 +42,7 @@ class TypedLongIdTest {
     {
       final DocumentId id = new DocumentId(null);
       s.assertThatThrownBy(id::longValue)
-          .isExactlyInstanceOf(IllegalStateException.class)
+          .isExactlyInstanceOf(NullValueUnboxingException.class)
           .hasNoCause()
           .hasMessageContaining("DocumentId is holding null.");
     }

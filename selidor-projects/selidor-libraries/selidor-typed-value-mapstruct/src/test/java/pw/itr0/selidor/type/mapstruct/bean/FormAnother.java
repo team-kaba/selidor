@@ -35,6 +35,7 @@ class FormAnother {
   private String string;
   private NestedFormAnother child;
   private List<NestedFormAnother> children;
+  private UUID uuid;
 
   static FormAnother nonNullValues() {
     final FormAnother form = new FormAnother();
@@ -63,6 +64,7 @@ class FormAnother {
     form.setString(TestData.STRING);
     form.setChild(NestedFormAnother.nonNullValues());
     form.setChildren(List.of(NestedFormAnother.nonNullValues(), NestedFormAnother.nonNullValues()));
+    form.setUuid(TestData.RANDOM_UUID);
     return form;
   }
 }
