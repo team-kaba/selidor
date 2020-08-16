@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.UUID;
 import lombok.Data;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneSomeValue.Money;
 
@@ -34,6 +35,7 @@ class FormOne {
   private String string;
   private NestedFormOne child;
   private List<NestedFormOne> children;
+  private UUID uuid;
 
   static FormOne nonNullValues() {
     final FormOne form = new FormOne();
@@ -62,6 +64,7 @@ class FormOne {
     form.setString(TestData.STRING);
     form.setChild(NestedFormOne.nonNullValues());
     form.setChildren(List.of(NestedFormOne.nonNullValues(), NestedFormOne.nonNullValues()));
+    form.setUuid(TestData.RANDOM_UUID);
     return form;
   }
 }

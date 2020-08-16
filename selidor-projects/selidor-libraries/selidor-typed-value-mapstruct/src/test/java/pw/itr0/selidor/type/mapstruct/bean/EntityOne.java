@@ -18,6 +18,7 @@ import pw.itr0.selidor.type.mapstruct.bean.one.OneLongValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneShortValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneSomeValue;
 import pw.itr0.selidor.type.mapstruct.bean.one.OneStringValue;
+import pw.itr0.selidor.type.mapstruct.bean.one.OneUuidValue;
 
 @Data
 class EntityOne {
@@ -52,6 +53,7 @@ class EntityOne {
   private OneStringValue string;
   private ValueObjectOne child;
   private List<ValueObjectOne> children;
+  private OneUuidValue uuid;
 
   static EntityOne nonNullValues() {
     final EntityOne entity = new EntityOne();
@@ -80,6 +82,7 @@ class EntityOne {
     entity.setString(new OneStringValue(TestData.STRING));
     entity.setChild(ValueObjectOne.nonNullValues());
     entity.setChildren(List.of(ValueObjectOne.nonNullValues(), ValueObjectOne.nonNullValues()));
+    entity.setUuid(new OneUuidValue(TestData.RANDOM_UUID));
     return entity;
   }
 }

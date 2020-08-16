@@ -15,6 +15,7 @@
  *   <li>{@link java.time.Year}, {@link java.time.YearMonth}, {@link java.time.Month}, {@link
  *       java.time.MonthDay}
  *   <li>{@link java.time.Duration}
+ *   <li>{@link java.util.UUID}
  * </ul>
  */
 package pw.itr0.selidor.type;

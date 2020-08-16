@@ -44,10 +44,10 @@ public abstract class TypedLongId<SELF extends TypedLongId<? super SELF>>
    * @return IDの値
    * @throws IllegalStateException 元の値が {@code null} の場合
    */
-  public long longValue() {
+  public long longValue() throws NullValueUnboxingException {
     return getValue()
         .map(LongId::longValue)
         .orElseThrow(
-            () -> new IllegalStateException(getClass().getSimpleName() + " is holding null."));
+            () -> new NullValueUnboxingException(getClass().getSimpleName() + " is holding null."));
   }
 }
