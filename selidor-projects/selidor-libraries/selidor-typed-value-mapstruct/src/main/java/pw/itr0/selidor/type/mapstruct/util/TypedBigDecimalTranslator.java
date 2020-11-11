@@ -19,7 +19,7 @@ public interface TypedBigDecimalTranslator {
 
   default String mapTypedBigDecimalToString(TypedBigDecimal<?> source) {
     BigDecimal value = getValue(source);
-    return value.toPlainString();
+    return value == null ? null : value.toPlainString();
   }
 
   default <T extends TypedBigDecimal<T>> T mapStringToTypedBigDecimal(
