@@ -7,4 +7,12 @@ public abstract class TypedBigDecimal<SELF extends TypedBigDecimal<? super SELF>
   protected TypedBigDecimal(BigDecimal value, boolean nullFirst) {
     super(value, nullFirst);
   }
+
+  protected TypedBigDecimal(String value, boolean nullFirst) {
+    this(new BigDecimal(value), nullFirst);
+  }
+
+  public String toPlainString() {
+    return getNullableValue() == null ? null : getNullableValue().toPlainString();
+  }
 }

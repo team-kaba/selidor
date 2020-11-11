@@ -17,6 +17,16 @@ public interface TypedBigDecimalTranslator {
     return mapGeneric(source, BigDecimal.class, targetType);
   }
 
+  default String mapTypedBigDecimalToString(TypedBigDecimal<?> source) {
+    BigDecimal value = getValue(source);
+    return value.toPlainString();
+  }
+
+  default <T extends TypedBigDecimal<T>> T mapStringToTypedBigDecimal(
+      String source, @TargetType Class<T> targetType) {
+    return mapGeneric(new BigDecimal(source), BigDecimal.class, targetType);
+  }
+
   default <S extends TypedBigDecimal<S>, T extends TypedBigDecimal<T>> T mapBetweenTypedBigDecimal(
       S source, @TargetType Class<T> targetType) {
     return mapGeneric(getValue(source), BigDecimal.class, targetType);
