@@ -54,7 +54,7 @@
     <checkerframework.version>3.7.1</checkerframework.version>
     <database-rider.version>1.18.0</database-rider.version>
     <dbunit.version>2.7.0</dbunit.version>
-    <doma.boot.version>1.4.0</doma.boot.version>
+    <doma.boot.version>1.5.0</doma.boot.version>
     <doma.version>2.29.0</doma.version>
     <flyway-dbunit-test.version>6.4.0</flyway-dbunit-test.version>
     <jsr305.version>3.0.2</jsr305.version>
