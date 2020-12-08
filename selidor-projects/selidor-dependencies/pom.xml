@@ -61,7 +61,7 @@
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
     <mapstruct.version>1.4.1.Final</mapstruct.version>
     <mybatis.version>3.5.3</mybatis.version>
-    <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
+    <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
     <okhttp.version>4.9.0</okhttp.version>
     <org.json.version>20201115</org.json.version>
     <retrofit.version>2.9.0</retrofit.version>
@@ -234,13 +234,10 @@
       <!-- MyBatis -->
       <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis-spring-boot-starter.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter-test</artifactId>
-        <version>${mybatis-spring-boot-starter.version}</version>
+        <artifactId>mybatis-spring-boot</artifactId>
+        <version>${mybatis-spring-boot.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
 
       <!-- OkHttp / Retrofit -->
