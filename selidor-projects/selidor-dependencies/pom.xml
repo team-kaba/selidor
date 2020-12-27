@@ -60,6 +60,7 @@
     <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
     <mapstruct.version>1.4.1.Final</mapstruct.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
     <okhttp.version>4.9.0</okhttp.version>
     <org.json.version>20201115</org.json.version>
@@ -228,6 +229,11 @@
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct-processor</artifactId>
         <version>${mapstruct.version}</version>
+      </dependency>
+      <dependency> <!-- Required to use MapStruct together with Lombok. See: https://mapstruct.org/faq/#Can-I-use-MapStruct-together-with-Project-Lombok -->
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-mapstruct-binding</artifactId>
+        <version>${lombok-mapstruct-binding.version}</version>
       </dependency>
 
       <!-- MyBatis -->
