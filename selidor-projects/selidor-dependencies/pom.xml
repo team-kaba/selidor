@@ -59,8 +59,8 @@
     <flyway-dbunit-test.version>6.4.0</flyway-dbunit-test.version>
     <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
-    <mapstruct.version>1.4.1.Final</mapstruct.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <mapstruct.version>1.4.1.Final</mapstruct.version>
     <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
     <okhttp.version>4.9.0</okhttp.version>
     <org.json.version>20201115</org.json.version>
