@@ -12,6 +12,8 @@ import java.util.Random;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pw.itr0.selidor.identifier.IdParseFailedException;
 
@@ -61,6 +63,7 @@ class RandomLongIdGeneratorTest {
   }
 
   @Test
+  @DisabledOnOs(OS.WINDOWS)
   // FIXME: マルチスレッドで実行したら死んでしまうかもしれない。
   void testNativePRNGNonBlockingNotExists(SoftAssertions s) throws NoSuchAlgorithmException {
     final Provider[] providers = Security.getProviders("SecureRandom.NativePRNGNonBlocking");
