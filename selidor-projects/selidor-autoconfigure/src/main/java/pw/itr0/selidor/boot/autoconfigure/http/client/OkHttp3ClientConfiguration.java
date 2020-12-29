@@ -53,8 +53,7 @@ abstract class OkHttp3ClientConfiguration {
     @ConditionalOnBean(ProxySelector.class)
     OkHttp3ClientBuilderCustomizer proxiedOkHttpClientBuilder(
         ProxySelector proxySelector, ProxyAuthenticator authenticator) {
-      return builder ->
-          builder.proxySelector(proxySelector).proxyAuthenticator(authenticator);
+      return builder -> builder.proxySelector(proxySelector).proxyAuthenticator(authenticator);
     }
 
     @Bean
