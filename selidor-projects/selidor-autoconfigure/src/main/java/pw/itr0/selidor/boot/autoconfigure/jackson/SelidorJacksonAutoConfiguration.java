@@ -15,7 +15,7 @@ public class SelidorJacksonAutoConfiguration {
   @Bean
   // Spring BootのApplication PropertiesでのJacksonの設定が有効になるように、Listの先頭に入れる。
   @Order(Ordered.HIGHEST_PRECEDENCE)
-  Jackson2ObjectMapperBuilderCustomizer selidorStandardJacksonConfiguration() {
-    return new SelidorStandardJacksonConfiguration();
+  Jackson2ObjectMapperBuilderCustomizer selidorStandardObjectMapperBuilderCustomizer() {
+    return new SelidorStandardObjectMapperBuilderCustomizer();
   }
 }
