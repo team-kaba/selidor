@@ -88,5 +88,17 @@
       <artifactId>slf4j-api</artifactId>
       <optional>true</optional>
     </dependency>
+
+    <!-- テスト用のライブラリ -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency> <!-- spring-boot-starter-jsonと併用することを想定 -->
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-json</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
