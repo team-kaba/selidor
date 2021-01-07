@@ -7,7 +7,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-public class SelidorStandardJacksonConfiguration implements Jackson2ObjectMapperBuilderCustomizer {
+public class SelidorStandardObjectMapperBuilderCustomizer
+    implements Jackson2ObjectMapperBuilderCustomizer {
 
   @Override
   public void customize(Jackson2ObjectMapperBuilder jacksonObjectMapperBuilder) {

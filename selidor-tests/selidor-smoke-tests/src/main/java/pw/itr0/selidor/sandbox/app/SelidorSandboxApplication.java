@@ -21,8 +21,12 @@ public class SelidorSandboxApplication {
 
   @Bean
   IdGenerator<Crid> cridGenerator() throws NoSuchAlgorithmException {
-    return new CridGenerator(
-        Clock.systemDefaultZone(), SecureRandom.getInstance("NativePRNGNonBlocking"));
+    try {
+      return new CridGenerator(
+          Clock.systemDefaultZone(), SecureRandom.getInstance("NativePRNGNonBlocking"));
+    } catch (NoSuchAlgorithmException e) {
+      return new CridGenerator(Clock.systemDefaultZone(), SecureRandom.getInstanceStrong());
+    }
   }
 
   @Bean
