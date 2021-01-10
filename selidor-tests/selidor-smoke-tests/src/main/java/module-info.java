@@ -8,7 +8,7 @@ module pw.itr0.selidor.smoke.tests {
   requires transitive pw.itr0.selidor.identifier;
   requires transitive pw.itr0.selidor.boot.autoconfigure;
   requires transitive pw.itr0.selidor.http.client;
-  requires transitive com.fasterxml.classmate;
+  requires transitive com.fasterxml.jackson.databind;
   requires okhttp3;
   requires reactor.core;
   requires spring.boot.autoconfigure;

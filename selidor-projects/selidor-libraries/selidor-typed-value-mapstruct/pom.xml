@@ -23,6 +23,20 @@
     <tag>${git.refname}</tag>
   </scm>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <arg>-Amapstruct.verbose=true</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <dependency>
       <groupId>pw.itr0.selidor</groupId>
@@ -41,6 +55,11 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok-mapstruct-binding</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -20,7 +20,8 @@ module pw.itr0.selidor.boot.autoconfigure {
   requires static transitive com.fasterxml.jackson.databind;
   requires static okhttp3;
   requires static reactor.core;
-  requires static reactor.netty;
+  requires static reactor.netty.core;
+  requires static reactor.netty.http;
   requires static io.netty.codec.http;
   requires static spring.beans;
   requires static spring.boot;

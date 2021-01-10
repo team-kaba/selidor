@@ -199,16 +199,6 @@
           </configuration>
         </plugin>
 
-        <!-- Exec -->
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <configuration>
-            <!--suppress MavenModelInspection -->
-            <mainClass>${start-class}</mainClass>
-          </configuration>
-        </plugin>
-
         <!-- Integration Test -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -223,6 +213,7 @@
             </execution>
           </executions>
           <configuration>
+            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
             <!--
                  integration-test phaseでは、TestcontainersやSpring Boot Testを利用する重いテストを実行します。
                  ※ JUnit5の場合、@Tagで指定したタグがgroupsに含まれているものだけが実行されるようになります。
