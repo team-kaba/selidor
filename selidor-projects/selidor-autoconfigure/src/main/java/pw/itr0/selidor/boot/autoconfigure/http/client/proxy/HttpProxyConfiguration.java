@@ -14,9 +14,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import pw.itr0.selidor.http.client.proxy.HttpProxies;
 import pw.itr0.selidor.http.client.proxy.HttpProxy;
 import reactor.netty.http.client.HttpClient;
-import reactor.netty.tcp.ProxyProvider;
-import reactor.netty.tcp.ProxyProvider.Proxy;
-import reactor.netty.tcp.ProxyProvider.TypeSpec;
+import reactor.netty.transport.ProxyProvider;
+import reactor.netty.transport.ProxyProvider.Proxy;
+import reactor.netty.transport.ProxyProvider.TypeSpec;
 
 abstract class HttpProxyConfiguration {
 
@@ -37,10 +37,7 @@ abstract class HttpProxyConfiguration {
       return builder ->
           builder.clientConnector(
               new ReactorClientHttpConnector(
-                  factory,
-                  client ->
-                      client.tcpConfiguration(
-                          tcpClient -> tcpClient.proxy(webClientProxyBuilder(p)))));
+                  factory, client -> client.proxy(webClientProxyBuilder(p))));
     }
 
     private Consumer<TypeSpec> webClientProxyBuilder(HttpProxy p) {
