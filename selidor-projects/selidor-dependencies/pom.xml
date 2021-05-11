@@ -50,7 +50,7 @@
     <!-- 3rd Party Libraries -->
     <archunit.version>0.17.0</archunit.version>
     <assertj-core.version>3.19.0</assertj-core.version>
-    <cloudevents-api.version>2.0.0</cloudevents-api.version>
+    <cloudevents-api.version>2.1.1</cloudevents-api.version>
     <checkerframework.version>3.12.0</checkerframework.version>
     <database-rider.version>1.23.0</database-rider.version>
     <dbunit.version>2.7.0</dbunit.version>
