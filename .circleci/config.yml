@@ -272,78 +272,78 @@ workflows:
           requires:
             - build_production_projects
 
-  snapshot:
-    jobs:
-      - prepare_maven_metadata:
-          context: bintray
-          filters: &master
-            branches:
-              only:
-                - master
-                - /\d+\.\d+\.x/
-            tags:
-              ignore:
-                - /v\d+\.\d+\.\d+/
-          release_type: snapshot
-      - build_production_projects:
-          filters: *master
-          requires:
-            - prepare_maven_metadata
-      - smoke_tests:
-          filters: *master
-          requires:
-            - build_production_projects
-      - integration_tests:
-          filters: *master
-          requires:
-            - build_production_projects
-      - stage:
-          context: bintray
-          filters: *master
-          requires:
-            - smoke_tests
-            - integration_tests
-          release_type: snapshot
+#  snapshot:
+#    jobs:
+#      - prepare_maven_metadata:
+#          context: bintray
+#          filters: &master
+#            branches:
+#              only:
+#                - master
+#                - /\d+\.\d+\.x/
+#            tags:
+#              ignore:
+#                - /v\d+\.\d+\.\d+/
+#          release_type: snapshot
+#      - build_production_projects:
+#          filters: *master
+#          requires:
+#            - prepare_maven_metadata
+#      - smoke_tests:
+#          filters: *master
+#          requires:
+#            - build_production_projects
+#      - integration_tests:
+#          filters: *master
+#          requires:
+#            - build_production_projects
+#      - stage:
+#          context: bintray
+#          filters: *master
+#          requires:
+#            - smoke_tests
+#            - integration_tests
+#          release_type: snapshot
 
-  release:
-    jobs:
-      - prepare_maven_metadata:
-          context: bintray
-          filters: &release
-            tags:
-              only:
-                - /v\d+\.\d+\.\d+/
-            branches:
-              ignore:
-                - /.*/
-          release_type: release
-      - build_production_projects:
-          filters: *release
-          requires:
-            - prepare_maven_metadata
-      - smoke_tests:
-          filters: *release
-          requires:
-            - build_production_projects
-      - integration_tests:
-          filters: *release
-          requires:
-            - build_production_projects
-      - stage:
-          context: bintray
-          filters: *release
-          requires:
-            - smoke_tests
-            - integration_tests
-          release_type: release
-      - wait_for_approval:
-          filters: *release
-          type: approval
-          requires:
-            - stage
-      - promote:
-          context: bintray
-          filters: *release
-          requires:
-            - wait_for_approval
+#  release:
+#    jobs:
+#      - prepare_maven_metadata:
+#          context: bintray
+#          filters: &release
+#            tags:
+#              only:
+#                - /v\d+\.\d+\.\d+/
+#            branches:
+#              ignore:
+#                - /.*/
+#          release_type: release
+#      - build_production_projects:
+#          filters: *release
+#          requires:
+#            - prepare_maven_metadata
+#      - smoke_tests:
+#          filters: *release
+#          requires:
+#            - build_production_projects
+#      - integration_tests:
+#          filters: *release
+#          requires:
+#            - build_production_projects
+#      - stage:
+#          context: bintray
+#          filters: *release
+#          requires:
+#            - smoke_tests
+#            - integration_tests
+#          release_type: release
+#      - wait_for_approval:
+#          filters: *release
+#          type: approval
+#          requires:
+#            - stage
+#      - promote:
+#          context: bintray
+#          filters: *release
+#          requires:
+#            - wait_for_approval
       # After promoting releases, must bump up revisions in pom.xml
