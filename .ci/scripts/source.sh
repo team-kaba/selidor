@@ -6,6 +6,5 @@ script_dir="$(
 )"
 
 source "${script_dir}/env.sh"
-source "${script_dir}/functions.sh"
 source "${script_dir}/functions-git.sh"
 source "${script_dir}/functions-java.sh"

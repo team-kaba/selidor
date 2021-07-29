@@ -1,0 +1,24 @@
+name: Report
+
+on:
+  workflow_run:
+    workflows:
+      - Build and Test
+      - Build, Test and Deploy
+    types:
+      - completed
+
+jobs:
+  report:
+    name: Report
+    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Jest results
+        uses: dorny/test-reporter@v1
+        with:
+          name: JUnit results (${{ github.event.workflow.name }})
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact: workflow-results
+          path: '**/target/*-reports/**/TEST-*.xml'
+          reporter: java-junit

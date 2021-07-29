@@ -130,9 +130,7 @@ branches:
         # Required. The list of status checks to require in order to merge into this branch
         contexts:
           - WIP
-          - 'ci/circleci: build_production_projects'
-          - 'ci/circleci: integration_tests'
-          - 'ci/circleci: smoke_tests'
+          - 'Build and Test'
           - 'codeclimate'
       # Required. Enforce all configured restrictions for administrators. Set to true to enforce required status checks for repository administrators. Set to null to disable.
       enforce_admins: true

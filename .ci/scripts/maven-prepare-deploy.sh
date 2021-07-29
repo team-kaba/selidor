@@ -16,6 +16,7 @@ original_refname=$(get_git_refname_from_pom)
 actual_refname=$(git_head_refname)
 set_git_refname_to_pom "${actual_refname}"
 
-mvnw nexus-staging:deploy-staged -f "${project_to_deploy}/pom.xml" --no-transfer-progress
+mvnw -N clean verify
+mvnw clean deploy -DskipRemoteStaging "-Dgpg.keyName=${SIGNING_GPG_KEYNAME}" -f "${project_to_deploy}/pom.xml" --no-transfer-progress "${@}"
 
 set_git_refname_to_pom "${original_refname}"
