@@ -34,16 +34,16 @@ jobs:
       - name: Cleanup old jars from cache
         run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
       - name: Build and Unit Test
-        run: ./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci,release
+        run: bash -c "./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci,release"
         env:
           SIGNING_GPG_KEYNAME: ${{ secrets.SIGNING_GPG_KEYNAME }}
           SIGNING_GPG_PASSPHRASE: ${{ secrets.SIGNING_GPG_PASSPHRASE }}
       - name: Integration Test
-        run: ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
       - name: Smoke Test
-        run: ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
       - name: Deploy
-        run: ./.ci/scripts/maven-deploy.sh selidor-projects
+        run: bash ./.ci/scripts/maven-deploy.sh selidor-projects
         env:
           OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
           OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}

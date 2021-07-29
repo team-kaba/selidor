@@ -33,11 +33,11 @@ jobs:
       - name: Cleanup old jars from cache
         run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
       - name: Build and Unit Test
-        run: ./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci
+        run: bash ./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci
       - name: Integration Test
-        run: ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
       - name: Smoke Test
-        run: ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
       - uses: actions/upload-artifact@v2  # upload test results
         if: success() || failure()        # run this step even if previous step failed
         with:
