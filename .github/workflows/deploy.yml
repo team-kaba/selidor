@@ -34,7 +34,7 @@ jobs:
       - name: Cleanup old jars from cache
         run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
       - name: Build and Unit Test
-        run: bash -c "./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci,release"
+        run: bash ./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci,release -Dgpg.keyName=${SIGNING_GPG_KEYNAME}
         env:
           SIGNING_GPG_KEYNAME: ${{ secrets.SIGNING_GPG_KEYNAME }}
           SIGNING_GPG_PASSPHRASE: ${{ secrets.SIGNING_GPG_PASSPHRASE }}

@@ -11,6 +11,7 @@ script_dir="$(
 source "${script_dir}/source.sh"
 
 project_to_deploy=${1:-.}
+shift
 
 original_refname=$(get_git_refname_from_pom)
 actual_refname=$(git_head_refname)
