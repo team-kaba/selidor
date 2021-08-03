@@ -80,7 +80,7 @@
     <!-- Mavenプラグインバージョン -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
     <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
     <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
