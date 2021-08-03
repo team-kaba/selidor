@@ -51,7 +51,7 @@
     <archunit.version>0.20.1</archunit.version>
     <assertj-core.version>3.20.2</assertj-core.version>
     <cloudevents-api.version>2.1.1</cloudevents-api.version>
-    <checkerframework.version>3.13.0</checkerframework.version>
+    <checkerframework.version>3.17.0</checkerframework.version>
     <database-rider.version>1.23.0</database-rider.version>
     <dbunit.version>2.7.0</dbunit.version>
     <doma.boot.version>1.5.0</doma.boot.version>
