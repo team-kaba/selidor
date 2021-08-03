@@ -38,7 +38,7 @@ jobs:
         run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
       - name: Smoke Test
         run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
-      - uses: actions/upload-artifact@v2  # upload test results
+      - uses: actions/upload-artifact@v2
         if: success() || failure()        # run this step even if previous step failed
         with:
           name: workflow-results
