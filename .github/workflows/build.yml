@@ -33,7 +33,7 @@ jobs:
       - name: Cleanup old jars from cache
         run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
       - name: Build and Unit Test
-        run: bash ./.ci/scripts/maven-verify.sh selidor-projects -Pci
+        run: bash ./.ci/scripts/maven-install.sh selidor-projects -Pci
       - name: Integration Test
         run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
       - name: Smoke Test

@@ -3,7 +3,7 @@ name: Report
 on:
   workflow_run:
     workflows:
-      - Build and Test
+      - Build and Run Tests
       - Build, Test and Deploy
     types:
       - completed
