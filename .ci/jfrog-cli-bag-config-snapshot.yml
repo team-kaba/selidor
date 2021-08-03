@@ -1,9 +1,0 @@
-version: 1
-issues:
-  trackerName: GitHub
-  serverID: artifactory-server
-  regexp: (.+)\s+\(#([0-9]+)\)
-  keyGroupIndex: 2
-  summaryGroupIndex: 1
-  trackerUrl: https://github.com/team-kaba/selidor/issues/
-  aggregate: false

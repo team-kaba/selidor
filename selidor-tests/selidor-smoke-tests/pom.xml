@@ -129,9 +129,9 @@
 
   <repositories>
     <repository>
-      <id>ojo.libs-snapshot</id>
-      <name>oss.jfrog.org/libs-snapshot</name>
-      <url>https://oss.jfrog.org/libs-snapshot</url>
+      <id>ossrh</id>
+      <name>ossrh</name>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -139,17 +139,6 @@
         <enabled>true</enabled>
         <updatePolicy>interval:10</updatePolicy>
       </snapshots>
-    </repository>
-    <repository>
-      <id>ojo.libs-release</id>
-      <name>oss.jfrog.org/libs-release</name>
-      <url>https://oss.jfrog.org/libs-release</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
     </repository>
   </repositories>
 </project>
