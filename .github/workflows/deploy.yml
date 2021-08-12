@@ -1,0 +1,49 @@
+name: Build, Test and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-test-deploy:
+    name: Build, Test and Deploy
+    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install xmlstarlet
+        run: sudo apt install -y xmlstarlet
+      - name: Set up Apache Maven Central
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+          server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: OSSRH_JIRA_USERNAME # env variable for username in deploy
+          server-password: OSSRH_JIRA_PASSWORD # env variable for token in deploy
+          gpg-private-key: ${{ secrets.SIGNING_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
+          gpg-passphrase: SIGNING_GPG_PASSPHRASE # env variable for GPG private key passphrase
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Cleanup old jars from cache
+        run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
+      - name: Build and Unit Test
+        run: bash ./.ci/scripts/maven-prepare-deploy.sh selidor-projects -Pci,release -Dgpg.keyName=${SIGNING_GPG_KEYNAME}
+        env:
+          SIGNING_GPG_KEYNAME: ${{ secrets.SIGNING_GPG_KEYNAME }}
+          SIGNING_GPG_PASSPHRASE: ${{ secrets.SIGNING_GPG_PASSPHRASE }}
+      - name: Integration Test
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
+      - name: Smoke Test
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
+      - name: Deploy
+        run: bash ./.ci/scripts/maven-deploy.sh selidor-projects
+        env:
+          OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
+          OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}

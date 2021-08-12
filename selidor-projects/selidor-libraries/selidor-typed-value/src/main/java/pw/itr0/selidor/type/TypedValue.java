@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 /**
  * 型付けられた値をあらわす抽象クラスです。
  *
- * <h3>継承に関する規約</h3>
+ * <h2>継承に関する規約</h2>
  *
  * <p>この抽象クラスを継承するクラスは、以下の規約に従ってください。
  *
@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
  *   <li>型パラメータ {@code <SELF>} に自分自身の型を設定してください。
  * </ul>
  *
- * <h3>{@code null}の扱いに関する規約</h3>
+ * <h2>{@code null}の扱いに関する規約</h2>
  *
  * <p>値として{@code null}を保持している{@code TypedValue}に対して、値に対してアクセスしてオブジェクトを返すメソッドが呼び出された場合は、{@code
  * null}を返してください。

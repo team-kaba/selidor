@@ -7,7 +7,7 @@ import java.util.Comparator;
  *
  * <p>{@link #getValue()} で取得した値の実装する {@link Comparable#compareTo} で比較が行われます。
  *
- * <h3>継承に関する規約</h3>
+ * <h2>継承に関する規約</h2>
  *
  * <p>この抽象クラスを継承するクラスは、以下の規約に従ってください。
  *

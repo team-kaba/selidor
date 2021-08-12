@@ -12,7 +12,7 @@ function mvnw() {
   local revision
   local project_revision
   project_revision=$(get_project_revision_from_pom)
-  revision="$(revision_for_current_build "${project_revision}")"
+  revision="${project_revision}"
 
   if [ "${revision}" != "${project_revision}" ]; then
     args=("-Drevision=${revision}" "${args[@]}")
@@ -23,28 +23,8 @@ function mvnw() {
   fi
 }
 
-function jfrog() {
-  local command="${JFROG_CLI_BIN_DIR:-${PROJECT_ROOT_DIR}/.ci/.jfrog/bin}/jfrog"
-  local args=()
-  echo "Running command:" "${command}" "${args[@]}" "${@}"
-  if [ "${DRY_RUN:-}" != "true" ]; then
-    "${command}" "${args[@]}" "${@}"
-  fi
-}
-
 function get_project_root_group_id_from_pom() {
   xmlstarlet select --text --encode=utf-8 -N m=http://maven.apache.org/POM/4.0.0 -t -v '//m:project/m:groupId' "${PROJECT_ROOT_DIR}/pom.xml"
-}
-
-function revision_for_current_build() {
-  local revision
-  revision="${1}"
-  if is_pull_request; then
-    # PRの場合は、revisionにPRを含める。
-    echo "${revision//-SNAPSHOT/}-pr${VCS_PULL_REQUEST_ID}-SNAPSHOT"
-  else
-    echo "${revision}"
-  fi
 }
 
 function get_project_revision_from_pom() {

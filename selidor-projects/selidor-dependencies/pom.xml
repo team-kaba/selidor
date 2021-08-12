@@ -48,37 +48,38 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
-    <archunit.version>0.14.1</archunit.version>
-    <assertj-core.version>3.17.2</assertj-core.version>
-    <cloudevents-api.version>1.3.0</cloudevents-api.version>
-    <checkerframework.version>3.6.1</checkerframework.version>
-    <database-rider.version>1.16.1</database-rider.version>
+    <archunit.version>0.20.1</archunit.version>
+    <assertj-core.version>3.20.2</assertj-core.version>
+    <cloudevents-api.version>2.2.0</cloudevents-api.version>
+    <checkerframework.version>3.17.0</checkerframework.version>
+    <database-rider.version>1.28.0</database-rider.version>
     <dbunit.version>2.7.0</dbunit.version>
-    <doma.boot.version>1.4.0</doma.boot.version>
-    <doma.version>2.29.0</doma.version>
+    <doma.boot.version>1.5.0</doma.boot.version>
+    <doma.version>2.47.1</doma.version>
     <flyway-dbunit-test.version>6.4.0</flyway-dbunit-test.version>
     <jsr305.version>3.0.2</jsr305.version>
-    <junit-jupiter.version>5.7.0</junit-jupiter.version>
-    <mapstruct.version>1.4.0.Final</mapstruct.version>
-    <mybatis.version>3.5.3</mybatis.version>
-    <mybatis-spring-boot-starter.version>2.1.3</mybatis-spring-boot-starter.version>
-    <okhttp.version>4.9.0</okhttp.version>
-    <org.json.version>20200518</org.json.version>
+    <junit-jupiter.version>5.7.2</junit-jupiter.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
+    <okhttp.version>4.9.1</okhttp.version>
+    <org.json.version>20210307</org.json.version>
     <retrofit.version>2.9.0</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
-    <spring-boot.version>2.2.7.RELEASE</spring-boot.version>
-    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+    <spring-boot.version>2.5.3</spring-boot.version>
+    <spring-cloud.version>2020.0.3</spring-cloud.version>
+    <spring-cloud-gcp.version>2.0.3</spring-cloud-gcp.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
-    <testcontainers.version>1.14.3</testcontainers.version>
+    <testcontainers.version>1.16.0</testcontainers.version>
     <twitter4j.version>4.0.7</twitter4j.version>
 
     <!-- Maven Plugins -->
     <!-- spring-boot-dependencies と同じバージョンを指定しているプラグイン -->
-    <flatten-maven-plugin.version>1.2.5</flatten-maven-plugin.version>
-    <git-commit-id-plugin.version>4.0.2</git-commit-id-plugin.version>
+    <flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
+    <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
     <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
     <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
     <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
@@ -94,10 +95,10 @@
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>6.0.2</dependency-check-maven.version>
+    <dependency-check-maven.version>6.2.2</dependency-check-maven.version>
     <duplicate-finder-maven-plugin.version>1.5.0</duplicate-finder-maven-plugin.version>
-    <fmt-maven-plugin.version>2.10</fmt-maven-plugin.version>
-    <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
+    <fmt-maven-plugin.version>2.11</fmt-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
 
     <!-- [build] Root Aggregator への相対パス。共通の静的解析設定ファイルなどが配置されています。 -->
     <main.basedir>../..</main.basedir>
@@ -156,15 +157,11 @@
         <type>pom</type>
       </dependency>
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <version>${spring-boot.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-          </exclusion>
-        </exclusions>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>spring-cloud-gcp-dependencies</artifactId>
+        <version>${spring-cloud-gcp.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
 
       <!-- ArchUnit -->
@@ -208,7 +205,7 @@
       </dependency>
       <dependency>
         <groupId>org.seasar.doma</groupId>
-        <artifactId>doma</artifactId>
+        <artifactId>doma-processor</artifactId>
         <version>${doma.version}</version>
       </dependency>
 
@@ -230,17 +227,19 @@
         <artifactId>mapstruct-processor</artifactId>
         <version>${mapstruct.version}</version>
       </dependency>
+      <dependency> <!-- Required to use MapStruct together with Lombok. See: https://mapstruct.org/faq/#Can-I-use-MapStruct-together-with-Project-Lombok -->
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-mapstruct-binding</artifactId>
+        <version>${lombok-mapstruct-binding.version}</version>
+      </dependency>
 
       <!-- MyBatis -->
       <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis-spring-boot-starter.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter-test</artifactId>
-        <version>${mybatis-spring-boot-starter.version}</version>
+        <artifactId>mybatis-spring-boot</artifactId>
+        <version>${mybatis-spring-boot.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
 
       <!-- OkHttp / Retrofit -->

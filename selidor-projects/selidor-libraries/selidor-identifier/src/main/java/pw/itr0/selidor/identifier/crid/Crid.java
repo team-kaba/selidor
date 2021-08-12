@@ -62,17 +62,17 @@ import pw.itr0.selidor.internal.util.PreConditions;
  *
  * <pre>
  *    integer 1
- * -> 00000000 00000000 00000000 00000001
- * -> 5-bit groups: 00000 00000 00000 00000 00000 00000 01
- * -> pad 0 to right: 00000 00000 00000 00000 00000 00000 01000
- * -> "0000008"
+ * ⇒ 00000000 00000000 00000000 00000001
+ * ⇒ 5-bit groups: 00000 00000 00000 00000 00000 00000 01
+ * ⇒ pad 0 to right: 00000 00000 00000 00000 00000 00000 01000
+ * ⇒ "0000008"
  *
  *    integer 1
- * -> byte 1 (down-cast)
- * -> 00000001
- * -> 5-bit groups: 00000 001
- * -> pad 0 to right: 00000 00100
- * -> "04"
+ * ⇒ byte 1 (down-cast)
+ * ⇒ 00000001
+ * ⇒ 5-bit groups: 00000 001
+ * ⇒ pad 0 to right: 00000 00100
+ * ⇒ "04"
  * </pre>
  *
  * <a href="https://www.crockford.com/base32.html">Crockford’s Base32</a> defines as below:

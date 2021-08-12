@@ -5,7 +5,7 @@ import pw.itr0.selidor.identifier.random.LongId;
 /**
  * 型付けられたID({@link LongId})を表すクラスを実装するための抽象クラスです。
  *
- * <h3>継承に関する規約</h3>
+ * <h2>継承に関する規約</h2>
  *
  * <p>この抽象クラスを継承するクラスは、以下の規約に従ってください。
  *

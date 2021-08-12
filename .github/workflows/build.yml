@@ -1,0 +1,45 @@
+name: Build and Run Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build-test:
+    name: Build and Test
+    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install xmlstarlet
+        run: sudo apt install -y xmlstarlet
+      - name: Set up Apache Maven Central
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Cleanup old jars from cache
+        run: source .ci/scripts/source.sh && cleanup_maven_repo "${PACKAGE_NAME}"
+      - name: Build and Unit Test
+        run: bash ./.ci/scripts/maven-install.sh selidor-projects -Pci
+      - name: Integration Test
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-integration-tests
+      - name: Smoke Test
+        run: bash ./.ci/scripts/maven-verify.sh selidor-tests/selidor-smoke-tests
+      - uses: actions/upload-artifact@v2  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: workflow-results
+          path: '**/target/*-reports'
