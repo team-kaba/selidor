@@ -88,7 +88,7 @@
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>6.3.2</dependency-check-maven.version>
+    <dependency-check-maven.version>6.4.1</dependency-check-maven.version>
     <fmt-maven-plugin.version>2.12</fmt-maven-plugin.version>
     <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
