@@ -23,19 +23,28 @@ public abstract class TypedComparable<
         SELF extends TypedValue<RAW>, RAW extends Comparable<? super RAW>>
     extends TypedValue<RAW> implements Comparable<SELF> {
 
-  private final Comparator<RAW> comparator;
+  private final Comparator<? super RAW> comparator;
 
   /**
    * @param value 値
    * @param nullFirst ソート時に {@code null} を先頭にするか末尾にするか。 {@code true} の場合、 {@code null} を先頭としてソートする。
    */
   protected TypedComparable(RAW value, boolean nullFirst) throws IllegalArgumentException {
+    this(
+        value,
+        nullFirst
+            ? Comparator.nullsFirst(Comparator.naturalOrder())
+            : Comparator.nullsLast(Comparator.naturalOrder()));
+  }
+
+  /**
+   * @param value 値
+   * @param comparator ソート時に利用する {@link Comparator}
+   */
+  protected TypedComparable(RAW value, Comparator<? super RAW> comparator)
+      throws IllegalArgumentException {
     super(value);
-    if (nullFirst) {
-      comparator = Comparator.nullsFirst(Comparator.naturalOrder());
-    } else {
-      comparator = Comparator.nullsLast(Comparator.naturalOrder());
-    }
+    this.comparator = comparator;
   }
 
   /**
