@@ -48,7 +48,7 @@
     <!-- Selidorのバージョンは${revision}を利用するので、propertiesでは設定しません。 -->
 
     <!-- 3rd Party Libraries -->
-    <archunit.version>0.21.0</archunit.version>
+    <archunit.version>0.22.0</archunit.version>
     <assertj-core.version>3.21.0</assertj-core.version>
     <cloudevents-api.version>2.2.0</cloudevents-api.version>
     <checkerframework.version>3.18.1</checkerframework.version>
