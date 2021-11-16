@@ -95,7 +95,7 @@
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
     <!-- spring-boot-dependencies にないプラグイン -->
-    <dependency-check-maven.version>6.4.1</dependency-check-maven.version>
+    <dependency-check-maven.version>6.5.0</dependency-check-maven.version>
     <duplicate-finder-maven-plugin.version>1.5.0</duplicate-finder-maven-plugin.version>
     <fmt-maven-plugin.version>2.12</fmt-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
