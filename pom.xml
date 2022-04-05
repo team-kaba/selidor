@@ -281,7 +281,8 @@
               <requireSameVersions>
                 <dependencies>
                   <dependency>com.fasterxml.jackson.core:jackson-core</dependency>
-                  <dependency>com.fasterxml.jackson.core:jackson-databind</dependency>
+                  <!-- databindのパッチバージョンが異なってしまってエラーになるので、グループから外す -->
+                  <!-- <dependency>com.fasterxml.jackson.core:jackson-databind</dependency> -->
                   <dependency>com.fasterxml.jackson.dataformat:*</dependency>
                   <dependency>com.fasterxml.jackson.datatype:*</dependency>
                   <dependency>com.fasterxml.jackson.jaxrs:*</dependency>
