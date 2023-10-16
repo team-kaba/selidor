@@ -63,7 +63,7 @@
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
     <okhttp.version>4.9.2</okhttp.version>
-    <org.json.version>20210307</org.json.version>
+    <org.json.version>20231013</org.json.version>
     <retrofit.version>2.9.0</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
     <spring-boot.version>2.5.12</spring-boot.version>
