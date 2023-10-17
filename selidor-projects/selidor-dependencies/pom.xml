@@ -62,7 +62,7 @@
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
-    <okhttp.version>4.9.2</okhttp.version>
+    <okhttp.version>4.12.0</okhttp.version>
     <org.json.version>20210307</org.json.version>
     <retrofit.version>2.9.0</retrofit.version>
     <retrofit2-reactor-adapter.version>2.1.0</retrofit2-reactor-adapter.version>
