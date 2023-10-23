@@ -96,7 +96,7 @@
 
     <!-- spring-boot-dependencies にないプラグイン -->
     <dependency-check-maven.version>6.5.0</dependency-check-maven.version>
-    <duplicate-finder-maven-plugin.version>1.5.0</duplicate-finder-maven-plugin.version>
+    <duplicate-finder-maven-plugin.version>1.5.1</duplicate-finder-maven-plugin.version>
     <fmt-maven-plugin.version>2.12</fmt-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
 
